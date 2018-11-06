@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:focusableInTouchMode="true"
+              android:focusable="true"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/layout_title_bar"/>
+
+    <TextView
+            android:id="@+id/tvLogo"
+            android:text="用时间，换天分"
+            android:gravity="center"
+            android:layout_marginTop="30dp"
+            android:textSize="32sp"
+            android:layout_width="match_parent"
+              android:layout_height="wrap_content"/>
+
+    <EditText android:layout_width="match_parent"
+              android:hint="手机号码"
+              android:id="@+id/etPhone"
+              android:gravity="center"
+              android:layout_marginTop="30dp"
+              android:layout_marginLeft="40dp"
+              android:background="@drawable/edit_background"
+              android:layout_marginRight="40dp"
+              android:maxLength="11"
+              android:layout_height="50dp"/>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="40dp"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+        <EditText android:layout_weight="2"
+                  android:hint="验证码"
+                  android:gravity="center"
+                  android:maxLength="6"
+                  android:layout_marginRight="5dp"
+                  android:id="@+id/etVeriCode"
+                  android:background="@drawable/edit_background" android:layout_width="0dp"
+                  android:layout_height="50dp"/>
+
+        <Button android:layout_weight="1"
+                android:id="@+id/btnVeriCode"
+                android:text="获取验证码"
+                android:padding="0dp"
+                android:layout_margin="0dp"
+                android:textColor="@color/colorPrimary"
+                android:layout_gravity="center_vertical" android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <EditText android:layout_width="match_parent"
+              android:hint="密码"
+              android:id="@+id/etPassword"
+              android:gravity="center"
+              android:maxLength="16"
+              android:inputType="textPassword"
+              android:layout_marginTop="20dp"
+              android:layout_marginLeft="40dp"
+              android:background="@drawable/edit_background"
+              android:layout_marginRight="40dp"
+              android:layout_height="50dp"/>
+
+    <Button android:layout_width="match_parent"
+            android:id="@+id/btnRegister"
+            android:gravity="center"
+            android:text="注册"
+            android:textColor="@color/colorWhite"
+            android:layout_marginTop="20dp"
+            android:letterSpacing="0.02"
+            android:layout_marginLeft="60dp"
+            android:background="@drawable/btn_background"
+            android:layout_marginRight="60dp"
+            android:layout_height="50dp"/>
+
+    <TextView android:layout_width="match_parent"
+              android:textSize="10sp"
+              android:id="@+id/tvRegister"
+              android:padding="15dp"
+              android:gravity="center"
+              android:layout_height="wrap_content" android:text="注册即表示您同意《梦想家》相关使用服务协议"
+              android:letterSpacing="0.02" android:textColor="@color/colorPrimary"/>
+
+
+</LinearLayout>
