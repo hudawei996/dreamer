@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@color/background"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <RelativeLayout
+            android:layout_margin="@dimen/main_margin_left"
+            android:background="@drawable/main_card_background"
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+        <ImageView
+                android:id="@+id/ivPassword"
+                android:src="@mipmap/ic_password_1"
+                android:layout_width="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_height="40dp"/>
+
+        <TextView
+                android:id="@+id/tvPasswordName"
+                android:text="密码备忘录"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="16sp"
+                android:textColor="@color/colorBlack"
+                android:layout_toRightOf="@id/ivPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:textSize="10sp"
+                android:layout_marginTop="5dp"
+                android:layout_below="@id/tvPasswordName"
+                android:text="妈妈再也不用担心我忘记密码"
+                android:layout_alignLeft="@id/tvPasswordName"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:layout_marginLeft="@dimen/main_margin_left"
+            android:layout_marginRight="@dimen/main_margin_right"
+            android:background="@drawable/main_card_background"
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+        <ImageView
+                android:id="@+id/ivMoney"
+                android:src="@mipmap/ic_money"
+                android:layout_width="50dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_height="50dp"/>
+
+        <TextView
+                android:id="@+id/tvMoney"
+                android:text="储蓄罐"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="16sp"
+                android:textColor="@color/colorBlack"
+                android:layout_toRightOf="@id/ivMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:textSize="10sp"
+                android:layout_marginTop="5dp"
+                android:layout_below="@id/tvMoney"
+                android:text="记录收支明细，实现财富自由"
+                android:layout_alignLeft="@id/tvMoney"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+            android:layout_marginTop="@dimen/main_margin_top"
+            android:layout_marginLeft="@dimen/main_margin_left"
+            android:layout_marginRight="@dimen/main_margin_right"
+            android:background="@drawable/main_card_background"
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+        <ImageView
+                android:id="@+id/ivBook"
+                android:src="@mipmap/ic_book"
+                android:layout_width="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_height="40dp"/>
+
+        <TextView
+                android:id="@+id/tvBook"
+                android:text="书架"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="16sp"
+                android:textColor="@color/colorBlack"
+                android:layout_toRightOf="@id/ivBook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:textSize="10sp"
+                android:layout_marginTop="5dp"
+                android:layout_below="@id/tvBook"
+                android:text="书中自由黄金屋，提升自我"
+                android:layout_alignLeft="@id/tvBook"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    </RelativeLayout>
+</LinearLayout>

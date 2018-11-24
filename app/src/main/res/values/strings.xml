@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">梦想家</string>
+
+    <string name="home">&#xe6ce;</string>
+    <string name="found">&#xe608;</string>
+    <string name="me">&#xe605;</string>
+    <string name="timeline">&#xe649;</string>
+
 </resources>
