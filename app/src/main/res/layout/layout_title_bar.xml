@@ -1,23 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:background="@color/colorWhite"
+                android:background="@color/colorPrimary"
                 android:focusable="true"
+                android:id="@+id/llTitleBar"
                 android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="60dp">
 
     <TextView
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content" android:layout_centerInParent="true"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorWhite"
             android:textSize="@dimen/title_bar_size"
-            android:layout_height="match_parent" android:text="@string/app_name" android:gravity="center_vertical"/>
+            android:layout_height="match_parent"
+            android:text="@string/app_name" android:gravity="center_vertical"/>
 
     <ImageView android:layout_width="wrap_content"
-               android:src="@mipmap/ic_back"
+               android:src="@mipmap/ic_action_left"
                android:paddingLeft="15dp"
+               android:paddingTop="15dp"
+               android:paddingBottom="15dp"
                android:id="@+id/ivBack"
                android:paddingRight="10dp"
                android:layout_height="match_parent"/>
+
+    <TextView
+            android:id="@+id/tvAdd"
+            android:text="添加"
+            android:visibility="gone"
+            android:gravity="center_vertical"
+            android:layout_alignParentRight="true"
+            android:paddingRight="15dp"
+
+            android:letterSpacing="0.1"
+            android:paddingLeft="15dp"
+            android:textColor="@color/colorWhite"
+            android:layout_width="wrap_content"
+              android:layout_height="match_parent"/>
 
 </RelativeLayout>

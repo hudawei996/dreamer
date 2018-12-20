@@ -3,34 +3,49 @@ package com.zhangwenshuan.dreamer.util
 import android.app.Application
 import android.content.Context
 import android.content.IntentFilter
+import android.graphics.Point
 import android.net.ConnectivityManager
 import android.net.wifi.WifiManager
+import android.util.Log
+import android.view.WindowManager
 import android.widget.Toast
+import com.tencent.bugly.Bugly
 
-
-const val userId = 20180101
 
 const val TAG = "dreamer"
 
+const val isDebug = true
+
 class BaseApplication : Application() {
 
-    var context: Context? = null
+
 
     override fun onCreate() {
         super.onCreate()
 
-        context = this
+        instance = this
 
+        Bugly.init(getApplicationContext(), "eacb38dfc1", false)
 
     }
 
 
     companion object {
+        @JvmStatic
+        var userId = 20190101
+
 
         @JvmStatic
-        fun getDB() {
+        var token:String=""
 
+
+        private lateinit var instance: Application
+
+        fun getContext(): Application {
+            return instance
         }
+
+
 
     }
 
@@ -41,43 +56,27 @@ class BaseApplication : Application() {
     }
 
 
-    fun registerNetListener(){
-       val intentFilter= IntentFilter()
+    fun registerNetListener() {
+        val intentFilter = IntentFilter()
         intentFilter.addAction(android.net.ConnectivityManager.ACTION_RESTRICT_BACKGROUND_CHANGED)
     }
 
 }
 
+fun logInfo(message: String) {
+    if (isDebug) Log.i(TAG, message)
+}
 
-var firstShow: Long = 0
+fun logError(message: String) {
+    if (isDebug) Log.e(TAG, message)
+}
 
-var secondShow: Long = 0
 
-var lastMessage: String = ""
+fun getScreenPoint(): Point {
+    val point = Point()
+    val windowManager = BaseApplication.getContext().getSystemService(Context.WINDOW_SERVICE) as WindowManager
+    windowManager.defaultDisplay.getSize(point)
 
-//fun BaseActivity.toast(message: String, time: Int = Toast.LENGTH_SHORT) {
-//    if (toast == null) {
-//        toast = Toast(this)
-//        toast!!.setText(message)
-//        toast!!.duration = time
-//        toast?.show()
-//        firstShow = System.currentTimeMillis()
-//    } else {
-//        secondShow = System.currentTimeMillis()
-//
-//        if (lastMessage == message) {
-//            if (secondShow - firstShow > Toast.LENGTH_SHORT) {
-//                toast?.show()
-//            }
-//        } else {
-//            lastMessage = message
-//            toast?.setText(lastMessage)
-//            toast?.duration = time
-//            toast?.show()
-//        }
-//    }
-//
-//    firstShow = secondShow
-//
-//}
+    return point
+}
 

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@color/background"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+
+
+
+    <RelativeLayout
+            android:layout_marginTop="15dp"
+            android:background="@color/colorWhite"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+
+
+        <TextView
+                android:id="@+id/tvNickname"
+                android:layout_toRightOf="@id/ivHeader"
+                android:text="金话筒"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/me_margin_left"
+                android:textColor="@color/colorBlack"
+                android:layout_width="wrap_content"
+                android:textSize="16sp"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:layout_below="@id/tvNickname"
+                android:text="没有歌喉征服不了的话筒"
+                android:gravity="center"
+                android:layout_alignLeft="@id/tvNickname"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/colorBase"
+                android:layout_width="wrap_content"
+                android:textSize="10sp"
+                android:layout_marginBottom="15dp"
+                android:layout_height="wrap_content"/>
+
+        <ImageView android:layout_width="@dimen/right_size"
+                   android:layout_height="@dimen/right_size"
+                   android:src="@mipmap/ic_right"
+                   android:layout_centerVertical="true"
+                   android:layout_alignParentRight="true"
+                   android:layout_marginRight="@dimen/me_margin_right"
+        />
+
+        <ImageView
+                android:id="@+id/ivHeader"
+                android:src="@mipmap/singer"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/me_margin_left"
+                android:layout_width="50dp" android:layout_height="50dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:layout_marginTop="20dp"
+
+            android:background="@color/colorWhite"
+            android:layout_width="match_parent" android:layout_height="@dimen/me_height">
+        <ImageView android:layout_width="@dimen/me_image_size"
+                   android:layout_height="@dimen/me_image_size"
+                   android:id="@+id/ivPasswordManager"
+                   android:layout_centerVertical="true"
+                   android:layout_marginLeft="@dimen/me_margin_left"
+                   android:src="@mipmap/ic_password_me"/>
+
+        <TextView
+                android:text="密码"
+                android:textColor="@color/colorBlack"
+                android:layout_toRightOf="@id/ivPasswordManager"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+
+        <View android:layout_width="match_parent"
+              android:layout_alignParentBottom="true"
+              android:background="@color/background"
+              android:layout_marginLeft="20dp"
+              android:layout_height="0.1dp"/>
+
+        <ImageView android:layout_width="@dimen/right_size"
+                   android:layout_height="@dimen/right_size"
+                   android:src="@mipmap/ic_right"
+                   android:layout_centerVertical="true"
+                   android:layout_alignParentRight="true"
+                   android:layout_marginRight="@dimen/me_margin_right"
+        />
+
+        <View android:layout_width="match_parent"
+              android:background="@color/background"
+              android:layout_height="0.1dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:background="@color/colorWhite"
+            android:layout_width="match_parent" android:layout_height="@dimen/me_height">
+        <ImageView android:layout_width="@dimen/me_image_size"
+                   android:layout_height="@dimen/me_image_size"
+                   android:id="@+id/ivMoneyManager"
+                   android:layout_centerVertical="true"
+                   android:layout_marginLeft="@dimen/me_margin_left"
+                   android:src="@mipmap/ic_money_me"/>
+
+        <TextView
+                android:text="财务"
+                android:textColor="@color/colorBlack"
+                android:layout_toRightOf="@id/ivMoneyManager"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+        <ImageView android:layout_width="@dimen/right_size"
+                   android:layout_height="@dimen/right_size"
+                   android:src="@mipmap/ic_right"
+                   android:layout_centerVertical="true"
+                   android:layout_alignParentRight="true"
+                   android:layout_marginRight="@dimen/me_margin_right"
+        />
+        <View android:layout_width="match_parent"
+              android:layout_alignParentBottom="true"
+              android:background="@color/background"
+
+              android:layout_marginLeft="20dp"
+              android:layout_height="0.1dp"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:background="@color/colorWhite"
+            android:layout_width="match_parent" android:layout_height="@dimen/me_height">
+        <ImageView android:layout_width="@dimen/me_image_size"
+                   android:layout_height="@dimen/me_image_size"
+                   android:id="@+id/ivTimelineManager"
+                   android:layout_centerVertical="true"
+                   android:layout_marginLeft="@dimen/me_margin_left"
+                   android:src="@mipmap/ic_time_me"/>
+
+        <TextView
+                android:text="时间轴"
+                android:textColor="@color/colorBlack"
+                android:layout_toRightOf="@id/ivTimelineManager"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+        <ImageView android:layout_width="@dimen/right_size"
+                   android:layout_height="@dimen/right_size"
+                   android:src="@mipmap/ic_right"
+                   android:layout_centerVertical="true"
+                   android:layout_alignParentRight="true"
+                   android:layout_marginRight="@dimen/me_margin_right"
+        />
+        <View android:layout_width="match_parent"
+              android:layout_alignParentBottom="true"
+              android:background="@color/background"
+              android:layout_height="0.1dp"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:layout_marginTop="15dp"
+            android:background="@color/colorWhite"
+            android:layout_width="match_parent" android:layout_height="@dimen/me_height">
+
+        <ImageView android:layout_width="@dimen/me_image_size"
+                   android:layout_height="@dimen/me_image_size"
+                   android:id="@+id/ivSettings"
+                   android:layout_centerVertical="true"
+                   android:layout_marginLeft="@dimen/me_margin_left"
+                   android:src="@mipmap/ic_setting"/>
+
+        <TextView
+                android:text="设置"
+                android:textColor="@color/colorBlack"
+                android:layout_toRightOf="@id/ivSettings"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+
+        <View android:layout_width="match_parent"
+              android:layout_alignParentBottom="true"
+              android:background="@color/background"
+              android:layout_height="0.1dp"/>
+        <ImageView android:layout_width="@dimen/right_size"
+                   android:layout_height="@dimen/right_size"
+                   android:src="@mipmap/ic_right"
+                   android:layout_centerVertical="true"
+                   android:layout_alignParentRight="true"
+                   android:layout_marginRight="@dimen/me_margin_right"
+        />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

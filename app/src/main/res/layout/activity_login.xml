@@ -7,7 +7,7 @@
                 android:layout_height="match_parent">
 
     <ImageView android:layout_width="80dp"
-               android:src="@mipmap/logo"
+               android:src="@mipmap/ic_launcher"
                android:id="@+id/ivLogo"
                android:layout_centerHorizontal="true"
                android:layout_marginTop="80dp"
@@ -53,7 +53,8 @@
             android:text="登录"
             android:textColor="@color/colorWhite"
             android:layout_marginTop="20dp"
-            android:letterSpacing="0.02"
+            android:textSize="18sp"
+            android:letterSpacing="0.05"
             android:layout_marginLeft="60dp"
             android:background="@drawable/btn_background"
             android:layout_marginRight="60dp"
@@ -66,7 +67,8 @@
               android:textSize="16sp"
               android:id="@+id/tvRegister"
               android:padding="15dp"
-              android:layout_height="wrap_content" android:text="注册"
+              android:layout_height="wrap_content"
+              android:text="注册"
               android:letterSpacing="0.02" android:textColor="@color/colorPrimary"/>
 
 

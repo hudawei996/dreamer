@@ -3,38 +3,73 @@
           package="com.zhangwenshuan.dreamer">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET"/><uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
 
 
     <application
-            android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:name=".util.BaseApplication"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".activity.LoginActivity" android:screenOrientation="portrait">
+            android:theme="@style/AppTheme" android:fullBackupContent="@xml/backup_descriptor">
+        <activity android:name=".activity.MainActivityv1">
 
         </activity>
+
+        <activity android:name=".activity.LoginActivity" android:screenOrientation="portrait"/>
+
+      <activity android:name=".activity.SplashActivity">
+          <intent-filter>
+              <action android:name="android.intent.action.MAIN"/>
+
+              <category android:name="android.intent.category.LAUNCHER"/>
+          </intent-filter>
+      </activity>
 
         <activity android:name=".activity.PasswordActivity">
 
         </activity>
+
+        <activity
+                android:name="com.tencent.bugly.beta.ui.BetaActivity"
+                android:configChanges="keyboardHidden|orientation|screenSize|locale"
+                android:theme="@android:style/Theme.Translucent" />
 
         <activity android:name=".activity.RegisterActivity" android:screenOrientation="portrait"/>
 
         <activity android:name=".activity.PasswordAddActivity" android:screenOrientation="portrait"/>
 
 
-        <activity android:name=".activity.LogoActivity"/>
+        <activity android:name=".activity.LogoActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".activity.FinanceActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.FinanceAddActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.BankCardAddActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.BankAccountUpdateActivity"/>
+        <activity android:name=".activity.FinanceDetailActivity"/>
+        <activity android:name=".activity.FinanceSynopsisActivity"/>
+        <activity android:name=".activity.FinanceSearchActivity"/>
+        <activity android:name=".activity.BankAccountActivity"/>
+        <activity android:name=".activity.BookListActivity"/>
+        <activity android:name=".activity.BookAddActivity"/>
+        <activity android:name=".activity.BookDetailActivity"/>
+
+        <provider
+                android:name="android.support.v4.content.FileProvider"
+                android:authorities="com.zhangwenshuan.dreamer.fileProvider"
+                android:exported="false"
+                android:grantUriPermissions="true">
+            <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/provider_paths"/>
+        </provider>
+
     </application>
 
 </manifest>

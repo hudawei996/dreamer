@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/layout_title_bar"/>
+
+    <EditText
+            android:id="@+id/etUpdateAccount"
+
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="25dp"
+            android:hint="修改账户金额"
+            android:inputType="numberDecimal"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:background="@drawable/edit_background"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+
+</LinearLayout>

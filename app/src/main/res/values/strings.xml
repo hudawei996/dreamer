@@ -1,9 +1,31 @@
 <resources>
-    <string name="app_name">梦想家</string>
+    <string name="app_name">追梦者</string>
 
     <string name="home">&#xe6ce;</string>
     <string name="found">&#xe608;</string>
     <string name="me">&#xe605;</string>
     <string name="timeline">&#xe649;</string>
+
+    <string name="expense">&#xe6fe;</string>
+    <string name="income">&#xe611;</string>
+    <string name="finance">&#xe62f;</string>
+
+    <string name="income_account">&#xe600;</string>
+    <string name="expense_account">&#xe65c;</string>
+    <string name="day_account">&#xe72e;</string>
+    <string name="month_account">&#xe72d;</string>
+
+    <string-array name="bank_array">
+        <item>微信</item>
+        <item>支付宝</item>
+        <item>中国银行</item>
+        <item>建设银行</item>
+        <item>招商银行</item>
+        <item>农业银行</item>
+        <item>工商银行</item>
+        <item>广发银行</item>
+        <item>北京银行</item>
+        <item>其他支付</item>
+    </string-array>
 
 </resources>

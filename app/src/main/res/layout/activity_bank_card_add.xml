@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@color/background"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/layout_title_bar"/>
+    <LinearLayout
+            android:id="@+id/llBank"
+            android:orientation="vertical"
+            android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
+
+        <LinearLayout
+                android:id="@+id/llBankAnimation"
+                android:orientation="vertical"
+                android:layout_width="match_parent" android:layout_height="wrap_content">
+            <RelativeLayout
+                    android:id="@+id/rlBankLine"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp">
+
+                <View
+                        android:layout_width="2dp"
+                        android:layerType="software"
+                        android:layout_marginLeft="130dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/dash_line_vertical"/>
+
+                <View
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="130dp" android:layout_width="2dp"
+                        android:layerType="software"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/dash_line_vertical"/>
+
+            </RelativeLayout>
+
+
+            <TextView
+                    android:id="@+id/tvBankName"
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginRight="100dp"
+                    android:background="@drawable/bank_card_background"
+                    android:text="微信支付"
+                    android:gravity="center"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp"
+                    android:padding="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/llAccountAnimation"
+                android:orientation="vertical"
+                android:layout_width="match_parent" android:layout_height="wrap_content">
+
+
+            <RelativeLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp">
+
+                <View
+                        android:layout_width="2dp"
+                        android:layerType="software"
+                        android:layout_marginLeft="130dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/dash_line_vertical"/>
+
+                <View
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="130dp" android:layout_width="2dp"
+                        android:layerType="software"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/dash_line_vertical"/>
+
+            </RelativeLayout>
+
+
+            <EditText
+                    android:id="@+id/etBankAccount"
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginRight="100dp"
+                    android:background="@drawable/bank_card_background"
+                    android:hint="余额"
+                    android:textColorHint="@color/colorWhite"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/llNumberAnimation"
+                android:orientation="vertical"
+                android:layout_width="match_parent" android:layout_height="wrap_content">
+
+            <RelativeLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp">
+
+                <View
+                        android:layout_width="2dp"
+                        android:layerType="software"
+                        android:layout_marginLeft="130dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/dash_line_vertical"/>
+
+                <View
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="130dp" android:layout_width="2dp"
+                        android:layerType="software"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/dash_line_vertical"/>
+
+            </RelativeLayout>
+
+
+            <EditText
+                    android:id="@+id/etBankNumber"
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginRight="100dp"
+                    android:background="@drawable/bank_card_background"
+                    android:hint="卡号"
+                    android:textColorHint="@color/colorWhite"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp"
+                    android:padding="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+            android:id="@+id/rlBankUpdate"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+                    android:layout_height="50dp">
+        <View android:layout_width="match_parent"
+              android:layerType="software"
+              android:background="@drawable/dash_line"
+              android:layout_height="2dp"/>
+
+
+        <View android:layout_width="2dp"
+              android:id="@+id/vLine"
+              android:layerType="software"
+              android:layout_centerInParent="true"
+              android:background="@drawable/dash_line_vertical"
+              android:layout_height="match_parent"/>
+
+        <TextView
+                android:id="@+id/tvBankFinanceDetail"
+                android:text="收支明细"
+                android:layout_alignParentStart="true"
+                android:layout_alignRight="@+id/vLine"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+
+        <TextView
+                android:id="@+id/tvBankBalanceEdit"
+                android:text="修改余额"
+                android:layout_alignParentRight="true"
+                android:layout_alignStart="@+id/vLine"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+    </RelativeLayout>
+</LinearLayout>

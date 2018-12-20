@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <RelativeLayout
+            android:id="@+id/rlSearchTop"
+            android:layout_width="match_parent" android:background="@color/background"
+            android:layout_height="wrap_content">
+        <TextView
+                android:id="@+id/tvSearchTime"
+                android:text="2018-12-09"
+                android:textSize="10sp"
+                android:textColor="@color/colorBase"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="2dp"
+                android:padding="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:id="@+id/tvSearchIncome"
+                android:layout_alignParentRight="true"
+                android:text="收入:1000"
+                android:layout_marginRight="2dp"
+                android:textSize="10sp"
+                android:textColor="@color/colorBase"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="2dp"
+                android:padding="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:id="@+id/tvSearchExpense"
+                android:layout_toLeftOf="@id/tvSearchIncome"
+                android:text="支出:1000"
+                android:layout_marginRight="2dp"
+                android:textSize="10sp"
+                android:textColor="@color/colorBase"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="2dp"
+                android:padding="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvFinanceDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+
+
+</LinearLayout>

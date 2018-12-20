@@ -1,14 +1,15 @@
 package com.zhangwenshuan.dreamer.activity
 
-import android.text.Layout
+import android.graphics.Typeface
+import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.widget.TextView
 import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.adapter.MainAdapter
 import com.zhangwenshuan.dreamer.fragment.BaseFragment
 import com.zhangwenshuan.dreamer.fragment.MainFragment
+import com.zhangwenshuan.dreamer.fragment.MeFragment
 import kotlinx.android.synthetic.main.activity_main.*
-import android.graphics.Typeface
 
 
 class MainActivity : BaseActivity() {
@@ -26,10 +27,10 @@ class MainActivity : BaseActivity() {
     override fun setResourceId(): Int = R.layout.activity_main
 
     override fun preInitData() {
-        fragments = mutableListOf(MainFragment(), MainFragment(), MainFragment(), MainFragment())
+        fragments = mutableListOf(MainFragment(), MainFragment(), MainFragment(), MeFragment())
 
 
-        titles = mutableListOf("首页", "时间轴", "发现", "我的")
+        titles = mutableListOf("梦想家", "时间轴", "发现", "我")
 
         icons = mutableListOf(
             resources.getString(R.string.home),
@@ -49,6 +50,8 @@ class MainActivity : BaseActivity() {
         vpMain.adapter = adapter
 
         tlMain.setupWithViewPager(vpMain)
+
+        vpMain.offscreenPageLimit = 4
 
 
         initBottomView()
@@ -80,10 +83,22 @@ class MainActivity : BaseActivity() {
             tlMain.getTabAt(index)!!.customView = view
         }
 
+        vpMain.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(p0: Int) {
 
+            }
+
+            override fun onPageScrolled(p0: Int, p1: Float, p2: Int) {
+            }
+
+            override fun onPageSelected(p0: Int) {
+                tvTabName.text = titles!![p0]
+            }
+        })
     }
 
     override fun initListener() {
+
     }
 
     override fun initData() {

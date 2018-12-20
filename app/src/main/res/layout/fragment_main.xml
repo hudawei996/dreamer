@@ -8,6 +8,7 @@
             android:layout_margin="@dimen/main_margin_left"
             android:background="@drawable/main_card_background"
             android:layout_width="match_parent"
+            android:id="@+id/rlPassword"
             android:layout_height="80dp">
         <ImageView
                 android:id="@+id/ivPassword"
@@ -38,6 +39,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+            android:id="@+id/rlFinance"
             android:layout_marginLeft="@dimen/main_margin_left"
             android:layout_marginRight="@dimen/main_margin_right"
             android:background="@drawable/main_card_background"
@@ -73,6 +75,7 @@
 
 
     <RelativeLayout
+            android:id="@+id/rlBook"
             android:layout_marginTop="@dimen/main_margin_top"
             android:layout_marginLeft="@dimen/main_margin_left"
             android:layout_marginRight="@dimen/main_margin_right"

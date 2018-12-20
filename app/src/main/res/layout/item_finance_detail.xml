@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <RelativeLayout android:layout_width="match_parent"
+                    android:paddingTop="10dp"
+                    android:paddingLeft="20dp"
+                    android:background="@color/colorWhite"
+                    android:layout_height="60dp">
+        <TextView
+                android:id="@+id/tvFinanceName"
+                android:layout_width="wrap_content"
+                android:text="微信-早餐"
+                android:textSize="16sp"
+                android:textColor="@color/colorPrimary"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:id="@+id/tvFinanceAccount"
+                android:layout_alignParentRight="true"
+                android:text="￥100.00"
+                android:layout_marginRight="20dp"
+                android:textSize="16sp"
+                android:textColor="@color/colorOrange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:layout_alignRight="@id/tvFinanceAccount"
+                android:id="@+id/tvFinanceTime"
+                android:layout_below="@id/tvFinanceAccount"
+                android:text="2018-12-12 12:09"
+                android:layout_marginTop="5dp"
+                android:textSize="12sp"
+                android:textColor="@color/colorBase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:id="@+id/tvFinanceRemark"
+                android:layout_alignTop="@id/tvFinanceTime"
+                android:maxLines="1"
+                android:layout_alignLeft="@id/tvFinanceName"
+                android:layout_toLeftOf="@+id/tvFinanceTime"
+                android:text="记账啦"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <View android:layout_width="match_parent"
+              android:layout_height="2dp"
+              android:layerType="software"
+              android:background="@drawable/dash_line_bg"
+              android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

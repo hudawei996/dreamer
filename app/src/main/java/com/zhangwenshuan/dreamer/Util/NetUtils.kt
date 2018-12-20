@@ -13,9 +13,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 
-const val PROD_URL = "https://www.zhangwenshuan.com/"
+const val PROD_URL = "https://www.zhangwenshuan.com/dreamer/"
 
-const val DEV_URL = "http://10.0.2.2:8080/"
+const val DEV_URL = "http://192.168.1.102:8080/"
 
 const val DEBUG = true
 
@@ -24,11 +24,15 @@ class NetUtils {
 
     companion object {
 
-        var retrofit: Retrofit? = null
+      private  var retrofit: Retrofit? = null
 
-        var api: Api? = null
+     private   var api: Api? = null
 
-        var client:OkHttpClient?=null
+      private  var client:OkHttpClient?=null
+
+        fun getUrl():String{
+           if (DEBUG) return DEV_URL else return PROD_URL
+        }
 
         fun getApiInstance(): Api {
 
@@ -39,7 +43,8 @@ class NetUtils {
             if (retrofit == null) {
 
                 client=OkHttpClient.Builder()
-                    .connectTimeout(5000,TimeUnit.SECONDS)
+                    .addNetworkInterceptor(NetInterceptor())
+                    .connectTimeout(10000,TimeUnit.SECONDS)
                     .build()
 
                 retrofit = Retrofit.Builder().baseUrl(url)
@@ -56,12 +61,13 @@ class NetUtils {
         }
 
         fun <T> data(observable: Observable<Result<T>>, result:Consumer<Result<T>>){
+
             observable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(result, Consumer<Throwable> {
                     it.printStackTrace()
-                    Log.e("net","net error")
+                    Log.e("net","net error：${it.message}")
                 })
         }
 

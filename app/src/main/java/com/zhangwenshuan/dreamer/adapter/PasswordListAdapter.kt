@@ -34,18 +34,17 @@ class PasswordListAdapter(val context: Context, val list: MutableList<Password>)
 
         if (curPosition==position){
             holder.ivSee.setImageResource(R.mipmap.ic_visible)
-            holder.etPassword.inputType=InputType.TYPE_TEXT_VARIATION_PASSWORD
+            holder.tvPassword.inputType=InputType.TYPE_TEXT_VARIATION_PASSWORD
         }else{
             holder.ivSee.setImageResource(R.mipmap.ic_gone)
-            holder.etPassword.inputType=InputType.TYPE_TEXT_VARIATION_PASSWORD or InputType.TYPE_CLASS_TEXT
+            holder.tvPassword.inputType=InputType.TYPE_TEXT_VARIATION_PASSWORD or InputType.TYPE_CLASS_TEXT
 
         }
 
         holder.tvName.text=list[position].name
         holder.tvUsername.text=list[position].username
-        holder.etPassword.text=list[position].password
+        holder.tvPassword.text=list[position].password
 
-        holder.ivPassword.setImageResource(getImageRes(list[position].type))
 
         holder.ivSee.setOnClickListener {
             if (curPosition==position){
@@ -76,9 +75,8 @@ class PasswordListAdapter(val context: Context, val list: MutableList<Password>)
 }
 
 class PasswordHolder(itemView: View){
-    val ivPassword=itemView.findViewById<ImageView>(R.id.ivPassword)
     val ivSee=itemView.findViewById<ImageView>(R.id.ivSee)
     val tvName=itemView.findViewById<TextView>(R.id.tvPasswordName)
     val tvUsername=itemView.findViewById<TextView>(R.id.tvUsername)
-    val etPassword=itemView.findViewById<TextView>(R.id.etPassword)
+    val tvPassword=itemView.findViewById<TextView>(R.id.tvPassword)
 }

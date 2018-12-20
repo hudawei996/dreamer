@@ -40,6 +40,7 @@
                   android:maxLength="6"
                   android:layout_marginRight="5dp"
                   android:id="@+id/etVeriCode"
+                  android:inputType="number"
                   android:background="@drawable/edit_background" android:layout_width="0dp"
                   android:layout_height="50dp"/>
 
@@ -83,7 +84,7 @@
               android:id="@+id/tvRegister"
               android:padding="15dp"
               android:gravity="center"
-              android:layout_height="wrap_content" android:text="注册即表示您同意《梦想家》相关使用服务协议"
+              android:layout_height="wrap_content" android:text="注册即表示您同意《追梦者》相关使用服务协议"
               android:letterSpacing="0.02" android:textColor="@color/colorPrimary"/>
 
 

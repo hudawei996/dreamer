@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/layout_title_bar"/>
+
+    <TextView
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:textSize="16sp"
+            android:text="《新概念英语》"
+            android:id="@+id/tvBookName"
+            android:textColor="@color/colorBlack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    <TextView
+            android:id="@+id/tvTime"
+            android:gravity="center_horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textSize="16sp"
+            android:text="2018-18-10 至 2019-10-10"
+            android:textColor="@color/colorBase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            android:text="内容:"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/colorBase"
+            android:layout_marginLeft="55dp"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+    <EditText
+            android:id="@+id/etBookContent"
+            android:minHeight="100dp"
+            android:textSize="12sp"
+            android:gravity="top"
+            android:textColor="@color/colorBase"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="一本对刚入门英语学习的新书，非常合适"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="45dp"
+            android:background="@drawable/edit_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    <TextView
+            android:text="收获:"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/colorBase"
+            android:layout_marginLeft="55dp"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+    <EditText
+            android:id="@+id/etBookEvaluate"
+            android:minHeight="100dp"
+            android:textSize="12sp"
+            android:gravity="top"
+            android:textColor="@color/colorBase"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="一本对刚入门英语学习的新书，非常合适"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="45dp"
+            android:background="@drawable/edit_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+</LinearLayout>

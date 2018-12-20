@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@color/background"
+
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <include layout="@layout/layout_title_bar"/>
+
+    <View android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:background="@drawable/dash_line_bg"
+    />
+
+
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvFinanceDetail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    <TextView
+            android:id="@+id/tvNoFinance"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/colorBase"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:visibility="gone"
+            android:text="---无记账明细---"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+</LinearLayout>

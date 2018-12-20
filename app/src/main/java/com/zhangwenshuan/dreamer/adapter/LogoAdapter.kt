@@ -15,23 +15,23 @@ class LogoAdapter(val context: Context, val list: MutableList<Logo>) : BaseAdapt
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
-        var holder:LogoHolder
+        var holder: LogoHolder
 
-        var view:View?=null
+        var view: View? = null
 
-        if (convertView==null){
-            view=LayoutInflater.from(context).inflate(R.layout.item_password_logo,parent,false)
+        if (convertView == null) {
+            view = LayoutInflater.from(context).inflate(R.layout.item_password_logo, parent, false)
 
-            holder= LogoHolder(view)
+            holder = LogoHolder(view)
 
-            view.tag=holder
-        }else{
-            holder=convertView.tag as LogoHolder
-            view=convertView
+            view.tag = holder
+        } else {
+            holder = convertView.tag as LogoHolder
+            view = convertView
         }
 
 
-        holder.tvName.text=list[position].name
+        holder.tvName.text = list[position].name
 
 
         holder.ivLogo.setImageResource(getImageRes(list[position].type))
@@ -42,7 +42,7 @@ class LogoAdapter(val context: Context, val list: MutableList<Logo>) : BaseAdapt
     }
 
     override fun getItem(position: Int): Any {
-        return  list[position]
+        return list[position]
     }
 
     override fun getItemId(position: Int): Long {
@@ -54,7 +54,7 @@ class LogoAdapter(val context: Context, val list: MutableList<Logo>) : BaseAdapt
     }
 }
 
-class LogoHolder(itemView: View){
-    val ivLogo=itemView.findViewById<ImageView>(R.id.ivLogo)
-    val tvName=itemView.findViewById<TextView>(R.id.tvLogo)
+class LogoHolder(itemView: View) {
+    val ivLogo = itemView.findViewById<ImageView>(R.id.ivLogo)
+    val tvName = itemView.findViewById<TextView>(R.id.tvLogo)
 }
