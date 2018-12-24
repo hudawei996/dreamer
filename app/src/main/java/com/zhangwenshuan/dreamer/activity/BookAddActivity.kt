@@ -1,6 +1,8 @@
 package com.zhangwenshuan.dreamer.activity
 
+import android.content.Context
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import com.bigkoo.pickerview.builder.TimePickerBuilder
 import com.bigkoo.pickerview.listener.OnTimeSelectListener
 import com.zhangwenshuan.dreamer.R
@@ -52,7 +54,7 @@ class BookAddActivity : BaseActivity() {
     }
 
     private fun showDatePickerDialog() {
-
+        closeInput()
         val arrays = arrayOf(true, true, true, false, false, false)
 
         val pvTime = TimePickerBuilder(this@BookAddActivity, object : OnTimeSelectListener {
@@ -66,7 +68,10 @@ class BookAddActivity : BaseActivity() {
                         tvBookEnd.text = TimeUtils.getDay(date!!)
 
                     }
+
                 }
+
+
             }
         })
             .setType(arrays.toBooleanArray())
@@ -79,11 +84,21 @@ class BookAddActivity : BaseActivity() {
 
     }
 
+
+    private fun closeInput() {
+
+        var imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+
+        if(imm != null) {
+            imm.hideSoftInputFromWindow(window.decorView.windowToken, 0)
+        }
+    }
+
     private fun toSave() {
 
-        val bookName=etBookName.text.toString()
+        val bookName = etBookName.text.toString()
 
-        if (bookName.isEmpty()){
+        if (bookName.isEmpty()) {
             toast("读了什么书呢")
             return
         }

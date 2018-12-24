@@ -22,9 +22,9 @@ import java.util.*
 class FinanceAddActivity : BaseActivity() {
     override fun setResourceId(): Int = R.layout.activity_finance_expense
 
-    var accountHint = "花在哪呢？"
+    var accountHint = "花了多少呢？"
 
-    var typeHint = "花了多少呢？"
+    var typeHint = "花在哪呢？"
 
     var isExpense = 1
 

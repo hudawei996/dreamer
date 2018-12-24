@@ -35,5 +35,13 @@
 
     </style>
 
+    <style name="SplashStyle" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/splash</item>
+        <item name="colorPrimary">#ff6766</item>
+        <item name="colorPrimaryDark">#ff6766</item>
+        <item name="colorAccent">#ff6766</item>
+
+    </style>
+
 
 </resources>

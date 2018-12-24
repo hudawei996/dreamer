@@ -29,7 +29,7 @@ interface Api {
     ): Observable<Result<Any>>
 
 
-    @POST("/password/save")
+    @POST("password/save")
     @FormUrlEncoded
     fun savePassword(
         @Field("username") username: String,
@@ -39,13 +39,13 @@ interface Api {
     ): Observable<Result<Password>>
 
 
-    @POST("/password/getAll")
+    @POST("password/getAll")
     @FormUrlEncoded
     fun getAllPassword(
         @Field("userId") userId: Int
     ): Observable<Result<List<Password>>>
 
-    @POST("/password/search")
+    @POST("password/search")
     @FormUrlEncoded
     fun searchPassword(
         @Field("name") password: String,
@@ -53,14 +53,14 @@ interface Api {
     ): Observable<Result<List<Password>>>
 
 
-    @POST("/password/delete")
+    @POST("password/delete")
     @FormUrlEncoded
     fun deletePassword(
         @Field("id") id: Int
     ): Observable<Result<Any>>
 
 
-    @POST("/finance/save")
+    @POST("finance/save")
     @FormUrlEncoded
     fun saveFinance(
         @Field("userId") userId: Int,
@@ -74,11 +74,11 @@ interface Api {
     ): Observable<Result<Any>>
 
 
-    @POST("/finance/get")
+    @POST("finance/get")
     @FormUrlEncoded
     fun getFinance(@Field("userId") userId: Int): Observable<Result<Account>>
 
-    @POST("/finance/getByTime")
+    @POST("finance/getByTime")
     @FormUrlEncoded
     fun getFinanceByTime(
         @Field("userId") userId: Int,
@@ -86,7 +86,7 @@ interface Api {
         @Field("isExpense") isExpense: Int
     ): Observable<Result<List<Finance>>>
 
-    @POST("/finance/search")
+    @POST("finance/search")
     @FormUrlEncoded
     fun getFinanceBySearch(
         @Field("userId") userId: Int,
@@ -94,20 +94,20 @@ interface Api {
         @Field("stopTime") stopDate: String
     ): Observable<Result<List<Finance>>>
 
-    @POST("/finance/getByBankId")
+    @POST("finance/getByBankId")
     @FormUrlEncoded
     fun getFinanceByBankId(
         @Field("id") id: Int
     ): Observable<Result<List<Finance>>>
 
-    @POST("/finance/getTotalAccount")
+    @POST("finance/getTotalAccount")
     @FormUrlEncoded
     fun getTotalFinance(
         @Field("userId") id: Int
     ): Observable<Result<TotalAccount>>
 
 
-    @POST("/bank/save")
+    @POST("bank/save")
     @FormUrlEncoded
     fun saveBank(
         @Field("userId") userId: Int,
@@ -117,20 +117,20 @@ interface Api {
     ): Observable<Result<BankCard>>
 
 
-    @POST("/bank/get")
+    @POST("bank/get")
     @FormUrlEncoded
     fun getBank(@Field("userId") userId: Int): Observable<Result<List<BankCard>>>
 
-    @POST("/bank/delete")
+    @POST("bank/delete")
     @FormUrlEncoded
     fun deleteBank(@Field("id") id: Int): Observable<Result<Any>>
 
-    @POST("/bank/update")
+    @POST("bank/update")
     @FormUrlEncoded
     fun updateBank(@Field("id") id: Int, @Field("account") account: String): Observable<Result<Any>>
 
 
-    @POST("/book/save")
+    @POST("book/save")
     @FormUrlEncoded
     fun saveBook(
         @Field("userId") userId: Int,
@@ -141,15 +141,15 @@ interface Api {
         @Field("evaluate") evaluator: String
     ): Observable<Result<Any>>
 
-    @POST("/book/get")
+    @POST("book/get")
     @FormUrlEncoded
     fun getBook(@Field("userId") userId: Int): Observable<Result<List<Book>>>
 
-    @POST("/book/updateEndTime")
+    @POST("book/updateEndTime")
     @FormUrlEncoded
     fun updateBook(@Field("id") id: Int, @Field("end") endDate: String): Observable<Result<Any>>
 
-    @POST("/book/updateBook")
+    @POST("book/updateBook")
     @FormUrlEncoded
     fun updateBook(@Field("id") id: Int, @Field("content") content: String, @Field("evaluate") evaluator: String): Observable<Result<Any>>
 }

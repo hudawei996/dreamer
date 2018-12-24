@@ -14,7 +14,6 @@ import com.tencent.bugly.Bugly
 
 const val TAG = "dreamer"
 
-const val isDebug = true
 
 class BaseApplication : Application() {
 
@@ -64,11 +63,11 @@ class BaseApplication : Application() {
 }
 
 fun logInfo(message: String) {
-    if (isDebug) Log.i(TAG, message)
+    if (DEBUG) Log.i(TAG, message)
 }
 
 fun logError(message: String) {
-    if (isDebug) Log.e(TAG, message)
+    if (DEBUG) Log.e(TAG, message)
 }
 
 

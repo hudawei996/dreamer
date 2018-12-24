@@ -65,6 +65,7 @@ class BookDetailActivity : BaseActivity() {
             Consumer {
                 if (it.code==200){
                     toast("更新成功")
+                    finish()
                 }else{
                     toast("更新失败")
 
