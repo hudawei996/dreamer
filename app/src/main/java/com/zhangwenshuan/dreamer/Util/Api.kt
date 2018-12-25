@@ -3,6 +3,8 @@ package com.zhangwenshuan.dreamer.util
 import android.animation.ArgbEvaluator
 import com.zhangwenshuan.dreamer.bean.*
 import io.reactivex.Observable
+import okhttp3.RequestBody
+import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
@@ -13,7 +15,6 @@ interface Api {
     @POST("auth/login")
     @FormUrlEncoded
     fun login(@Field("username") username: String, @Field("password") password: String): Observable<Result<LoginBean>>
-
 
 
     @POST("auth/getPhoneCode")
@@ -71,7 +72,7 @@ interface Api {
         @Field("bankName") bankName: String,
         @Field("bankId") bankId: Int,
         @Field("isExpense") isExpense: Int
-    ): Observable<Result<Any>>
+    ): Observable<Result<Finance>>
 
 
     @POST("finance/get")
@@ -105,6 +106,19 @@ interface Api {
     fun getTotalFinance(
         @Field("userId") id: Int
     ): Observable<Result<TotalAccount>>
+
+
+    @POST("finance/delete")
+    @FormUrlEncoded
+    fun deleteFinance(@Field("id") id: Int): Observable<Result<Any>>
+
+
+    @POST("budget/save")
+    fun saveBudget(@Body body: RequestBody): Observable<Result<BudgetBean>>
+
+    @POST("budget/get")
+    @FormUrlEncoded
+    fun getBudget(@Field("userId") userId: Int, @Field("month")month:String): Observable<Result<BudgetBean>>
 
 
     @POST("bank/save")
@@ -152,4 +166,9 @@ interface Api {
     @POST("book/updateBook")
     @FormUrlEncoded
     fun updateBook(@Field("id") id: Int, @Field("content") content: String, @Field("evaluate") evaluator: String): Observable<Result<Any>>
+
+
+    @POST("book/delete")
+    @FormUrlEncoded
+    fun deleteBook(@Field("id") id: Int): Observable<Result<Any>>
 }

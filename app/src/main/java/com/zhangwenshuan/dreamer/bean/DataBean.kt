@@ -23,6 +23,7 @@ data class Logo(var type: LogoType, var name: String)
 data class User(var username: String, var id: Int?, var password: String)
 
 data class Finance(
+    var id:Int?,
     var time: String,
     var account: Double,
     var bankName: String,
@@ -31,7 +32,7 @@ data class Finance(
     var remark: String,
     var date: String,
     var isExpense:Int
-)
+):Serializable
 
 data class Expense(var account: Double?, var time: String, var type: String, var remark: String)
 

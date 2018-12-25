@@ -22,7 +22,7 @@ class DialogAdapter<T:RightBean>(var list: MutableList<T>, val context: Context)
         var view: View
 
         if (convertView == null) {
-            view = View.inflate(context, R.layout.item_bank_card_list, null)
+            view = View.inflate(context, R.layout.item_right_dialog, null)
             holder = DialogHolder(view)
             view.tag = holder
 
@@ -34,7 +34,7 @@ class DialogAdapter<T:RightBean>(var list: MutableList<T>, val context: Context)
 
         if(list[position] is BankCard){
             val card=list[position] as BankCard
-            holder.tvName.text=card.name+card.id
+            holder.tvName.text=card.name
 
         }else{
             holder.tvName.text = list[position]?.title

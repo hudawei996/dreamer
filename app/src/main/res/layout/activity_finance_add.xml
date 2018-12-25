@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@color/background"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/layout_title_bar"/>
+
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content" android:background="@color/colorWhite"
+                  android:orientation="vertical">
+
+        <View android:layout_width="match_parent"
+              android:layout_height="0.5dp"
+              android:background="@color/background"/>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:background="@color/colorWhite"
+                android:layout_width="match_parent" android:layout_height="50dp">
+            <TextView
+                    android:id="@+id/tvTypeHint"
+                    android:textColor="@color/colorBlack"
+                    android:text="类别："
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+
+            <EditText android:layout_width="0dp"
+                      android:layout_weight="1"
+                      android:hint="早餐"
+                      android:textSize="14sp"
+                      android:background="@color/colorWhite"
+                      android:id="@+id/etFinanceNameAdd"
+                      android:paddingLeft="10dp"
+                      android:paddingRight="10dp"
+                      android:gravity="center_vertical"
+                      android:letterSpacing="0.1"
+                      android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="0.5dp"
+              android:layout_marginLeft="15dp"
+              android:background="@color/background"/>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:background="@color/colorWhite"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+            <TextView
+                    android:id="@+id/tvAccountHint"
+                    android:textColor="@color/colorBlack"
+                    android:text="金额："
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+
+            <EditText android:layout_width="0dp"
+                      android:layout_weight="1"
+                      android:hint="0.00"
+                      android:textSize="14sp"
+                      android:background="@color/colorWhite"
+                      android:id="@+id/etFinanceAccountAdd"
+                      android:paddingLeft="10dp"
+                      android:paddingRight="10dp"
+                      android:inputType="numberDecimal"
+                      android:gravity="center_vertical"
+                      android:layout_height="match_parent"/>
+
+
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="0.5dp"
+              android:layout_marginLeft="15dp"
+              android:background="@color/background"/>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:background="@color/colorWhite"
+                android:layout_width="match_parent" android:layout_height="50dp">
+            <TextView
+                    android:id="@+id/tvFinanceBankHint"
+                    android:textColor="@color/colorBlack"
+                    android:text="账户："
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+
+            <TextView android:layout_width="0dp"
+                      android:layout_weight="1"
+                      android:hint="微信"
+                      android:textSize="14sp"
+                      android:background="@color/colorWhite"
+                      android:id="@+id/tvFinanceBankAdd"
+                      android:paddingLeft="10dp"
+                      android:paddingRight="10dp"
+                      android:gravity="center_vertical"
+                      android:layout_height="match_parent"/>
+
+
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="0.5dp"
+              android:layout_marginLeft="15dp"
+              android:background="@color/background"/>
+  <LinearLayout
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:background="@color/colorWhite"
+                android:layout_width="match_parent" android:layout_height="50dp">
+            <TextView
+                    android:id="@+id/tvFinanceTypeHint"
+                    android:textColor="@color/colorBlack"
+                    android:text="类型："
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+
+            <TextView android:layout_width="0dp"
+                      android:layout_weight="1"
+                      android:text="支出"
+                      android:textSize="14sp"
+                      android:background="@color/colorWhite"
+                      android:id="@+id/tvFinanceTypeAdd"
+                      android:paddingLeft="10dp"
+                      android:paddingRight="10dp"
+                      android:gravity="center_vertical"
+                      android:layout_height="match_parent"/>
+
+
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="0.5dp"
+              android:layout_marginLeft="15dp"
+              android:background="@color/background"/>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:background="@color/colorWhite"
+                android:layout_width="match_parent" android:layout_height="50dp">
+            <TextView
+                    android:textColor="@color/colorBlack"
+                    android:text="时间："
+                    android:id="@+id/tvTimeHint"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+
+            <TextView android:layout_width="0dp"
+                      android:layout_weight="1"
+                      android:text="2018-12-11 15:30"
+                      android:paddingLeft="10dp"
+                      android:id="@+id/tvFinanceTimeAdd"
+                      android:paddingRight="10dp"
+                      android:gravity="center_vertical"
+                      android:letterSpacing="0.05"
+                      android:layout_height="match_parent"/>
+
+
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="0.5dp"
+              android:layout_marginLeft="15dp"
+              android:background="@color/background"/>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@color/colorWhite"
+                android:layout_width="match_parent" android:layout_height="wrap_content">
+            <TextView
+                    android:textColor="@color/colorBlack"
+                    android:text="备注："
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+
+            <EditText android:layout_width="0dp"
+                      android:layout_weight="1"
+                      android:hint="记账啦~"
+                      android:textSize="14sp"
+                      android:id="@+id/etFinanceRemarkAdd"
+                      android:paddingLeft="10dp"
+                      android:minHeight="50dp"
+                      android:background="@null"
+                      android:textColor="@color/colorBlack"
+                      android:paddingRight="10dp"
+                      android:gravity="center_vertical"
+                      android:letterSpacing="0.1"
+                      android:layout_height="match_parent"/>
+
+        </LinearLayout>
+        <View android:layout_width="match_parent" android:layout_height="0.5dp"
+              android:background="@color/background"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp"
+            android:background="@color/colorWhite"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+        <TextView
+
+                android:text="记完再记"
+                android:id="@+id/tvFinanceAddAgain"
+                android:background="@drawable/btn_text_view_background"
+                android:gravity="center"
+                android:textColor="@color/colorBlack"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"/>
+
+        <View android:layout_width="2dp"
+              android:id="@+id/vLineCenter"
+              android:layout_marginTop="10dp"
+              android:layout_marginBottom="10dp"
+              android:layerType="software"
+              android:background="@drawable/dash_line_vertical"
+              android:layout_height="match_parent"/>
+
+        <TextView
+
+                android:text="记一笔"
+                android:id="@+id/tvFinanceAdd"
+                android:background="@drawable/btn_text_view_background"
+                android:gravity="center"
+                android:textColor="@color/colorBlack"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

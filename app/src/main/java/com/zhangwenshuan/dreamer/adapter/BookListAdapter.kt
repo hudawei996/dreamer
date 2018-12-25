@@ -13,6 +13,7 @@ class BookListAdapter(var context: Context, var list: MutableList<Book>) : BaseA
 
     var bookNameListener: OnItemClickListener? = null
     var endTimeListener: OnItemClickListener? = null
+    var bookNameLongClickListener: OnItemClickListener? = null
 
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
@@ -88,6 +89,12 @@ class BookListAdapter(var context: Context, var list: MutableList<Book>) : BaseA
 
 
 
+
+        holder.tvName.setOnLongClickListener {
+            bookNameLongClickListener?.onItemClick(position)
+            true
+        }
+
         if (position != 0) {
             holder.oval.visibility = View.GONE
         }
@@ -109,6 +116,10 @@ class BookListAdapter(var context: Context, var list: MutableList<Book>) : BaseA
 
     fun setEndTimeClickListener(onItemClickListener: OnItemClickListener) {
         endTimeListener = onItemClickListener
+    }
+
+    fun setBookNameLongClickLisenter(onItemClickListener: OnItemClickListener) {
+        bookNameLongClickListener = onItemClickListener
     }
 }
 

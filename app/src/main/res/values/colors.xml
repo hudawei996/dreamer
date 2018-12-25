@@ -16,6 +16,10 @@
 
 
     <color name="colorWhite">#FFFFFF</color>
+
+    <color name="colorWhite2">#80FFFFFF</color>
+
+
     <color name="colorBlack">#000000</color>
 
     <color name="colorBase">#45000000</color>
@@ -26,4 +30,21 @@
     <color name="background">#eff0f1</color>
 
     <color name="hint">#cacaca</color>
+
+
+    <color name="finance_top_color">#95f4c6</color>
+    <color name="finance_middle_color">#88ecc6</color>
+    <color name="finance_bottom_color">#8ddee2</color>
+
+    <color name="finance_btn_add_start_color">#ff9d46</color>
+    <color name="finance_btn_add_end_color">#ff6044</color>
+
+    <color name="finance_btn_add_start_focus_color">#CCff9d46</color>
+    <color name="finance_btn_add_end_focus_color">#CCff6044</color>
+
+    <color name="finance_base_color">#CCff6044</color>
+
+    <color name="splash_color_1">#ff6766</color>
+    <color name="splash_color_2">#f9dd3e</color>
+    <color name="splash_color_3">#f7d08a</color>
 </resources>

@@ -228,7 +228,7 @@ class BankCardAddActivity : BaseActivity() {
         var number = etBankNumber.text.toString()
 
         if (number == null || number == "") {
-            number = "卡号"
+            number = ""
         }
 
 

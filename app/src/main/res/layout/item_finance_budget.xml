@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:background="@color/colorWhite"
+              android:layout_height="60dp">
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_height="match_parent">
+        <ImageView
+                android:id="@+id/ivIndicator"
+                android:src="@mipmap/ic_finance_eat"
+                android:layout_width="35dp"
+                android:layout_centerVertical="true"
+                android:layout_height="35dp"/>
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_centerVertical="true"
+                  android:text="餐饮"
+                  android:id="@+id/tvBudgetName"
+                  android:layout_marginLeft="10dp"
+                  android:textSize="14sp"
+                  android:textColor="@color/colorBlack"
+                  android:layout_toRightOf="@+id/ivIndicator"
+                  android:layout_height="wrap_content"/>
+
+        <EditText
+                android:id="@+id/etBudgetAccount"
+                android:background="@null"
+                android:paddingLeft="10dp"
+                android:inputType="numberDecimal"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:textSize="14sp"
+                android:gravity="right|center_vertical"
+                android:layout_toRightOf="@id/tvBudgetName"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+
+        <View android:layout_width="match_parent"
+              android:layout_alignLeft="@id/tvBudgetName"
+              android:background="@color/background"
+              android:layout_alignParentBottom="true"
+              android:layout_height="0.5dp"/>
+    </RelativeLayout>
+</LinearLayout>

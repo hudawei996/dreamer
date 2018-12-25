@@ -130,10 +130,6 @@ class FinanceSynopsisActivity : BaseActivity() {
 
                     initMoreBankView()
 
-                    if (it.data.isNotEmpty()) {
-                        LocalDataUtils.setString(LocalDataUtils.BANK_CARD, GsonUtils.getGson().toJson(it.data))
-                    }
-
 
                 }
 

@@ -1,5 +1,7 @@
 package com.zhangwenshuan.dreamer.activity
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -28,7 +30,7 @@ class BookListActivity : BaseActivity() {
 
     lateinit var adapter: BookListAdapter
 
-    var curPosition=0
+    var curPosition = 0
 
     override fun setResourceId(): Int {
         return R.layout.activity_book_list
@@ -52,7 +54,7 @@ class BookListActivity : BaseActivity() {
 
         adapter.setBookNameClickListener(object : OnItemClickListener {
             override fun onItemClick(position: Int) {
-                curPosition=position
+                curPosition = position
 
                 val book = list[position]
 
@@ -67,9 +69,40 @@ class BookListActivity : BaseActivity() {
 
         adapter.setEndTimeClickListener(object : OnItemClickListener {
             override fun onItemClick(position: Int) {
-                curPosition=position
+                curPosition = position
                 showDatePickerDialog(position)
             }
+        })
+
+
+        adapter.setBookNameLongClickLisenter(object : OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                showDeleteDialog(position)
+            }
+        })
+    }
+
+    private fun showDeleteDialog(position: Int) {
+        val dialog = AlertDialog.Builder(this).setMessage("确定删除该书")
+            .setPositiveButton("确定",object:DialogInterface.OnClickListener{
+                override fun onClick(dialog: DialogInterface?, which: Int) {
+                    toDelete(position)
+                }
+            })
+            .create()
+
+        dialog.show()
+    }
+
+    private fun toDelete(position: Int) {
+        NetUtils.data(NetUtils.getApiInstance().deleteBook(list[position].id!!), Consumer {
+            if (it.code==200){
+                list.removeAt(position)
+                adapter.notifyDataSetChanged()
+                notifyViewChange()
+            }
+
+            toast(it.message)
         })
     }
 
@@ -103,10 +136,10 @@ class BookListActivity : BaseActivity() {
 
     }
 
-    private fun toUpdateEnd(end:String) {
-        NetUtils.data(NetUtils.getApiInstance().updateBook(list[curPosition].id!!,end), Consumer {
-            if (it.code==200){
-                list[curPosition].end=end
+    private fun toUpdateEnd(end: String) {
+        NetUtils.data(NetUtils.getApiInstance().updateBook(list[curPosition].id!!, end), Consumer {
+            if (it.code == 200) {
+                list[curPosition].end = end
                 adapter.notifyDataSetChanged()
             }
         })
@@ -122,16 +155,20 @@ class BookListActivity : BaseActivity() {
 
                 adapter.notifyDataSetChanged()
 
-                if (list.size == 0) {
-                    lvBookList.visibility = View.GONE
-                    tvNotBook.visibility = View.VISIBLE
-                } else {
-                    lvBookList.visibility = View.VISIBLE
-                    tvNotBook.visibility = View.GONE
-
-                }
+                notifyViewChange()
             }
         })
+    }
+
+    private fun notifyViewChange() {
+        if (list.size == 0) {
+            lvBookList.visibility = View.GONE
+            tvNotBook.visibility = View.VISIBLE
+        } else {
+            lvBookList.visibility = View.VISIBLE
+            tvNotBook.visibility = View.GONE
+
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

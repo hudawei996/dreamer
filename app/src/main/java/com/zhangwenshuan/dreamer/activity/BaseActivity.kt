@@ -1,13 +1,19 @@
 package com.zhangwenshuan.dreamer.activity
 
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
+import android.view.WindowManager
 import kotlinx.android.synthetic.main.layout_title_bar.*
 
 abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
+
+
 
         setContentView(setResourceId())
 

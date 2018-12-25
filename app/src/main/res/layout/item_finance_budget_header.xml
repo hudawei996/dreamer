@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:background="@color/finance_base_color"
+                android:layout_height="wrap_content">
+
+
+    <ImageView android:layout_width="40dp"
+               android:id="@+id/ivTotalIndicator"
+               android:layout_marginLeft="25dp"
+               android:layout_marginBottom="25dp"
+               android:src="@mipmap/ic_finance_budget"
+               android:layout_centerVertical="true"
+               android:layout_height="40dp"/>
+
+    <TextView android:layout_width="wrap_content"
+              android:text="总预算"
+              android:layout_toRightOf="@id/ivTotalIndicator"
+              android:letterSpacing="0.05"
+              android:textSize="18sp"
+              android:id="@+id/tvTotalHint"
+              android:layout_centerVertical="true"
+              android:layout_marginLeft="10dp"
+              android:textColor="@color/colorWhite"
+              android:layout_height="wrap_content"/>
+    <EditText android:layout_width="wrap_content"
+              android:hint="0.00"
+              android:focusable="false"
+              android:layout_toLeftOf="@id/tvTotalHint"
+              android:id="@+id/etFinanceBudgetTotal"
+              android:layout_marginRight="25dp"
+              android:inputType="numberDecimal"
+              android:textColorHint="@color/colorWhite"
+              android:background="@null"
+              android:layout_alignParentRight="true"
+              android:letterSpacing="0.05"
+              android:textSize="18sp"
+              android:layout_centerVertical="true"
+              android:layout_marginLeft="25dp"
+              android:textColor="@color/colorWhite"
+              android:layout_height="wrap_content"/>
+
+</RelativeLayout>

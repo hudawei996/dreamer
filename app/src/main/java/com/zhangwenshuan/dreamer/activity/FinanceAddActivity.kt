@@ -1,91 +1,149 @@
 package com.zhangwenshuan.dreamer.activity
 
-import android.app.AlertDialog
-import android.content.DialogInterface
+import android.text.Editable
 import android.view.View
 import com.bigkoo.pickerview.builder.TimePickerBuilder
 import com.bigkoo.pickerview.listener.OnTimeSelectListener
-import com.google.gson.reflect.TypeToken
 import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.adapter.OnItemClickListener
 import com.zhangwenshuan.dreamer.bean.*
 import com.zhangwenshuan.dreamer.custom.RightDialog
-import com.zhangwenshuan.dreamer.util.*
+import com.zhangwenshuan.dreamer.util.BaseApplication
+import com.zhangwenshuan.dreamer.util.NetUtils
+import com.zhangwenshuan.dreamer.util.TimeUtils
 import io.reactivex.functions.Consumer
-import kotlinx.android.synthetic.main.activity_finance_expense.*
+import kotlinx.android.synthetic.main.activity_finance_add.*
 import kotlinx.android.synthetic.main.layout_title_bar.*
 import org.greenrobot.eventbus.EventBus
 import org.jetbrains.anko.toast
 import java.util.*
 
 
-class FinanceAddActivity : BaseActivity() {
-    override fun setResourceId(): Int = R.layout.activity_finance_expense
+class FinanceAddActivity : FinanceBaseActivity() {
+    override fun setResourceId(): Int = R.layout.activity_finance_add
 
-    var accountHint = "花了多少呢？"
+    var accountHint = "金额必填哦"
 
-    var typeHint = "花在哪呢？"
+    var typeHint = "类别必填哦"
 
     var isExpense = 1
 
-    var bank: BankCard? = null
+    lateinit var bank: BankCard
 
-     var list: MutableList<BankCard>?=null
+    var finance: Finance? = null
 
-    override fun preInitData() {
-        isExpense = intent.getIntExtra("isExpense", 1)
-
-        list = getBankCarsFromLocal()
-
-        if (list ==null) {
-
-            showAddBankCardDialog()
-
-            return
-        }
-
-
-
-    }
+    var list: MutableList<BankCard> = mutableListOf()
 
     override fun initViews() {
+        if (finance == null) {
+            tvTitle.text = "添加账单"
 
-        if (isExpense == 0) {
-            tvTitle.text = "哇，又收入呀"
+            tvFinanceTimeAdd.text = TimeUtils.curTime()
 
-            typeHint = "钱从哪来呢"
-
-            accountHint = "赚了多少钱呢"
-
-            tvTimeHint.text = "什么时候赚的:"
-            tvAccountHint.text = "赚了多少:"
-            tvTypeHint.text = "从哪里赚的:"
-            tvFinanceBankHint.text = "放哪呢"
-
-            tvExpenseType.hint = "工资"
         } else {
-            tvTitle.text = "又花钱了"
+            tvTitle.text = "账单详细"
+
+            tvFinanceAddAgain.text = "删除"
+
+            tvFinanceAdd.text = "更新"
+
+            tvFinanceAdd.visibility = View.GONE
+
+            vLineCenter.visibility = View.GONE
+
+            tvFinanceBankAdd.text = finance?.bankName
+
+            etFinanceNameAdd.text = Editable.Factory.getInstance().newEditable(finance?.type)
+
+            etFinanceAccountAdd.text =
+                    Editable.Factory.getInstance().newEditable(decimalFormat.format(finance?.account))
+
+            etFinanceRemarkAdd.text = Editable.Factory.getInstance().newEditable(finance?.remark)
+
+            tvFinanceTimeAdd.text = finance?.date + finance?.time
+
+
+            isExpense = finance!!.isExpense
+
+            if (isExpense == 1) {
+                tvFinanceTypeAdd.text = "支出"
+            } else {
+                tvFinanceTypeAdd.text = "收入"
+            }
+
         }
+    }
 
-        tvFinanceBank.text = list!![0].name
+    var saveAgain = false
 
-        bank = list!![0]
+    override fun preInitData() {
+        super.preInitData()
 
-        tvExpenseTime.text = TimeUtils.curTime()
+        val data = intent.getBundleExtra("data")
+
+
+
+        if (data != null) {
+            finance = data.getSerializable("finance") as Finance
+
+        }
     }
 
     override fun initListener() {
-        tvExpenseTime.setOnClickListener {
+        tvFinanceTimeAdd.setOnClickListener {
             showTimePickerView()
         }
 
-        tvExpenseAdd.setOnClickListener {
-            toSaveExpense()
+        tvFinanceAdd.setOnClickListener {
+            saveAgain = false
+
+            if (finance != null) {
+                toUpdateFinance()
+            } else {
+                toSaveFinance()
+            }
         }
 
-        tvFinanceBank.setOnClickListener {
+        tvFinanceBankAdd.setOnClickListener {
             toShowBank()
         }
+
+        tvFinanceAddAgain.setOnClickListener {
+            saveAgain = true
+            if (finance == null) {
+                toSaveFinance()
+            } else {
+                toDelete()
+            }
+        }
+
+        tvFinanceTypeAdd.setOnClickListener {
+            if (isExpense == 0) {
+                isExpense = 1
+                tvFinanceTypeAdd.text = "支出"
+            } else {
+                isExpense = 0
+                tvFinanceTypeAdd.text = "收入"
+            }
+            tvFinanceTypeAdd.setTextColor(resources.getColor(R.color.colorBlack))
+        }
+
+
+    }
+
+    private fun toUpdateFinance() {
+
+    }
+
+    private fun toDelete() {
+        NetUtils.data(NetUtils.getApiInstance().deleteFinance(finance!!.id!!), Consumer {
+            if (it.code == 200) {
+                EventBus.getDefault().post(FinanceDelete(finance!!))
+                finish()
+            }
+            toast(it.message)
+
+        })
     }
 
     private fun toShowBank() {
@@ -94,7 +152,9 @@ class FinanceAddActivity : BaseActivity() {
 
         dialog.setOnItemClickListener(object : OnItemClickListener {
             override fun onItemClick(position: Int) {
-                tvFinanceBank.text = list!![position].name
+                tvFinanceBankAdd.text = list!![position].name
+
+                tvFinanceBankAdd.setTextColor(resources.getColor(R.color.colorBlack))
 
                 bank = list!![position]
 
@@ -111,8 +171,8 @@ class FinanceAddActivity : BaseActivity() {
         val pvTime = TimePickerBuilder(this@FinanceAddActivity, object : OnTimeSelectListener {
             override fun onTimeSelect(date: Date?, v: View?) {
                 if (date != null) {
-                    tvExpenseTime.text = TimeUtils.dateToString(date!!)
-                    tvExpenseTime.setTextColor(resources.getColor(R.color.colorBlack))
+                    tvFinanceTimeAdd.text = TimeUtils.dateToString(date!!)
+                    tvFinanceTimeAdd.setTextColor(resources.getColor(R.color.colorBlack))
                 }
             }
         })
@@ -126,28 +186,44 @@ class FinanceAddActivity : BaseActivity() {
     }
 
     override fun initData() {
+        toGetBank()
+    }
+
+    private fun toGetBank() {
+        NetUtils.data(NetUtils.getApiInstance().getBank(BaseApplication.userId), Consumer {
+            if (it.code == 200) {
+                list.addAll(it.data)
+
+                bank = list[0]
+                tvFinanceBankAdd.text = list[0].name
+
+            }
+
+
+        })
+
     }
 
 
-    private fun toSaveExpense() {
+    private fun toSaveFinance() {
 
-        val type = tvExpenseType.text.toString()
+        val type = etFinanceNameAdd.text.toString()
 
         if (type == "") {
             toast(typeHint)
             return
         }
 
-        var account = tvExpenseAccount.text.toString()
+        var account = etFinanceAccountAdd.text.toString()
 
         if (account == "") {
             toast(accountHint)
             return
         }
 
-        val time = tvExpenseTime.text.toString()
+        val time = tvFinanceTimeAdd.text.toString()
 
-        val remark = tvExpenseRemark.text.toString()
+        val remark = etFinanceRemarkAdd.text.toString()
 
 
 
@@ -161,32 +237,27 @@ class FinanceAddActivity : BaseActivity() {
                 toast("${it.message}")
 
                 if (it.code == 200) {
-                    if (isExpense == 1) {
-                        EventBus.getDefault().post(EventBean(EVENT_SAVE_EXPENSE, account))
+
+                    EventBus.getDefault().post(FinanceAdd(it.data))
+
+                    if (saveAgain) {
+                        etFinanceAccountAdd.text = Editable.Factory.getInstance().newEditable("")
+                        etFinanceNameAdd.text = Editable.Factory.getInstance().newEditable("")
+                        etFinanceRemarkAdd.text = Editable.Factory.getInstance().newEditable("")
+
                     } else {
-                        EventBus.getDefault().post(EventBean(EVENT_SAVE_INCOME, account))
+
+                        finish()
                     }
 
 
-                    finish()
                 }
+
+                toast(it.message)
 
 
             }
         )
-    }
-
-    fun showAddBankCardDialog() {
-        val dialog = AlertDialog.Builder(this)
-            .setMessage("请先添加账户")
-            .setPositiveButton("确定", object : DialogInterface.OnClickListener {
-                override fun onClick(dialog: DialogInterface?, which: Int) {
-                    finish()
-                }
-
-            }).create()
-
-        dialog.show()
     }
 
 

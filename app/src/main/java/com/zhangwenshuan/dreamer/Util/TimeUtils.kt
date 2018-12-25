@@ -1,5 +1,8 @@
 package com.zhangwenshuan.dreamer.util
 
+import android.app.Activity
+import android.content.Context
+import android.view.inputmethod.InputMethodManager
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -45,7 +48,14 @@ class TimeUtils {
             return format.format(date)
         }
 
+         fun closeInput(context: Activity) {
 
+            var imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+
+            if(imm != null) {
+                imm.hideSoftInputFromWindow(context.window.decorView.windowToken, 0)
+            }
+        }
 
     }
 }
