@@ -13,7 +13,7 @@ import com.zhangwenshuan.dreamer.util.GsonUtils
 import com.zhangwenshuan.dreamer.util.NetUtils
 import com.zhangwenshuan.dreamer.util.TimeUtils
 import io.reactivex.functions.Consumer
-import kotlinx.android.synthetic.main.activity_finance_budget.*
+import kotlinx.android.synthetic.main.activity_finance_budget_update.*
 import kotlinx.android.synthetic.main.layout_title_bar.*
 import okhttp3.MediaType
 import okhttp3.RequestBody
@@ -26,7 +26,7 @@ class FinanceBudgetActivity : FinanceBaseActivity() {
     lateinit var adapter: FinanceBudgetAdapter
 
     override fun setResourceId(): Int {
-        return R.layout.activity_finance_budget
+        return R.layout.activity_finance_budget_update
     }
 
 

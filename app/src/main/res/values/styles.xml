@@ -43,5 +43,10 @@
 
     </style>
 
+    <style name="BudgetDetailProgressBarStyle" parent="@android:style/Widget.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/finance_btn_add_final_background</item>
+
+    </style>
+
 
 </resources>

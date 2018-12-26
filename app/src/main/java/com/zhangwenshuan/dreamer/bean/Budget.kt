@@ -2,7 +2,9 @@ package com.zhangwenshuan.dreamer.bean
 
 import java.io.Serializable
 
-data class Budget(var icon: Int, var name: String, var account: Double = 0.0)
+data class Budget(var icon: Int, var name: String, var account: Double = 0.0,var balance:Double=0.0)
+
+data class BudgetDetail( var item: String, var account: Double = 0.0)
 
 class BudgetBean:Serializable {
     var id: Int = 0

@@ -30,16 +30,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"/>
 
-            <EditText android:layout_width="0dp"
+            <TextView android:layout_width="0dp"
                       android:layout_weight="1"
                       android:hint="早餐"
                       android:textSize="14sp"
                       android:background="@color/colorWhite"
-                      android:id="@+id/etFinanceNameAdd"
+                      android:id="@+id/tvFinanceItemAdd"
                       android:paddingLeft="10dp"
                       android:paddingRight="10dp"
                       android:gravity="center_vertical"
-                      android:letterSpacing="0.1"
                       android:layout_height="match_parent"/>
 
         </LinearLayout>
@@ -202,7 +201,6 @@
                       android:textColor="@color/colorBlack"
                       android:paddingRight="10dp"
                       android:gravity="center_vertical"
-                      android:letterSpacing="0.1"
                       android:layout_height="match_parent"/>
 
         </LinearLayout>

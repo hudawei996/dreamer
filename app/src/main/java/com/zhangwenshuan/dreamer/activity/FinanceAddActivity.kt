@@ -2,13 +2,16 @@ package com.zhangwenshuan.dreamer.activity
 
 import android.text.Editable
 import android.view.View
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder
 import com.bigkoo.pickerview.builder.TimePickerBuilder
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener
 import com.bigkoo.pickerview.listener.OnTimeSelectListener
 import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.adapter.OnItemClickListener
 import com.zhangwenshuan.dreamer.bean.*
 import com.zhangwenshuan.dreamer.custom.RightDialog
 import com.zhangwenshuan.dreamer.util.BaseApplication
+import com.zhangwenshuan.dreamer.util.LocalDataUtils
 import com.zhangwenshuan.dreamer.util.NetUtils
 import com.zhangwenshuan.dreamer.util.TimeUtils
 import io.reactivex.functions.Consumer
@@ -40,6 +43,7 @@ class FinanceAddActivity : FinanceBaseActivity() {
 
             tvFinanceTimeAdd.text = TimeUtils.curTime()
 
+
         } else {
             tvTitle.text = "账单详细"
 
@@ -53,7 +57,7 @@ class FinanceAddActivity : FinanceBaseActivity() {
 
             tvFinanceBankAdd.text = finance?.bankName
 
-            etFinanceNameAdd.text = Editable.Factory.getInstance().newEditable(finance?.type)
+            tvFinanceItemAdd.text = finance?.item + " " + finance?.type
 
             etFinanceAccountAdd.text =
                     Editable.Factory.getInstance().newEditable(decimalFormat.format(finance?.account))
@@ -72,6 +76,7 @@ class FinanceAddActivity : FinanceBaseActivity() {
             }
 
         }
+
     }
 
     var saveAgain = false
@@ -121,11 +126,22 @@ class FinanceAddActivity : FinanceBaseActivity() {
             if (isExpense == 0) {
                 isExpense = 1
                 tvFinanceTypeAdd.text = "支出"
+                tvFinanceItemAdd.text = "餐饮 午餐"
             } else {
                 isExpense = 0
                 tvFinanceTypeAdd.text = "收入"
+                tvFinanceItemAdd.text = "红包"
             }
             tvFinanceTypeAdd.setTextColor(resources.getColor(R.color.colorBlack))
+        }
+
+        tvFinanceItemAdd.setOnClickListener {
+            TimeUtils.closeInput(this)
+            if (isExpense == 1) {
+                showItemName()
+            } else {
+                showIncomeDialog()
+            }
         }
 
 
@@ -185,6 +201,66 @@ class FinanceAddActivity : FinanceBaseActivity() {
         pvTime.show()
     }
 
+
+    private fun showItemName() {
+
+        val items = resources.getStringArray(R.array.finance_item)
+        val eat = resources.getStringArray(R.array.finance_eat)
+        val transportation = resources.getStringArray(R.array.finance_transportation)
+        val shopping = resources.getStringArray(R.array.finance_shopping)
+        val amusement = resources.getStringArray(R.array.finance_amusement)
+        val medical = resources.getStringArray(R.array.finance_medical)
+        val house = resources.getStringArray(R.array.finance_house)
+        val investment = resources.getStringArray(R.array.finance_investment)
+        val social = resources.getStringArray(R.array.finance_social)
+        val business = resources.getStringArray(R.array.finance_business)
+        val other = resources.getStringArray(R.array.finance_other)
+
+        val subItem = mutableListOf<MutableList<String>>()
+
+        subItem.add(transportation.toMutableList())
+        subItem.add(shopping.toMutableList())
+        subItem.add(amusement.toMutableList())
+        subItem.add(eat.toMutableList())
+        subItem.add(medical.toMutableList())
+        subItem.add(house.toMutableList())
+        subItem.add(investment.toMutableList())
+        subItem.add(social.toMutableList())
+        subItem.add(business.toMutableList())
+        subItem.add(other.toMutableList())
+
+        val view = OptionsPickerBuilder(this, object : OnOptionsSelectListener {
+            override fun onOptionsSelect(options1: Int, options2: Int, options3: Int, v: View?) {
+                tvFinanceItemAdd.text = items[options1] + "  " + subItem[options1][options2]
+                tvFinanceItemAdd.setTextColor(resources.getColor(R.color.colorBlack))
+            }
+        })
+            .setContentTextSize(18)
+            .setSelectOptions(3, 1)
+            .build<String>()
+
+        view.setPicker(items.toMutableList(), subItem)
+
+        view.show()
+    }
+
+    fun showIncomeDialog() {
+        val incomes = resources.getStringArray(R.array.income).toMutableList()
+
+        val view = OptionsPickerBuilder(this, object : OnOptionsSelectListener {
+            override fun onOptionsSelect(options1: Int, options2: Int, options3: Int, v: View?) {
+                tvFinanceItemAdd.text = incomes[options1]
+                tvFinanceItemAdd.setTextColor(resources.getColor(R.color.colorBlack))
+            }
+        })
+            .setContentTextSize(18)
+            .build<String>()
+
+        view.setPicker(incomes)
+
+        view.show()
+    }
+
     override fun initData() {
         toGetBank()
     }
@@ -207,7 +283,7 @@ class FinanceAddActivity : FinanceBaseActivity() {
 
     private fun toSaveFinance() {
 
-        val type = etFinanceNameAdd.text.toString()
+        val type = tvFinanceItemAdd.text.toString()
 
         if (type == "") {
             toast(typeHint)
@@ -238,11 +314,12 @@ class FinanceAddActivity : FinanceBaseActivity() {
 
                 if (it.code == 200) {
 
+
                     EventBus.getDefault().post(FinanceAdd(it.data))
 
                     if (saveAgain) {
                         etFinanceAccountAdd.text = Editable.Factory.getInstance().newEditable("")
-                        etFinanceNameAdd.text = Editable.Factory.getInstance().newEditable("")
+                        tvFinanceItemAdd.text = Editable.Factory.getInstance().newEditable("")
                         etFinanceRemarkAdd.text = Editable.Factory.getInstance().newEditable("")
 
                     } else {

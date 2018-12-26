@@ -10,10 +10,13 @@
     <string name="income">&#xe611;</string>
     <string name="finance">&#xe62f;</string>
 
-    <string name="income_account">&#xe600;</string>
-    <string name="expense_account">&#xe65c;</string>
-    <string name="day_account">&#xe72e;</string>
-    <string name="month_account">&#xe72d;</string>
+
+    <string name="delete">&#xe635;</string>
+    <string name="to_right">&#xe62a;</string>
+    <string name="to_back">&#xe61e;</string>
+    <string name="ok">&#xe632;</string>
+    <string name="add">&#xe6a1;</string>
+    <string name="edit">&#xe60a;</string>
 
     <string-array name="bank_array">
         <item>微信</item>
@@ -27,5 +30,138 @@
         <item>北京银行</item>
         <item>其他支付</item>
     </string-array>
+
+
+
+    <string-array name="income">
+        <item>薪资</item>
+        <item>红包</item>
+        <item>利息</item>
+        <item>运气</item>
+        <item>福利</item>
+        <item>买卖</item>
+        <item>生意</item>
+        <item>其他</item>
+    </string-array>
+
+
+
+    <string-array name="finance_item">
+        <item>交通</item>
+        <item>购物</item>
+        <item>娱乐</item>
+        <item>餐饮</item>
+        <item>医教</item>
+        <item>家居</item>
+        <item>投资</item>
+        <item>人情</item>
+        <item>生意</item>
+        <item>其他</item>
+    </string-array>
+
+    <string-array name="finance_eat">
+        <item>早餐</item>
+        <item>午餐</item>
+        <item>晚餐</item>
+        <item>宵夜</item>
+        <item>零食</item>
+        <item>饮料</item>
+        <item>水果</item>
+        <item>肉菜</item>
+        <item>油盐酱醋</item>
+        <item>其他</item>
+    </string-array>
+
+    <string-array name="finance_transportation">
+        <item>公交</item>
+        <item>地铁</item>
+        <item>的士</item>
+        <item>滴滴</item>
+        <item>火车</item>
+        <item>高铁</item>
+        <item>飞机</item>
+        <item>船舶</item>
+        <item>过路费</item>
+        <item>停车费</item>
+        <item>加油费</item>
+        <item>长途汽车</item>
+        <item>共享汽车</item>
+        <item>共享单车</item>
+        <item>其他</item>
+    </string-array>
+    <string-array name="finance_shopping">
+        <item>服饰鞋包</item>
+        <item>化妆护肤</item>
+        <item>烟酒</item>
+        <item>电子数码</item>
+        <item>珠宝首饰</item>
+        <item>其他</item>
+    </string-array>
+    <string-array name="finance_amusement">
+        <item>旅游度假</item>
+        <item>电影</item>
+        <item>KTV</item>
+        <item>运动健身</item>
+        <item>花鸟宠物</item>
+        <item>聚会玩乐</item>
+        <item>歌舞演出</item>
+        <item>其他</item>
+    </string-array>
+
+    <string-array name="finance_medical">
+        <item>书本</item>
+        <item>学费</item>
+        <item>教材</item>
+        <item>住宿费</item>
+        <item>文具</item>
+        <item>药店</item>
+        <item>医院</item>
+        <item>养生保健</item>
+        <item>运动健身</item>
+        <item>其他</item>
+    </string-array>
+
+    <string-array name="finance_house">
+        <item>水电燃气</item>
+        <item>房租物业</item>
+        <item>电视宽带</item>
+        <item>快递邮政</item>
+        <item>家私家电</item>
+        <item>生活用品</item>
+        <item>美发美容</item>
+        <item>其他</item>
+    </string-array>
+    <string-array name="finance_investment">
+        <item>基金</item>
+        <item>股票</item>
+        <item>保险</item>
+        <item>外汇</item>
+        <item>余额宝</item>
+        <item>财付通</item>
+        <item>其他</item>
+    </string-array>
+    <string-array name="finance_social">
+        <item>红包</item>
+        <item>请客</item>
+        <item>慈善</item>
+        <item>给与</item>
+        <item>代付款</item>
+        <item>其他</item>
+    </string-array>
+
+    <string-array name="finance_business">
+        <item>工作</item>
+        <item>人工支出</item>
+        <item>办公费用</item>
+        <item>租金</item>
+        <item>广告</item>
+        <item>注册登记</item>
+        <item>其他</item>
+    </string-array>
+    <string-array name="finance_other">
+
+        <item>其他</item>
+    </string-array>
+
 
 </resources>

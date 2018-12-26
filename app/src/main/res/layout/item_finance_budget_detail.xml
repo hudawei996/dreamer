@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:background="@color/colorWhite"
+              android:layout_height="80dp">
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_height="match_parent">
+        <ImageView
+                android:id="@+id/ivIndicator"
+                android:src="@mipmap/ic_finance_eat"
+                android:layout_width="35dp"
+                android:layout_centerVertical="true"
+                android:layout_height="35dp"/>
+
+        <TextView android:layout_width="wrap_content"
+                  android:text="餐饮"
+                  android:layout_marginBottom="5dp"
+                  android:layout_above="@id/pbBudgetDetail"
+                  android:id="@+id/tvBudgetDetailItem"
+                  android:layout_marginLeft="10dp"
+                  android:textSize="14sp"
+                  android:textColor="@color/colorBlack"
+                  android:layout_toRightOf="@+id/ivIndicator"
+                  android:layout_height="wrap_content"/>
+
+        <TextView
+                android:id="@+id/tvBudgetDetailBalance"
+                android:paddingLeft="5dp"
+                android:layout_marginRight="15dp"
+
+                android:layout_alignBottom="@id/tvBudgetDetailItem"
+                android:textSize="12sp"
+                android:text="1000.00"
+                android:textColor="@color/colorBlack"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:id="@+id/tvBudgetDetailBalanceHint"
+                android:paddingLeft="10dp"
+                android:layout_alignBottom="@id/tvBudgetDetailItem"
+                android:textSize="12sp"
+                android:text="预算余额"
+                android:textColor="@color/hint"
+                android:layout_toLeftOf="@id/tvBudgetDetailBalance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <ProgressBar
+                android:id="@+id/pbBudgetDetail"
+                style="@style/BudgetDetailProgressBarStyle"
+                android:layout_alignLeft="@+id/tvBudgetDetailItem"
+                android:layout_centerVertical="true"
+                android:layout_alignRight="@id/tvBudgetDetailBalance"
+                android:layout_width="match_parent"
+                android:max="100"
+                android:min="0"
+                android:layout_height="4dp"/>
+
+        <TextView
+                android:layout_below="@+id/pbBudgetDetail"
+                android:layout_alignLeft="@id/tvBudgetDetailItem"
+                android:textSize="10sp"
+                android:text="预算 23.00"
+                android:textColor="@color/hint"
+                android:id="@+id/tvBudgetDetailAccount"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <View android:layout_width="match_parent"
+              android:layout_alignLeft="@id/tvBudgetName"
+              android:background="@color/background"
+              android:layout_alignParentBottom="true"
+              android:layout_height="0.5dp"/>
+    </RelativeLayout>
+</LinearLayout>

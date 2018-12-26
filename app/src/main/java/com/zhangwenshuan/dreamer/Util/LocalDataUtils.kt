@@ -12,9 +12,10 @@ class LocalDataUtils {
     companion object {
         val BANK = "bank"
 
+        val BUDGET_ITEM="budget"
+
+
         val LOGIN_BEAN = "login_bean"
-
-
         var gson: Gson? = null
 
         fun getString(key: String): String {

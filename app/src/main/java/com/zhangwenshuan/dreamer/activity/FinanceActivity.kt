@@ -15,13 +15,11 @@ import com.zhangwenshuan.dreamer.bean.*
 import com.zhangwenshuan.dreamer.util.BaseApplication
 import com.zhangwenshuan.dreamer.util.NetUtils
 import com.zhangwenshuan.dreamer.util.TimeUtils
-import com.zhangwenshuan.dreamer.util.logInfo
 import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.activity_finance.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-import java.sql.Time
 
 
 class FinanceActivity : BaseActivity() {
@@ -100,19 +98,26 @@ class FinanceActivity : BaseActivity() {
         }
 
         tvFinanceBudget.setOnClickListener {
-            val intent = Intent(this@FinanceActivity, FinanceBudgetActivity::class.java)
-
-
             if (budgetBean != null) {
+                val intent = Intent(this@FinanceActivity, FinanceBudgetDetailActivity::class.java)
+
                 val bundle = Bundle()
 
                 bundle.putSerializable("budget", budgetBean)
 
+                bundle.putDouble("expense",monthExpense)
+
                 intent.putExtra("data", bundle)
 
+                startActivity(intent)
+
+            } else {
+                val intent = Intent(this@FinanceActivity, FinanceBudgetActivity::class.java)
+
+                startActivity(intent)
             }
 
-            startActivity(intent)
+
         }
 
         tvFinanceMonthBudgetHint.setOnClickListener {
@@ -130,7 +135,7 @@ class FinanceActivity : BaseActivity() {
 
     }
 
-    lateinit var budgetBean: BudgetBean
+    var budgetBean: BudgetBean? = null
 
     private fun getBudget() {
         NetUtils.data(NetUtils.getApiInstance().getBudget(BaseApplication.userId, TimeUtils.curMonth()), Consumer {
@@ -143,12 +148,12 @@ class FinanceActivity : BaseActivity() {
     }
 
     private fun notifyBudgetViewChange() {
-        if (monthExpense > budgetBean.account) {
-            tvFinanceBudget.text = decimalFormat.format(monthExpense - budgetBean.account)
+        if (monthExpense > budgetBean!!.account) {
+            tvFinanceBudget.text = decimalFormat.format(monthExpense - budgetBean!!.account)
             tvFinanceBudget.setTextColor(resources.getColor(R.color.finance_base_color))
             tvFinanceMonthBudgetHint.text = "预算超支"
         } else {
-            tvFinanceBudget.text = decimalFormat.format(budgetBean.account - monthExpense)
+            tvFinanceBudget.text = decimalFormat.format(budgetBean!!.account - monthExpense)
             tvFinanceBudget.setTextColor(resources.getColor(R.color.colorWhite))
             tvFinanceMonthBudgetHint.text = "预算余额"
         }
@@ -182,21 +187,6 @@ class FinanceActivity : BaseActivity() {
     }
 
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun subscribeEvent(event: EventBean) {
-        when (event.flag) {
-            EVENT_SAVE_INCOME -> {
-                monthIncome += event.message!!.toDouble()
-
-                tvFinanceMonthIncome.text = decimalFormat.format(monthIncome)
-            }
-            EVENT_SAVE_EXPENSE -> {
-                monthExpense += event.message!!.toDouble()
-
-                tvFinanceMonthExpense.text = decimalFormat.format(monthExpense)
-            }
-        }
-    }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun subscribeEvent(event: FinanceDelete) {
@@ -211,6 +201,8 @@ class FinanceActivity : BaseActivity() {
         list.remove(event.finance)
 
         financeAdapter.notifyDataSetChanged()
+
+        notifyBudgetViewChange()
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -220,12 +212,15 @@ class FinanceActivity : BaseActivity() {
             tvFinanceMonthExpense.text = decimalFormat.format(monthExpense)
         } else {
             monthIncome += event.finance.account
-            tvFinanceMonthExpense.text = decimalFormat.format(monthIncome)
+            tvFinanceMonthIncome.text = decimalFormat.format(monthIncome)
         }
+
 
         list.add(0, event.finance)
 
         financeAdapter.notifyDataSetChanged()
+
+        notifyBudgetViewChange()
     }
 
 

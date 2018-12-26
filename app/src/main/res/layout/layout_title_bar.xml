@@ -18,10 +18,9 @@
     <ImageView android:layout_width="wrap_content"
                android:src="@mipmap/ic_action_left"
                android:paddingLeft="15dp"
-               android:paddingTop="15dp"
-               android:paddingBottom="15dp"
+               android:paddingTop="20dp"
+               android:paddingBottom="20dp"
                android:id="@+id/ivBack"
-               android:paddingRight="10dp"
                android:layout_height="match_parent"/>
 
     <TextView
@@ -30,12 +29,23 @@
             android:visibility="gone"
             android:gravity="center_vertical"
             android:layout_alignParentRight="true"
-            android:paddingRight="15dp"
+            android:paddingRight="25dp"
 
             android:letterSpacing="0.1"
             android:paddingLeft="15dp"
             android:textColor="@color/colorWhite"
             android:layout_width="wrap_content"
-              android:layout_height="match_parent"/>
+            android:layout_height="match_parent"/>
+
+    <TextView
+            android:id="@+id/tvSubtitle"
+            android:text="subtitle"
+            android:visibility="gone"
+            android:gravity="center_vertical"
+            android:layout_toRightOf="@id/ivBack"
+            android:paddingRight="15dp"
+            android:textColor="@color/colorWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
 
 </RelativeLayout>

@@ -63,6 +63,7 @@
         <activity android:name=".activity.BookAddActivity"/>
         <activity android:name=".activity.BookDetailActivity"/>
         <activity android:name=".activity.FinanceBudgetActivity"/>
+        <activity android:name=".activity.FinanceBudgetDetailActivity"/>
 
         <provider
                 android:name="android.support.v4.content.FileProvider"

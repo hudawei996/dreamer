@@ -28,6 +28,7 @@ data class Finance(
     var account: Double,
     var bankName: String,
     var bankId: Int,
+    var item:String,
     var type:String,
     var remark: String,
     var date: String,
