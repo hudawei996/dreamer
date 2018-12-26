@@ -27,7 +27,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
             <TextView
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorBlack"
                     android:text="0.0"
                     android:id="@+id/tvTotalAccount"
                     android:paddingLeft="20dp"
@@ -47,9 +47,11 @@
                     android:numColumns="2"
                     android:layout_height="130dp"/>
 
+
             <RelativeLayout
                     android:id="@+id/llMoreBank"
                     android:layout_marginTop="0.5dp"
+                    android:layout_marginBottom="0.5dp"
                     android:background="@color/colorWhite"
                     android:layout_width="match_parent"
                     android:layout_height="40dp">
@@ -67,6 +69,18 @@
                            android:layout_centerInParent="true"
                            android:layout_height="30dp"/>
             </RelativeLayout>
+
+            <RelativeLayout android:layout_width="match_parent"
+                            android:background="@color/colorWhite"
+                            android:layout_height="240dp">
+                <com.github.mikephil.charting.charts.BarChart
+                        android:id="@+id/barChart"
+                        android:layout_centerInParent="true"
+                        android:background="@color/colorWhite"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"/>
+            </RelativeLayout>
+
 
             <LinearLayout
                     android:orientation="horizontal"
@@ -89,7 +103,7 @@
                             android:layout_height="wrap_content"/>
 
                     <TextView
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/colorBlack2"
                             android:text="0.00"
                             android:paddingLeft="20dp"
                             android:paddingBottom="10dp"
@@ -117,7 +131,7 @@
                             android:layout_height="wrap_content"/>
 
                     <TextView
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/colorBlack2"
                             android:text="0.00"
                             android:id="@+id/tvExpenseTotalAccount"
                             android:paddingLeft="20dp"
@@ -149,6 +163,28 @@
                            android:layout_toRightOf="@+id/tvMoreFinance"
                            android:layout_centerInParent="true"
                            android:layout_height="30dp"/>
+            </RelativeLayout>
+
+            <TextView android:layout_width="match_parent"
+                      android:text="本月支出类别比例"
+                      android:paddingTop="5dp"
+                      android:textSize="8sp"
+                      android:paddingLeft="15dp"
+                      android:paddingBottom="5dp"
+                      android:textColor="@color/colorBase"
+                      android:layout_height="wrap_content"/>
+
+            <RelativeLayout android:layout_width="match_parent"
+                            android:background="@color/colorWhite"
+                            android:layout_height="350dp">
+                <com.github.mikephil.charting.charts.PieChart
+                        android:layout_marginTop="15dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:layout_centerInParent="true"
+                        android:layout_width="match_parent"
+                        android:id="@+id/pcMonthItem"
+                        android:layout_height="300dp"/>
             </RelativeLayout>
 
 

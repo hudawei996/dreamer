@@ -12,6 +12,8 @@ class LocalDataUtils {
     companion object {
         val BANK = "bank"
 
+        val BANK_CARD = "bank_card"
+
         val BUDGET_ITEM="budget"
 
 
@@ -39,7 +41,7 @@ class LocalDataUtils {
 }
 
 fun getBankCarsFromLocal(): MutableList<BankCard>? {
-    val strBank = LocalDataUtils.getString(LocalDataUtils.BANK)
+    val strBank = LocalDataUtils.getString(LocalDataUtils.BANK_CARD)
 
     if (strBank != "") {
         val type = object : TypeToken<MutableList<BankCard>>() {}.type

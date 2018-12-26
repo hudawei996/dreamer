@@ -107,7 +107,6 @@ class FinanceBudgetDetailActivity : FinanceBaseActivity() {
 
     override fun initViews() {
         tvTitle.visibility = View.GONE
-        tvSubtitle.text = "月预算"
         tvSubtitle.visibility = View.VISIBLE
 
         tvAdd.visibility = View.VISIBLE
@@ -137,7 +136,7 @@ class FinanceBudgetDetailActivity : FinanceBaseActivity() {
 
     override fun initData() {
         NetUtils.data(
-            NetUtils.getApiInstance().getBudgetDetail(BaseApplication.userId, TimeUtils.curMonth()),
+            NetUtils.getApiInstance().getBudgetDetail(BaseApplication.userId, TimeUtils.curMonth(),1),
             Consumer {
                 if (it.code == 200) {
 

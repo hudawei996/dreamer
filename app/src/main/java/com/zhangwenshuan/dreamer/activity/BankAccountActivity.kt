@@ -1,13 +1,17 @@
 package com.zhangwenshuan.dreamer.activity
 
+import android.content.Intent
+import android.graphics.Typeface
+import android.view.View
 import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.adapter.BankAccountAdapter
 import com.zhangwenshuan.dreamer.bean.BankCard
-import com.zhangwenshuan.dreamer.util.getBankCarsFromLocal
+import com.zhangwenshuan.dreamer.util.*
+import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.activity_bank_account.*
-import kotlinx.android.synthetic.main.activity_finance.*
+import kotlinx.android.synthetic.main.layout_title_bar.*
 
-class BankAccountActivity : BaseActivity() {
+class BankAccountActivity : FinanceBaseActivity() {
 
     var list = mutableListOf<BankCard>()
 
@@ -20,22 +24,40 @@ class BankAccountActivity : BaseActivity() {
     }
 
     override fun preInitData() {
-        var list = getBankCarsFromLocal()
+        super.preInitData()
 
-        adapter= BankAccountAdapter(this,list!!)
+        val data = getBankCarsFromLocal()
 
-        lvBankAccount.adapter=adapter
+        if (data != null) {
+            list.addAll(data)
+        }
 
-        tvTitle.text="账户"
+        adapter = BankAccountAdapter(this, list!!)
+
+        lvBankAccount.adapter = adapter
+
+        tvTitle.text = "账户"
 
     }
 
     override fun initViews() {
+
+        tvAdd.typeface= Typeface.createFromAsset(assets,"icon_action.ttf")
+
+        tvAdd.text=resources.getString(R.string.add)
+
+        tvAdd.visibility= View.VISIBLE
+
+        tvAdd.textSize=20f
     }
 
     override fun initListener() {
+        tvAdd.setOnClickListener {
+            startActivity(Intent(this@BankAccountActivity,BankCardAddActivity::class.java))
+        }
     }
 
     override fun initData() {
     }
+
 }

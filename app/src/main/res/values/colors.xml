@@ -21,13 +21,15 @@
 
 
     <color name="colorBlack">#000000</color>
+    <color name="colorBlack2">#80000000</color>
 
     <color name="colorBase">#45000000</color>
 
     <color name="colorOrange">#FF6100</color>
 
 
-    <color name="background">#eff0f1</color>
+    <color name="background">#F7F7F7</color>
+
 
     <color name="hint">#cacaca</color>
 
@@ -47,4 +49,23 @@
     <color name="splash_color_1">#ff6766</color>
     <color name="splash_color_2">#f9dd3e</color>
     <color name="splash_color_3">#f7d08a</color>
+
+
+    <color name="chart_color_1">#60acfc</color>
+    <color name="chart_color_2">#32d3eb</color>
+    <color name="chart_color_3">#5bc49f</color>
+    <color name="chart_color_4">#feb64d</color>
+    <color name="chart_color_5">#ff7c7c</color>
+    <color name="chart_color_6">#9287e7</color>
+
+    <string-array name="chart_color">
+        <item>#60acfc</item>
+        <item>#32d3eb</item>
+        <item>#5bc49f</item>
+        <item>#feb64d</item>
+        <item>#ff7c7c</item>
+        <item>#9287e7</item>
+    </string-array>
+
+
 </resources>
