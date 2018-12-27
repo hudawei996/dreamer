@@ -8,44 +8,45 @@
                     android:paddingTop="10dp"
                     android:paddingLeft="20dp"
                     android:background="@color/colorWhite"
-                    android:layout_height="60dp">
+                    android:layout_height="70dp">
+
+        <View android:layout_width="match_parent"
+              android:layout_centerVertical="true"
+              android:id="@+id/vCenter"
+              android:layout_height="0dp"/>
+
         <TextView
                 android:id="@+id/tvFinanceName"
                 android:layout_width="wrap_content"
-                android:text="微信-早餐"
-                android:textSize="16sp"
-                android:textColor="@color/colorPrimary"
+                android:text="早上"
+                android:textSize="18sp"
+                android:layout_above="@id/vCenter"
+                android:textColor="@color/colorBlack"
                 android:layout_height="wrap_content"/>
 
         <TextView
                 android:id="@+id/tvFinanceAccount"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:text="￥100.00"
                 android:layout_marginRight="20dp"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 android:textColor="@color/colorOrange"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
-        <TextView
-                android:layout_alignRight="@id/tvFinanceAccount"
-                android:id="@+id/tvFinanceTime"
-                android:layout_below="@id/tvFinanceAccount"
-                android:text="2018-12-12 12:09"
-                android:layout_marginTop="5dp"
-                android:textSize="12sp"
-                android:textColor="@color/colorBase"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
 
         <TextView
                 android:id="@+id/tvFinanceRemark"
-                android:layout_alignTop="@id/tvFinanceTime"
                 android:maxLines="1"
                 android:layout_alignLeft="@id/tvFinanceName"
-                android:layout_toLeftOf="@+id/tvFinanceTime"
+                android:layout_below="@id/vCenter"
+                android:layout_marginTop="10dp"
                 android:text="记账啦"
-                android:textSize="12sp"
+                android:textSize="10sp"
+                android:textColor="@color/hint"
+                android:layout_toLeftOf="@+id/tvFinanceAccount"
+                android:ellipsize="end"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 

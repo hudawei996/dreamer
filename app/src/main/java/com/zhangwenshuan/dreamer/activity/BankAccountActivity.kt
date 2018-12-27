@@ -2,6 +2,7 @@ package com.zhangwenshuan.dreamer.activity
 
 import android.content.Intent
 import android.graphics.Typeface
+import android.os.Bundle
 import android.view.View
 import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.adapter.BankAccountAdapter
@@ -42,18 +43,30 @@ class BankAccountActivity : FinanceBaseActivity() {
 
     override fun initViews() {
 
-        tvAdd.typeface= Typeface.createFromAsset(assets,"icon_action.ttf")
+        tvAdd.typeface = Typeface.createFromAsset(assets, "icon_action.ttf")
 
-        tvAdd.text=resources.getString(R.string.add)
+        tvAdd.text = resources.getString(R.string.add)
 
-        tvAdd.visibility= View.VISIBLE
+        tvAdd.visibility = View.VISIBLE
 
-        tvAdd.textSize=20f
+        tvAdd.textSize = 20f
     }
 
     override fun initListener() {
         tvAdd.setOnClickListener {
-            startActivity(Intent(this@BankAccountActivity,BankCardAddActivity::class.java))
+            startActivity(Intent(this@BankAccountActivity, BankCardAddActivity::class.java))
+        }
+
+        lvBankAccount.setOnItemClickListener { parent, view, position, id ->
+            val intent = Intent(this@BankAccountActivity, BankCardAddActivity::class.java)
+
+            val bundle = Bundle()
+
+            bundle.putSerializable("bank", list[position])
+
+            intent.putExtra("data", bundle)
+
+            startActivity(intent)
         }
     }
 

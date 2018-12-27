@@ -25,14 +25,16 @@ class FinanceDetailAdapter(var context: Context, var list: MutableList<Finance>)
 
         if (finance.isExpense == 1) {
 
-            holder.tvAccount.text = "￥ -${finance.account}"
+            holder.tvAccount.setTextColor(context.resources.getColor(R.color.finance_base_color))
         } else {
-            holder.tvAccount.text = "￥ ${finance.account}"
+            holder.tvAccount.setTextColor(context.resources.getColor(R.color.finance_top_color))
 
         }
-        holder.tvRemark.text = finance.remark
-        holder.tvTime.text = finance.date + " " + finance.time
-        holder.tvTitle.text = finance.bankName + "-" + finance.type
+        holder.tvAccount.text = "￥ ${finance.account}"
+
+        holder.tvRemark.text = finance.time+" "+finance.remark
+
+        holder.tvTitle.text = finance.item + " " + finance.type
     }
 }
 
@@ -40,7 +42,6 @@ class FinanceDetailHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val tvTitle = itemView.findViewById<TextView>(R.id.tvFinanceName)
     val tvAccount = itemView.findViewById<TextView>(R.id.tvFinanceAccount)
     val tvRemark = itemView.findViewById<TextView>(R.id.tvFinanceRemark)
-    val tvTime = itemView.findViewById<TextView>(R.id.tvFinanceTime)
 
 }
 

@@ -2,6 +2,7 @@ package com.zhangwenshuan.dreamer.activity
 
 import android.content.Intent
 import android.graphics.Color
+import android.os.Bundle
 import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
@@ -163,6 +164,18 @@ class FinanceSynopsisActivity : FinanceBaseActivity() {
         llFianceSearch.setOnClickListener {
             val intent = Intent(this@FinanceSynopsisActivity, FinanceSearchActivity::class.java)
             startActivityForResult(intent, 1000)
+        }
+
+        gvBank.setOnItemClickListener { parent, view, position, id ->
+            val intent = Intent(this@FinanceSynopsisActivity, BankCardAddActivity::class.java)
+
+            val bundle = Bundle()
+
+            bundle.putSerializable("bank", list[position])
+
+            intent.putExtra("data", bundle)
+
+            startActivity(intent)
         }
     }
 

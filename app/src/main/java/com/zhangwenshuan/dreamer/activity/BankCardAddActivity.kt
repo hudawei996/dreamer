@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Typeface
 import android.os.Bundle
 import android.text.Editable
 import android.view.View
@@ -11,11 +12,9 @@ import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.view.animation.AnimationSet
 import android.view.animation.TranslateAnimation
-import android.widget.AdapterView
 import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.adapter.OnItemClickListener
 import com.zhangwenshuan.dreamer.bean.BankCard
-import com.zhangwenshuan.dreamer.bean.EventBean
 import com.zhangwenshuan.dreamer.bean.RemoveBank
 import com.zhangwenshuan.dreamer.bean.RightBean
 import com.zhangwenshuan.dreamer.custom.RightDialog
@@ -29,7 +28,7 @@ import org.greenrobot.eventbus.EventBus
 import org.jetbrains.anko.toast
 
 
-class BankCardAddActivity : BaseActivity() {
+class BankCardAddActivity : FinanceBaseActivity() {
     var isAdd = true
 
     var bankCard: BankCard? = null
@@ -37,6 +36,8 @@ class BankCardAddActivity : BaseActivity() {
     override fun setResourceId(): Int = R.layout.activity_bank_card_add
 
     override fun preInitData() {
+        super.preInitData()
+
         var bundle = intent.getBundleExtra("data")
 
         bundle ?: return
@@ -53,17 +54,24 @@ class BankCardAddActivity : BaseActivity() {
 
         tvAdd.visibility = View.VISIBLE
 
+        tvAdd.typeface= Typeface.createFromAsset(assets,"icon_action.ttf")
+
+        tvAdd.textSize = 18F
+
         if (isAdd) {
             tvTitle.text = "添加账户"
-            tvAdd.text = "完成"
+            tvAdd.text = resources.getString(R.string.ok)
+
 
         } else {
             tvTitle.text = "账户概览"
 
-            tvAdd.text = "删除"
+            tvAdd.text = resources.getString(R.string.delete)
 
             tvBankName.text = bankCard?.name
+
             etBankAccount.text = Editable.Factory.getInstance().newEditable(bankCard!!.account.toString())
+
             etBankNumber.text = Editable.Factory.getInstance().newEditable(bankCard!!.number)
 
 

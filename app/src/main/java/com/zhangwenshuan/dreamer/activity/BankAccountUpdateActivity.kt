@@ -2,6 +2,7 @@ package com.zhangwenshuan.dreamer.activity
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Typeface
 import android.text.Editable
 import android.view.View
 import com.zhangwenshuan.dreamer.R
@@ -14,13 +15,14 @@ import kotlinx.android.synthetic.main.activity_bank_account_update.*
 import kotlinx.android.synthetic.main.layout_title_bar.*
 import org.jetbrains.anko.toast
 
-class BankAccountUpdateActivity : BaseActivity() {
+class BankAccountUpdateActivity : FinanceBaseActivity() {
     override fun setResourceId(): Int = R.layout.activity_bank_account_update
 
 
     lateinit var bank: BankCard
 
     override fun preInitData() {
+        super.preInitData()
         bank = intent.getBundleExtra("data").getSerializable("bank") as BankCard
     }
 
@@ -29,7 +31,9 @@ class BankAccountUpdateActivity : BaseActivity() {
 
         tvAdd.visibility = View.VISIBLE
 
-        tvAdd.text = "完成"
+        tvAdd.text = resources.getString(R.string.ok)
+
+        tvAdd.typeface= Typeface.createFromAsset(assets,"icon_action.ttf")
 
         etUpdateAccount.text=Editable.Factory.getInstance().newEditable(bank.account.toString())
     }

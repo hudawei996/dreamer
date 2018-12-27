@@ -25,7 +25,7 @@ const val BANK_DETAIL = 6
 
 var decimalFormat = DecimalFormat("#,##0.00")
 
-class FinanceDetailActivity : BaseActivity() {
+class FinanceDetailActivity : FinanceBaseActivity() {
 
     var state: Int = TODAY_INCOME_DETAIL
 
@@ -38,6 +38,8 @@ class FinanceDetailActivity : BaseActivity() {
     }
 
     override fun preInitData() {
+        super.preInitData()
+
         state = intent.getIntExtra("state", TODAY_INCOME_DETAIL)
 
         list = mutableListOf()
@@ -145,7 +147,7 @@ class FinanceDetailActivity : BaseActivity() {
             tvNoFinance.visibility = View.VISIBLE
         } else {
 
-            if (state== BANK_DETAIL){
+            if (state == BANK_DETAIL) {
                 return
             }
 

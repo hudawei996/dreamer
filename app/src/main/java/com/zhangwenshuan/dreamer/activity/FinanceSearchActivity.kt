@@ -19,7 +19,7 @@ import org.jetbrains.anko.toast
 import java.util.*
 
 
-class FinanceSearchActivity : BaseActivity() {
+class FinanceSearchActivity : FinanceBaseActivity() {
 
     var list = mutableListOf<DayBill>()
 
@@ -40,6 +40,7 @@ class FinanceSearchActivity : BaseActivity() {
     }
 
     override fun preInitData() {
+        super.preInitData()
         adapter = FinanceSearchAdapter(this, list)
 
 
@@ -118,6 +119,7 @@ class FinanceSearchActivity : BaseActivity() {
             NetUtils.getApiInstance().getFinanceBySearch(BaseApplication.userId, beginDate, stopDate),
             Consumer {
                 if (it.code == 200) {
+
                     list.clear()
 
 
@@ -156,9 +158,9 @@ class FinanceSearchActivity : BaseActivity() {
             .setRangDate(startCalendar, stopCalendar)
             .setDate(stopCalendar)
             .setType(arrays.toBooleanArray())
-            .setSubmitColor(resources.getColor(R.color.colorPrimary))//确定按钮文字颜色
-            .setCancelColor(resources.getColor(R.color.colorPrimary))//取消按钮文字颜色
-            .setTextColorCenter(resources.getColor(R.color.colorPrimary))
+            .setSubmitColor(resources.getColor(R.color.finance_base_color))//确定按钮文字颜色
+            .setCancelColor(resources.getColor(R.color.finance_base_color))//取消按钮文字颜色
+            .setTextColorCenter(resources.getColor(R.color.finance_base_color))
             .build()
 
         pvTime.show()
@@ -193,6 +195,8 @@ class FinanceSearchActivity : BaseActivity() {
                     dayBill.income += value.account
                 }
             }
+
+            dayBills.sortByDescending { it.date }
 
             return dayBills
         }
