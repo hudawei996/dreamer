@@ -3,6 +3,7 @@ package com.zhangwenshuan.dreamer.activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.service.autofill.Dataset
 import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
@@ -10,7 +11,9 @@ import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.PercentFormatter
 import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.adapter.BankSynopsisAdapter
+import com.zhangwenshuan.dreamer.bean.BankAdd
 import com.zhangwenshuan.dreamer.bean.BankCard
+import com.zhangwenshuan.dreamer.bean.BankDelete
 import com.zhangwenshuan.dreamer.custom.MyValueFormatter
 import com.zhangwenshuan.dreamer.custom.XAxisCustom
 import com.zhangwenshuan.dreamer.util.*
@@ -52,7 +55,7 @@ class FinanceSynopsisActivity : FinanceBaseActivity() {
         val strColors = resources.getStringArray(R.array.chart_color)
 
 
-        intColors = mutableListOf<Int>()
+        intColors = mutableListOf()
 
         strColors.toList().forEachWithIndex { i, pieEntry ->
             intColors.add(Color.parseColor(strColors[i]))
@@ -115,6 +118,9 @@ class FinanceSynopsisActivity : FinanceBaseActivity() {
 
     private fun initPieChart() {
 
+        if(pieEntries.size==0){
+            return
+        }
 
         val pieDataSet = PieDataSet(pieEntries, "")
 
@@ -228,6 +234,7 @@ class FinanceSynopsisActivity : FinanceBaseActivity() {
 
                     initBarChartView()
 
+
                     LocalDataUtils.setString(LocalDataUtils.BANK_CARD, GsonUtils.getGson().toJson(it.data))
                 }
 
@@ -239,19 +246,34 @@ class FinanceSynopsisActivity : FinanceBaseActivity() {
 
     var bankXAxis = mutableListOf<String>()
 
+
+    var initBarChart = false
+
+    lateinit var barDataSet: BarDataSet
+
+    lateinit var barData: BarData
+
     private fun initBarChartView() {
+        if (rawBankCard.size < showbankNumbers) {
+            barChart.setNoDataText("再添加${showbankNumbers - rawBankCard.size}个账户，就可以生成资产报表")
+            barChart.invalidate()
+            return
+        }
+
+        initBarChart = true
+
         rawBankCard.forEachWithIndex { i, bankCard ->
             val barEntry = BarEntry(i.toFloat(), bankCard.account.toFloat())
             barEntries.add(barEntry)
             bankXAxis.add(bankCard.name)
         }
 
-        val dataSet = BarDataSet(barEntries, "")
+        barDataSet = BarDataSet(barEntries, "")
 
 
-        dataSet.colors = intColors
+        barDataSet.colors = intColors
 
-        val barData = BarData(dataSet)
+        barData = BarData(barDataSet)
 
 
         barChart.data = barData
@@ -267,28 +289,29 @@ class FinanceSynopsisActivity : FinanceBaseActivity() {
 
         barChart.xAxis.isEnabled = true
 
+
         barChart.xAxis.valueFormatter = XAxisCustom(bankXAxis)
 
         barChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
 
         barChart.xAxis.setDrawGridLines(false)
 
-        barChart.legend.isEnabled=false
+        barChart.legend.isEnabled = false
 
         barChart.axisLeft.setDrawLabels(false)
 
         barChart.axisLeft.setDrawAxisLine(false)
 
-    //    barChart.xAxis.setLabelCount(bankXAxis.size,true)
+        barChart.xAxis.setLabelCount(bankXAxis.size, false)
 
 
-        if (barEntries.size>6){
-            barChart.xAxis.textSize=6f
+        if (barEntries.size > 6) {
+            barChart.xAxis.textSize = 6f
         }
 
         barChart.description = description
 
-        barChart.animateXY(2000,3000)
+        barChart.animateXY(2000, 3000)
 
 
         barChart.invalidate()
@@ -318,18 +341,87 @@ class FinanceSynopsisActivity : FinanceBaseActivity() {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun addBankCard(bank: BankCard) {
+    fun addBankCard(add: BankAdd) {
+
+        rawBankCard.add(0, add.bank)
+
         if (list.size < showbankNumbers) {
-            list.add(bank!!)
+            list.add(add.bank)
             adapter.notifyDataSetChanged()
         } else {
+
             isMoreBank = true
+
             initMoreBankView()
         }
 
-        account += bank!!.account
+
+
+        account += add.bank!!.account
 
         tvTotalAccount.text = decimalFormat.format(account)
+
+
+        LocalDataUtils.setString(LocalDataUtils.BANK_CARD, GsonUtils.getGson().toJson(rawBankCard))
+
+
+
+        if (initBarChart) {
+
+            val barEntry = BarEntry((barDataSet.entryCount).toFloat(), add.bank.account.toFloat())
+            //第一个参数为数据实体，第二个参数为DataSet在Data中的索引，因为在Data可能存在多个DataSet
+            //这里只有一个
+            barData.addEntry(barEntry, 0)
+            //X轴添加值
+            bankXAxis.add(add.bank.name)
+            //设置X轴的个数，否则自定x轴的坐标会显示不全
+            barChart.xAxis.setLabelCount(bankXAxis.size, false)
+
+            barChart.notifyDataSetChanged()
+
+            barChart.invalidate()
+        } else {
+            initBarChartView()
+        }
+
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun deleteBankCard(delete: BankDelete) {
+
+        if (initBarChart) {
+            //BarChart 底部坐标删除失败，选择强制退出而不更新
+            finish()
+            return
+        }
+
+
+        rawBankCard.remove(delete.bank)
+
+
+        list.clear()
+
+        if (rawBankCard.size <= showbankNumbers) {
+            isMoreBank = false
+            list.addAll(rawBankCard)
+        } else {
+            for (i in 0 until showbankNumbers) {
+                list.add(rawBankCard[i])
+            }
+
+            isMoreBank = true
+        }
+        initMoreBankView()
+
+        adapter.notifyDataSetChanged()
+
+
+        account -= delete.bank!!.account
+
+        tvTotalAccount.text = decimalFormat.format(account)
+
+
+        LocalDataUtils.setString(LocalDataUtils.BANK_CARD, GsonUtils.getGson().toJson(rawBankCard))
 
     }
 

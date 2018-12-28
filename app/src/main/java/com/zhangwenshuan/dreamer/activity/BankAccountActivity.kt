@@ -6,11 +6,13 @@ import android.os.Bundle
 import android.view.View
 import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.adapter.BankAccountAdapter
-import com.zhangwenshuan.dreamer.bean.BankCard
+import com.zhangwenshuan.dreamer.bean.*
 import com.zhangwenshuan.dreamer.util.*
 import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.activity_bank_account.*
 import kotlinx.android.synthetic.main.layout_title_bar.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 
 class BankAccountActivity : FinanceBaseActivity() {
 
@@ -26,6 +28,7 @@ class BankAccountActivity : FinanceBaseActivity() {
 
     override fun preInitData() {
         super.preInitData()
+        EventBus.getDefault().register(this)
 
         val data = getBankCarsFromLocal()
 
@@ -52,12 +55,17 @@ class BankAccountActivity : FinanceBaseActivity() {
         tvAdd.textSize = 20f
     }
 
+    private var position = 0
+
     override fun initListener() {
         tvAdd.setOnClickListener {
             startActivity(Intent(this@BankAccountActivity, BankCardAddActivity::class.java))
         }
 
         lvBankAccount.setOnItemClickListener { parent, view, position, id ->
+
+            this.position = position
+
             val intent = Intent(this@BankAccountActivity, BankCardAddActivity::class.java)
 
             val bundle = Bundle()
@@ -71,6 +79,31 @@ class BankAccountActivity : FinanceBaseActivity() {
     }
 
     override fun initData() {
+    }
+
+    @Subscribe
+    fun subscribe(update: BankUpdate) {
+        list[position] = update.bank
+        adapter.notifyDataSetChanged()
+    }
+
+    @Subscribe
+    fun subscribeDelte(delete: BankDelete) {
+        list.removeAt(position)
+
+        adapter.notifyDataSetChanged()
+    }
+
+    @Subscribe
+    fun subscribeDelte(add: BankAdd) {
+        list.add(0, add.bank)
+
+        adapter.notifyDataSetChanged()
+    }
+
+    override fun onDestroy() {
+        EventBus.getDefault().unregister(this)
+        super.onDestroy()
     }
 
 }

@@ -15,9 +15,11 @@ import java.util.concurrent.TimeUnit
 
 const val PROD_URL = "https://www.zhangwenshuan.com/dreamer/"
 
-const val DEV_URL = "http://192.168.1.107:8080/"
+const val DEV_URL = "http://192.168.1.101:8080/"
 
 const val DEBUG = true
+
+
 
 class NetUtils {
 

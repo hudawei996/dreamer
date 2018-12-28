@@ -9,6 +9,7 @@ import com.zhangwenshuan.dreamer.util.logError
  */
 class XAxisCustom(val list: List<String>) : IAxisValueFormatter {
     override fun getFormattedValue(value: Float, axis: AxisBase?): String {
+
         return list[value.toInt()]
 
     }

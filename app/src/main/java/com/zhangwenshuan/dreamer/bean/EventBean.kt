@@ -22,3 +22,9 @@ data class FinanceAdd(var finance: Finance)
 
 
 data class BudgetAdd(var budgetBean: BudgetBean)
+
+data class BankUpdate(var bank: BankCard)
+
+data class BankAdd(var bank: BankCard)
+
+data class BankDelete(var bank: BankCard)

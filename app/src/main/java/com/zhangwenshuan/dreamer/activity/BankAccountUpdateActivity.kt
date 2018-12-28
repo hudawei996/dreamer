@@ -7,12 +7,14 @@ import android.text.Editable
 import android.view.View
 import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.bean.BankCard
+import com.zhangwenshuan.dreamer.bean.BankUpdate
 import com.zhangwenshuan.dreamer.util.BaseApplication
 import com.zhangwenshuan.dreamer.util.NetUtils
 import com.zhangwenshuan.dreamer.util.logError
 import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.activity_bank_account_update.*
 import kotlinx.android.synthetic.main.layout_title_bar.*
+import org.greenrobot.eventbus.EventBus
 import org.jetbrains.anko.toast
 
 class BankAccountUpdateActivity : FinanceBaseActivity() {
@@ -52,9 +54,8 @@ class BankAccountUpdateActivity : FinanceBaseActivity() {
 
 
                 if (it.code == 200) {
-                    val intent = Intent()
-                    intent.putExtra("account", account)
-                    setResult(Activity.RESULT_OK, intent)
+                    bank.account=account.toDouble()
+                    EventBus.getDefault().post(BankUpdate(bank))
                     toast("修改成功")
                     finish()
                 } else {

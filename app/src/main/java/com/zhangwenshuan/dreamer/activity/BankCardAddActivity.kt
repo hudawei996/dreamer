@@ -14,9 +14,7 @@ import android.view.animation.AnimationSet
 import android.view.animation.TranslateAnimation
 import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.adapter.OnItemClickListener
-import com.zhangwenshuan.dreamer.bean.BankCard
-import com.zhangwenshuan.dreamer.bean.RemoveBank
-import com.zhangwenshuan.dreamer.bean.RightBean
+import com.zhangwenshuan.dreamer.bean.*
 import com.zhangwenshuan.dreamer.custom.RightDialog
 import com.zhangwenshuan.dreamer.util.BaseApplication
 import com.zhangwenshuan.dreamer.util.NetUtils
@@ -25,6 +23,8 @@ import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.activity_bank_card_add.*
 import kotlinx.android.synthetic.main.layout_title_bar.*
 import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import org.jetbrains.anko.toast
 
 
@@ -37,6 +37,8 @@ class BankCardAddActivity : FinanceBaseActivity() {
 
     override fun preInitData() {
         super.preInitData()
+
+        EventBus.getDefault().register(this)
 
         var bundle = intent.getBundleExtra("data")
 
@@ -54,7 +56,7 @@ class BankCardAddActivity : FinanceBaseActivity() {
 
         tvAdd.visibility = View.VISIBLE
 
-        tvAdd.typeface= Typeface.createFromAsset(assets,"icon_action.ttf")
+        tvAdd.typeface = Typeface.createFromAsset(assets, "icon_action.ttf")
 
         tvAdd.textSize = 18F
 
@@ -181,7 +183,13 @@ class BankCardAddActivity : FinanceBaseActivity() {
         }
 
         tvAdd.setOnClickListener {
+
+
             if (!isAdd) {
+                if (bankCard?.name == "现金") {
+                    toast("默认账户不止删除")
+                    return@setOnClickListener
+                }
                 showDeleteBankCardDialog()
                 return@setOnClickListener
             }
@@ -214,81 +222,84 @@ class BankCardAddActivity : FinanceBaseActivity() {
 
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == 1000) {
-                val account = data!!.getStringExtra("account")
-                bankCard!!.account = account.toDouble()
-                etBankAccount.text = Editable.Factory.getInstance().newEditable(account)
-            }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun subsrcible(bankUpdate: BankUpdate) {
+        etBankAccount.text = Editable.Factory.getInstance().newEditable(
+            decimalFormat.format(bankUpdate.bank.account)
+            )
+
+    }
+
+
+private fun toAdd() {
+    val account = etBankAccount.text.toString()
+
+    if (account == null || account == "") {
+        toast("还有多少钱呢？")
+        return
+    }
+
+    var number = etBankNumber.text.toString()
+
+    if (number == null || number == "") {
+        number = ""
+    }
+
+
+
+    NetUtils.data(NetUtils.getApiInstance().saveBank(
+        BaseApplication.userId, tvBankName.text.toString(), account, number
+    ), Consumer {
+        logInfo(it.toString())
+
+
+        if (it.code == 200) {
+            toast("添加成功")
+
+            finish()
+
+            EventBus.getDefault().post(BankAdd(it.data))
+        } else {
+            toast("添加失败")
         }
-    }
 
-    private fun toAdd() {
-        val account = etBankAccount.text.toString()
+    })
+}
 
-        if (account == null || account == "") {
-            toast("还有多少钱呢？")
-            return
+private fun toDelete() {
+    NetUtils.data(NetUtils.getApiInstance().deleteBank(bankCard!!.id!!), Consumer {
+        if (it.code == 200) {
+            toast("删除成功")
+            EventBus.getDefault().post(BankDelete(bankCard!!))
+            finish()
+        } else {
+            toast("删除失败,请检查是否存在该收支明细")
         }
 
-        var number = etBankNumber.text.toString()
 
-        if (number == null || number == "") {
-            number = ""
-        }
+    })
+}
 
-
-
-        NetUtils.data(NetUtils.getApiInstance().saveBank(
-            BaseApplication.userId, tvBankName.text.toString(), account, number
-        ), Consumer {
-            logInfo(it.toString())
-
-
-            if (it.code == 200) {
-                toast("添加成功")
-
-                finish()
-
-                EventBus.getDefault().post(it.data)
-            } else {
-                toast("添加失败")
+private fun showDeleteBankCardDialog() {
+    val dialog = AlertDialog.Builder(this)
+        .setMessage("如果删除改账户，所有相关账单都一并删除！！！")
+        .setPositiveButton("确定", object : DialogInterface.OnClickListener {
+            override fun onClick(dialog: DialogInterface?, which: Int) {
+                toDelete()
             }
 
-        })
-    }
+        }).create()
 
-    private fun toDelete() {
-        NetUtils.data(NetUtils.getApiInstance().deleteBank(bankCard!!.id!!), Consumer {
-            if (it.code == 200) {
-                toast("删除成功")
-                EventBus.getDefault().post(RemoveBank())
-                finish()
-            } else {
-                toast("删除失败,请检查是否存在该收支明细")
-            }
+    dialog.show()
+}
+
+override fun initData() {
 
 
-        })
-    }
+}
 
-    private fun showDeleteBankCardDialog() {
-        val dialog = AlertDialog.Builder(this)
-            .setMessage("如果删除改账户，所有相关账单都一并删除！！！")
-            .setPositiveButton("确定", object : DialogInterface.OnClickListener {
-                override fun onClick(dialog: DialogInterface?, which: Int) {
-                    toDelete()
-                }
-
-            }).create()
-
-        dialog.show()
-    }
-
-    override fun initData() {
-
-
-    }
+override fun onDestroy() {
+    super.onDestroy()
+    EventBus.getDefault().unregister(this)
+}
 }
