@@ -13,11 +13,12 @@ import com.zhangwenshuan.dreamer.bean.LoginBean
 import com.zhangwenshuan.dreamer.util.BaseApplication
 import com.zhangwenshuan.dreamer.util.GsonUtils
 import com.zhangwenshuan.dreamer.util.LocalDataUtils
+import com.zhangwenshuan.dreamer.util.TimeUtils
 import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : AppCompatActivity() {
 
-
+    var showAdvertisement = "Advertisement"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,9 +29,17 @@ class SplashActivity : AppCompatActivity() {
 
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
 
-        initData()
 
-      //  stater()
+        val local = LocalDataUtils.getString(showAdvertisement)
+
+        val curDay = TimeUtils.curDay()
+
+        if (local == curDay) {
+            initData()
+        } else {
+            LocalDataUtils.setString(showAdvertisement, curDay)
+            stater()
+        }
 
 
     }
