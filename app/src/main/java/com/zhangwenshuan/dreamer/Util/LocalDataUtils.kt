@@ -3,6 +3,7 @@ package com.zhangwenshuan.dreamer.util
 import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.zhangwenshuan.dreamer.bean.Bank
 import com.zhangwenshuan.dreamer.bean.BankCard
 
 
@@ -40,11 +41,11 @@ class LocalDataUtils {
 
 }
 
-fun getBankCarsFromLocal(): MutableList<BankCard>? {
+fun getBankCarsFromLocal(): MutableList<Bank>? {
     val strBank = LocalDataUtils.getString(LocalDataUtils.BANK_CARD)
 
     if (strBank != "") {
-        val type = object : TypeToken<MutableList<BankCard>>() {}.type
+        val type = object : TypeToken<MutableList<Bank>>() {}.type
 
         return GsonUtils.getGson().fromJson(strBank, type)
     }

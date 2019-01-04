@@ -3,7 +3,6 @@ package com.zhangwenshuan.dreamer.activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.service.autofill.Dataset
 import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
@@ -11,10 +10,7 @@ import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.PercentFormatter
 import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.adapter.BankSynopsisAdapter
-import com.zhangwenshuan.dreamer.bean.BankAdd
-import com.zhangwenshuan.dreamer.bean.BankCard
-import com.zhangwenshuan.dreamer.bean.BankDelete
-import com.zhangwenshuan.dreamer.custom.MyValueFormatter
+import com.zhangwenshuan.dreamer.bean.*
 import com.zhangwenshuan.dreamer.custom.XAxisCustom
 import com.zhangwenshuan.dreamer.util.*
 import io.reactivex.functions.Consumer
@@ -29,7 +25,7 @@ class FinanceSynopsisActivity : FinanceBaseActivity() {
 
     val showbankNumbers = 4
 
-    var list = mutableListOf<BankCard>()
+    var list = mutableListOf<Bank>()
 
 
     lateinit var adapter: BankSynopsisAdapter
@@ -118,7 +114,7 @@ class FinanceSynopsisActivity : FinanceBaseActivity() {
 
     private fun initPieChart() {
 
-        if(pieEntries.size==0){
+        if (pieEntries.size == 0) {
             return
         }
 
@@ -160,10 +156,10 @@ class FinanceSynopsisActivity : FinanceBaseActivity() {
     override fun initListener() {
         llMoreBank.setOnClickListener {
             if (!isMoreBank) {
-                val intent = Intent(this@FinanceSynopsisActivity, BankCardAddActivity::class.java)
+                val intent = Intent(this@FinanceSynopsisActivity, AccountClassActivity::class.java)
                 startActivity(intent)
             } else {
-                startActivity(Intent(this@FinanceSynopsisActivity, BankAccountActivity::class.java))
+                startActivity(Intent(this@FinanceSynopsisActivity, AccountListActivity::class.java))
             }
         }
 
@@ -173,11 +169,29 @@ class FinanceSynopsisActivity : FinanceBaseActivity() {
         }
 
         gvBank.setOnItemClickListener { parent, view, position, id ->
-            val intent = Intent(this@FinanceSynopsisActivity, BankCardAddActivity::class.java)
+
+            val bank = list[position]
+
+            var intent: Intent
+
+            if (bank.type == "credit") {
+                intent = Intent(this@FinanceSynopsisActivity, AccountCreditActivity::class.java)
+            } else if (bank.type == "cash") {
+                intent = Intent(this@FinanceSynopsisActivity, AccountCashActivity::class.java)
+
+            } else if (bank.type == "bank") {
+                intent = Intent(this@FinanceSynopsisActivity, AccountBankActivity::class.java)
+
+            } else {
+                intent = Intent(this@FinanceSynopsisActivity, AccountMobileActivity::class.java)
+
+            }
+
+            this.position=position
 
             val bundle = Bundle()
 
-            bundle.putSerializable("bank", list[position])
+            bundle.putSerializable("bank", bank)
 
             intent.putExtra("data", bundle)
 
@@ -203,7 +217,7 @@ class FinanceSynopsisActivity : FinanceBaseActivity() {
         })
     }
 
-    val rawBankCard = mutableListOf<BankCard>()
+    val rawBankCard = mutableListOf<Bank>()
 
     private fun toGetBankCards() {
         NetUtils.data(
@@ -253,6 +267,8 @@ class FinanceSynopsisActivity : FinanceBaseActivity() {
 
     lateinit var barData: BarData
 
+    var position=0
+
     private fun initBarChartView() {
         if (rawBankCard.size < showbankNumbers) {
             barChart.setNoDataText("再添加${showbankNumbers - rawBankCard.size}个账户，就可以生成资产报表")
@@ -263,9 +279,17 @@ class FinanceSynopsisActivity : FinanceBaseActivity() {
         initBarChart = true
 
         rawBankCard.forEachWithIndex { i, bankCard ->
-            val barEntry = BarEntry(i.toFloat(), bankCard.account.toFloat())
+
+            var barEntry: BarEntry
+
+            if (bankCard.type == "credit") {
+                barEntry = BarEntry(i.toFloat(), -bankCard.debt.toFloat())
+            } else {
+                barEntry = BarEntry(i.toFloat(), bankCard.account!!.toFloat())
+            }
             barEntries.add(barEntry)
-            bankXAxis.add(bankCard.name)
+
+            bankXAxis.add(bankCard.name!!)
         }
 
         barDataSet = BarDataSet(barEntries, "")
@@ -322,9 +346,14 @@ class FinanceSynopsisActivity : FinanceBaseActivity() {
 
     var account = 0.0
 
-    private fun initAccountView(data: List<BankCard>) {
+    private fun initAccountView(data: List<Bank>) {
         for (value in data) {
-            account += value.account
+            if (value.type == "credit") {
+                account -= value.debt!!
+            } else {
+
+                account += value.account!!
+            }
         }
 
         tvTotalAccount.text = decimalFormat.format(account)
@@ -340,89 +369,25 @@ class FinanceSynopsisActivity : FinanceBaseActivity() {
         }
     }
 
+
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun addBankCard(add: BankAdd) {
-
-        rawBankCard.add(0, add.bank)
-
-        if (list.size < showbankNumbers) {
-            list.add(add.bank)
-            adapter.notifyDataSetChanged()
-        } else {
-
-            isMoreBank = true
-
-            initMoreBankView()
-        }
-
-
-
-        account += add.bank!!.account
-
-        tvTotalAccount.text = decimalFormat.format(account)
-
-
-        LocalDataUtils.setString(LocalDataUtils.BANK_CARD, GsonUtils.getGson().toJson(rawBankCard))
-
-
-
-        if (initBarChart) {
-
-            val barEntry = BarEntry((barDataSet.entryCount).toFloat(), add.bank.account.toFloat())
-            //第一个参数为数据实体，第二个参数为DataSet在Data中的索引，因为在Data可能存在多个DataSet
-            //这里只有一个
-            barData.addEntry(barEntry, 0)
-            //X轴添加值
-            bankXAxis.add(add.bank.name)
-            //设置X轴的个数，否则自定x轴的坐标会显示不全
-            barChart.xAxis.setLabelCount(bankXAxis.size, false)
-
-            barChart.notifyDataSetChanged()
-
-            barChart.invalidate()
-        } else {
-            initBarChartView()
-        }
-
+    fun subscribe(cashAdd: CashAdd) {
+        finish()
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun deleteBankCard(delete: BankDelete) {
+    fun subscribe(cashAdd: MobileAdd) {
+        finish()
+    }
 
-        if (initBarChart) {
-            //BarChart 底部坐标删除失败，选择强制退出而不更新
-            finish()
-            return
-        }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun subscribe(cashAdd: CreditAdd) {
+        finish()
+    }
 
-
-        rawBankCard.remove(delete.bank)
-
-
-        list.clear()
-
-        if (rawBankCard.size <= showbankNumbers) {
-            isMoreBank = false
-            list.addAll(rawBankCard)
-        } else {
-            for (i in 0 until showbankNumbers) {
-                list.add(rawBankCard[i])
-            }
-
-            isMoreBank = true
-        }
-        initMoreBankView()
-
-        adapter.notifyDataSetChanged()
-
-
-        account -= delete.bank!!.account
-
-        tvTotalAccount.text = decimalFormat.format(account)
-
-
-        LocalDataUtils.setString(LocalDataUtils.BANK_CARD, GsonUtils.getGson().toJson(rawBankCard))
-
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun subscribe(cashAdd: BankAdd1) {
+        finish()
     }
 
     override fun onDestroy() {

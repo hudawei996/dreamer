@@ -8,9 +8,10 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.activity.decimalFormat
+import com.zhangwenshuan.dreamer.bean.Bank
 import com.zhangwenshuan.dreamer.bean.BankCard
 
-class BankSynopsisAdapter(var context: Context, var list: MutableList<BankCard>) : BaseAdapter() {
+class BankSynopsisAdapter(var context: Context, var list: MutableList<Bank>) : BaseAdapter() {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
         var view: View
@@ -31,13 +32,21 @@ class BankSynopsisAdapter(var context: Context, var list: MutableList<BankCard>)
         } else {
             view = convertView
 
-            holder=view.tag as BankSynopsisHolder
+            holder = view.tag as BankSynopsisHolder
         }
 
+        val bank = list[position]
 
-        holder.tvName.text=list[position].name
 
-        holder.tvAccount.text= decimalFormat.format(list[position].account)
+        if (bank.type=="credit"){
+            holder.tvAccount.text="-"+decimalFormat.format(list[position].debt)
+        }else{
+            holder.tvAccount.text = decimalFormat.format(list[position].account)
+
+        }
+
+        holder.tvName.text = list[position].name
+
 
         return view
 

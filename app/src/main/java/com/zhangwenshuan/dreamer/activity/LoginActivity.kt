@@ -48,7 +48,7 @@ class LoginActivity : BaseActivity() {
                 BaseApplication.token = it.data.token!!
                 BaseApplication.userId = it.data.user!!.id!!
                 LocalDataUtils.setString(LocalDataUtils.LOGIN_BEAN, GsonUtils.getGson().toJson(it.data))
-                startActivity(Intent(this@LoginActivity, MainActivityv1::class.java))
+                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                 finish()
             }
 

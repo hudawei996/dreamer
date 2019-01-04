@@ -9,4 +9,6 @@
     <dimen name="me_image_size">20dp</dimen>
     <dimen name="me_margin_right">10dp</dimen>
     <dimen name="right_size">30dp</dimen>
+    <dimen name="left">15dp</dimen>
+    <dimen name="right">15dp</dimen>
 </resources>

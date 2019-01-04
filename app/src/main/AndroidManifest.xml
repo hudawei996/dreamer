@@ -20,7 +20,7 @@
             android:name=".util.BaseApplication"
             android:supportsRtl="true"
             android:theme="@style/AppTheme" android:fullBackupContent="@xml/backup_descriptor">
-        <activity android:name=".activity.MainActivityv1">
+        <activity android:name=".activity.MainActivity">
 
         </activity>
 
@@ -58,12 +58,18 @@
         <activity android:name=".activity.FinanceDetailActivity"/>
         <activity android:name=".activity.FinanceSynopsisActivity"/>
         <activity android:name=".activity.FinanceSearchActivity"/>
-        <activity android:name=".activity.BankAccountActivity"/>
+        <activity android:name=".activity.AccountListActivity"/>
         <activity android:name=".activity.BookListActivity"/>
         <activity android:name=".activity.BookAddActivity"/>
         <activity android:name=".activity.BookDetailActivity"/>
         <activity android:name=".activity.FinanceBudgetActivity"/>
         <activity android:name=".activity.FinanceBudgetDetailActivity"/>
+        <activity android:name=".activity.SettingActivity"/>
+        <activity android:name=".activity.AccountClassActivity"/>
+        <activity android:name=".activity.AccountCashActivity"/>
+        <activity android:name=".activity.AccountCreditActivity"/>
+        <activity android:name=".activity.AccountMobileActivity"/>
+        <activity android:name=".activity.AccountBankActivity"/>
 
         <provider
                 android:name="android.support.v4.content.FileProvider"

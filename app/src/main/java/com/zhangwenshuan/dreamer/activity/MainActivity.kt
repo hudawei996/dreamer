@@ -6,10 +6,14 @@ import android.view.LayoutInflater
 import android.widget.TextView
 import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.adapter.MainAdapter
+import com.zhangwenshuan.dreamer.bean.Login
 import com.zhangwenshuan.dreamer.fragment.BaseFragment
 import com.zhangwenshuan.dreamer.fragment.MainFragment
 import com.zhangwenshuan.dreamer.fragment.MeFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 
 class MainActivity : BaseActivity() {
@@ -27,15 +31,15 @@ class MainActivity : BaseActivity() {
     override fun setResourceId(): Int = R.layout.activity_main
 
     override fun preInitData() {
-        fragments = mutableListOf(MainFragment(), MainFragment(), MainFragment(), MeFragment())
+        EventBus.getDefault().register(this)
+
+        fragments = mutableListOf(MainFragment(), MeFragment())
 
 
-        titles = mutableListOf("梦想家", "时间轴", "发现", "我")
+        titles = mutableListOf("梦想家", "我")
 
         icons = mutableListOf(
             resources.getString(R.string.home),
-            resources.getString(R.string.timeline),
-            resources.getString(R.string.found),
             resources.getString(R.string.me)
         )
 
@@ -102,6 +106,16 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initData() {
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun subscribe(login: Login){
+        finish()
+    }
+
+    override fun onDestroy() {
+        EventBus.getDefault().unregister(this)
+        super.onDestroy()
     }
 
 

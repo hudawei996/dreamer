@@ -163,6 +163,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+            android:id="@+id/rlSetting"
             android:layout_marginTop="15dp"
             android:background="@color/colorWhite"
             android:layout_width="match_parent" android:layout_height="@dimen/me_height">

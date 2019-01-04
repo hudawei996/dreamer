@@ -10,10 +10,7 @@ import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.adapter.OnItemClickListener
 import com.zhangwenshuan.dreamer.bean.*
 import com.zhangwenshuan.dreamer.custom.RightDialog
-import com.zhangwenshuan.dreamer.util.BaseApplication
-import com.zhangwenshuan.dreamer.util.LocalDataUtils
-import com.zhangwenshuan.dreamer.util.NetUtils
-import com.zhangwenshuan.dreamer.util.TimeUtils
+import com.zhangwenshuan.dreamer.util.*
 import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.activity_finance_add.*
 import kotlinx.android.synthetic.main.layout_title_bar.*
@@ -31,11 +28,13 @@ class FinanceAddActivity : FinanceBaseActivity() {
 
     var isExpense = 1
 
-    lateinit var bank: BankCard
+    lateinit var bank: Bank
 
     var finance: Finance? = null
 
-    var list: MutableList<BankCard> = mutableListOf()
+    var list: MutableList<String> = mutableListOf()
+
+    var banks = mutableListOf<Bank>()
 
     override fun initViews() {
         if (finance == null) {
@@ -57,7 +56,7 @@ class FinanceAddActivity : FinanceBaseActivity() {
 
             tvFinanceBankAdd.text = finance?.bankName
 
-            tvFinanceItemAdd.text = finance?.item + " " + finance?.type
+
 
             etFinanceAccountAdd.text =
                     Editable.Factory.getInstance().newEditable(decimalFormat.format(finance?.account))
@@ -71,8 +70,12 @@ class FinanceAddActivity : FinanceBaseActivity() {
 
             if (isExpense == 1) {
                 tvFinanceTypeAdd.text = "支出"
+
+                tvFinanceItemAdd.text = finance?.item + " " + finance?.type
             } else {
                 tvFinanceTypeAdd.text = "收入"
+
+                tvFinanceItemAdd.text = finance?.item
             }
 
         }
@@ -163,22 +166,20 @@ class FinanceAddActivity : FinanceBaseActivity() {
     }
 
     private fun toShowBank() {
-
-        val dialog = RightDialog(this, list!!)
-
-        dialog.setOnItemClickListener(object : OnItemClickListener {
-            override fun onItemClick(position: Int) {
-                tvFinanceBankAdd.text = list!![position].name
-
+        val view = OptionsPickerBuilder(this, object : OnOptionsSelectListener {
+            override fun onOptionsSelect(options1: Int, options2: Int, options3: Int, v: View?) {
+                tvFinanceBankAdd.text = list[options1].split(" ")[0]
+                bank = banks[options1]
                 tvFinanceBankAdd.setTextColor(resources.getColor(R.color.colorBlack))
-
-                bank = list!![position]
-
-                dialog.dismiss()
             }
         })
+            .setContentTextSize(18)
+            .setSelectOptions(1)
+            .build<String>()
 
-        dialog.show()
+        view.setPicker(list)
+
+        view.show()
     }
 
     private fun showTimePickerView() {
@@ -262,22 +263,7 @@ class FinanceAddActivity : FinanceBaseActivity() {
     }
 
     override fun initData() {
-        toGetBank()
-    }
-
-    private fun toGetBank() {
-        NetUtils.data(NetUtils.getApiInstance().getBank(BaseApplication.userId), Consumer {
-            if (it.code == 200) {
-                list.addAll(it.data)
-
-                bank = list[0]
-                tvFinanceBankAdd.text = list[0].name
-
-            }
-
-
-        })
-
+        toGetBankCards()
     }
 
 
@@ -302,11 +288,15 @@ class FinanceAddActivity : FinanceBaseActivity() {
         val remark = etFinanceRemarkAdd.text.toString()
 
 
+        if (bank == null) {
+            toast("请先添加用户")
+            return
+        }
 
         NetUtils.data(
             NetUtils.getApiInstance().saveFinance(
                 BaseApplication.userId,
-                type, time, account, remark, bank!!.name, bank!!.id!!, isExpense
+                type, time, account, remark, bank!!.name!!, bank!!.id!!, isExpense
             ),
             Consumer {
 
@@ -337,5 +327,36 @@ class FinanceAddActivity : FinanceBaseActivity() {
         )
     }
 
+    private fun toGetBankCards() {
+        NetUtils.data(
+            NetUtils.getApiInstance().getBank(BaseApplication.userId),
+            Consumer {
+                logInfo(it.toString())
+
+                if (it.data.size > 0) {
+                    banks.addAll(it.data)
+                    bank = banks[0]
+
+                    tvFinanceBankAdd.text = bank.name
+                }
+
+
+
+                if (it.code == 200) {
+                    it.data.forEachIndexed { index, bank ->
+                        if (bank.type == "bank") {
+                            list.add(bank.name + bank.number + " 余额" + decimalFormat.format(bank.account))
+                        } else if (bank.type == "credit") {
+                            list.add(bank.name + bank.number + " 可用余额" + decimalFormat.format(bank.amount - bank.debt))
+                        } else {
+                            list.add(bank.name + " 余额" + decimalFormat.format(bank.account))
+
+                        }
+                    }
+                }
+
+            }
+        )
+    }
 
 }

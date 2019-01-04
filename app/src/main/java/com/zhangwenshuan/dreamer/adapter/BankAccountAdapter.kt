@@ -8,9 +8,10 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.activity.decimalFormat
+import com.zhangwenshuan.dreamer.bean.Bank
 import com.zhangwenshuan.dreamer.bean.BankCard
 
-class BankAccountAdapter(var context: Context, var list: MutableList<BankCard>) : BaseAdapter() {
+class BankAccountAdapter(var context: Context, var list: MutableList<Bank>) : BaseAdapter() {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
         var view: View
@@ -25,19 +26,39 @@ class BankAccountAdapter(var context: Context, var list: MutableList<BankCard>) 
             holder.tvAccount = view.findViewById(R.id.tvBankAccount)
 
             holder.tvName = view.findViewById(R.id.tvBankName)
+            holder.tvAmount = view.findViewById(R.id.tvAmount)
+            holder.tvDebt = view.findViewById(R.id.tvDebt)
 
             view.tag = holder
 
         } else {
             view = convertView
 
-            holder=view.tag as BankAccountHolder
+            holder = view.tag as BankAccountHolder
         }
 
 
-        holder.tvName.text=list[position].name
+        val bank = list[position]
 
-        holder.tvAccount.text= decimalFormat.format(list[position].account)
+        if (bank.type == "credit") {
+            holder.tvAmount.visibility = View.VISIBLE
+            holder.tvDebt.visibility = View.VISIBLE
+
+            holder.tvAmount.text ="总资产 "+ decimalFormat.format(bank.amount)
+
+            holder.tvDebt.text = "-" + decimalFormat.format(bank.debt)
+
+            holder.tvAccount.text = decimalFormat.format(bank.amount - bank.debt)
+        } else {
+            holder.tvAmount.visibility = View.GONE
+            holder.tvDebt.visibility = View.GONE
+
+            holder.tvAccount.text = decimalFormat.format(list[position].account)
+        }
+
+
+        holder.tvName.text = list[position].name
+
 
         return view
 
@@ -54,4 +75,6 @@ class BankAccountAdapter(var context: Context, var list: MutableList<BankCard>) 
 class BankAccountHolder {
     lateinit var tvName: TextView
     lateinit var tvAccount: TextView
+    lateinit var tvDebt: TextView
+    lateinit var tvAmount: TextView
 }

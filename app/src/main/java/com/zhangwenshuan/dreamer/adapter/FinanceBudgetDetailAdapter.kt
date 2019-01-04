@@ -41,7 +41,7 @@ class FinanceBudgetDetailAdapter(val context: Context, val list: MutableList<Bud
 
         holder.tvAccount.text = "预算 ${decimalFormat.format(budget.account)}"
 
-        val balance = budget.account - budget.balance
+        var balance = budget.account - budget.balance
 
         if (balance >= 0) {
             holder.tvBalanceHint.text = "剩余"
@@ -50,7 +50,7 @@ class FinanceBudgetDetailAdapter(val context: Context, val list: MutableList<Bud
         } else {
             holder.tvBalanceHint.setTextColor(context.resources.getColor(R.color.finance_base_color))
             holder.tvBalanceHint.text = "超支"
-            -balance
+            balance = -balance
         }
 
         holder.tvBalance.text = decimalFormat.format(balance)

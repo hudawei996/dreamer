@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
+              android:background="@color/background"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/layout_title_bar"/>
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+            <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:background="@color/colorWhite"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/left"
+                    android:paddingRight="@dimen/right"
+                    android:layout_width="match_parent" android:layout_height="50dp">
+                <TextView
+                        android:text="账户名"
+                        android:gravity="center_vertical"
+                        android:textSize="16sp"
+                        android:layout_width="80dp" android:layout_height="match_parent"/>
+
+                <EditText android:layout_width="0dp"
+                          android:layout_weight="1"
+                          android:background="@null"
+                          android:textSize="16sp"
+                          android:hint="中国银行信用卡"
+                          android:maxLines="1"
+                          android:id="@+id/etCreditName"
+                          android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_marginTop="0.5dp"
+                    android:background="@color/colorWhite"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/left"
+                    android:paddingRight="@dimen/right"
+                    android:layout_width="match_parent" android:layout_height="50dp">
+                <TextView
+                        android:text="卡号"
+                        android:gravity="center_vertical"
+                        android:textSize="16sp"
+                        android:layout_width="80dp" android:layout_height="match_parent"/>
+
+                <EditText android:layout_width="0dp"
+                          android:layout_weight="1"
+                          android:background="@null"
+                          android:textSize="16sp"
+                          android:hint="卡号后四位"
+                          android:id="@+id/etCreditNumber"
+                          android:inputType="number"
+                          android:maxLength="4"
+                          android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:background="@color/colorWhite"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/left"
+                    android:paddingRight="@dimen/right"
+                    android:layout_width="match_parent" android:layout_height="50dp">
+
+                <TextView
+                        android:text="账单日"
+                        android:gravity="center_vertical"
+                        android:textSize="16sp"
+                        android:layout_width="80dp" android:layout_height="match_parent"/>
+
+                <TextView android:layout_width="0dp"
+                          android:layout_weight="1"
+                          android:background="@null"
+                          android:textSize="16sp"
+                          android:text="20号"
+                          android:textColor="@color/colorBlack"
+                          android:id="@+id/tvCreditBillDate"
+                          android:gravity="center_vertical"
+                          android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_marginTop="0.5dp"
+                    android:background="@color/colorWhite"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/left"
+                    android:paddingRight="@dimen/right"
+                    android:layout_width="match_parent" android:layout_height="50dp">
+
+                <TextView
+                        android:text="还款日"
+                        android:gravity="center_vertical"
+                        android:textSize="16sp"
+                        android:layout_width="80dp" android:layout_height="match_parent"/>
+
+                <TextView android:layout_width="0dp"
+                          android:layout_weight="1"
+                          android:background="@null"
+                          android:textSize="16sp"
+                          android:text="13号"
+                          android:textColor="@color/colorBlack"
+                          android:id="@+id/tvCreditReturnDate"
+                          android:gravity="center_vertical"
+                          android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_marginTop="0.5dp"
+                    android:background="@color/colorWhite"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/left"
+                    android:paddingRight="@dimen/right"
+                    android:layout_width="match_parent" android:layout_height="50dp">
+                <TextView
+                        android:text="信用额度"
+                        android:gravity="center_vertical"
+                        android:textSize="16sp"
+                        android:layout_width="80dp" android:layout_height="match_parent"/>
+
+                <EditText android:layout_width="0dp"
+                          android:layout_weight="1"
+                          android:background="@null"
+                          android:textSize="16sp"
+                          android:hint="14000"
+                          android:inputType="numberDecimal"
+                          android:maxLines="1"
+                          android:id="@+id/etCreditAmount"
+                          android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_marginTop="0.5dp"
+                    android:background="@color/colorWhite"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/left"
+                    android:paddingRight="@dimen/right"
+                    android:layout_width="match_parent" android:layout_height="50dp">
+                <TextView
+                        android:text="当前欠款"
+                        android:gravity="center_vertical"
+                        android:textSize="16sp"
+                        android:layout_width="80dp" android:layout_height="match_parent"/>
+
+                <EditText android:layout_width="0dp"
+                          android:layout_weight="1"
+                          android:background="@null"
+                          android:textSize="16sp"
+                          android:hint="2300"
+                          android:id="@+id/etCreditDebt"
+                          android:inputType="numberDecimal"
+                          android:maxLines="1"
+                          android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                    android:layout_marginTop="20dp"
+                    android:background="@color/colorWhite"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/left"
+                    android:paddingTop="@dimen/right"
+                    android:paddingBottom="@dimen/right"
+                    android:paddingRight="@dimen/right"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp">
+
+                <EditText android:layout_width="0dp"
+                          android:layout_weight="1"
+                          android:background="@null"
+                          android:textSize="16sp"
+                          android:id="@+id/etCreditRemark"
+                          android:hint="添加备注（50字以内）"
+                          android:maxLength="50"
+                          android:gravity="top"
+                          android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

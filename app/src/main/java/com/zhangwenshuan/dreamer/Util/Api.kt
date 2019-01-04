@@ -122,30 +122,87 @@ interface Api {
 
     @POST("budget/getDetail")
     @FormUrlEncoded
-    fun getBudgetDetail(@Field("userId") userId: Int, @Field("month") month: String,@Field("expense")expense:Int): Observable<Result<List<BudgetDetail>>>
+    fun getBudgetDetail(@Field("userId") userId: Int, @Field("month") month: String, @Field("expense") expense: Int): Observable<Result<List<BudgetDetail>>>
 
 
-    @POST("bank/save")
+    @POST("bank/saveBank")
     @FormUrlEncoded
     fun saveBank(
         @Field("userId") userId: Int,
         @Field("name") bankName: String,
         @Field("account") account: String,
+        @Field("number") number: String,
+        @Field("remark") remark: String
+    ): Observable<Result<Bank>>
+
+
+    @POST("bank/saveMobile")
+    @FormUrlEncoded
+    fun saveMobile(
+        @Field("userId") userId: Int,
+        @Field("name") bankName: String,
+        @Field("account") account: String,
+        @Field("username") username: String,
+        @Field("remark") remark: String
+    ): Observable<Result<Bank>>
+
+
+    @POST("bank/saveCash")
+    @FormUrlEncoded
+    fun saveCash(
+        @Field("userId") userId: Int,
+        @Field("name") bankName: String,
+        @Field("account") account: String,
+        @Field("remark") remark: String
+    ): Observable<Result<Bank>>
+
+    @POST("bank/saveCredit")
+    @FormUrlEncoded
+    fun saveCredit(
+        @Field("userId") userId: Int,
+        @Field("name") bankName: String,
+        @Field("amount") amount: String,
+        @Field("debt") debt: String,
+        @Field("billDate") billDate: String,
+        @Field("returnDate") returnDate: String,
+        @Field("remark") remark: String,
         @Field("number") number: String
-    ): Observable<Result<BankCard>>
+    ): Observable<Result<Bank>>
+
+    @POST("bank/getCash")
+    @FormUrlEncoded
+    fun getCash(
+        @Field("userId") userId: Int
+    ): Observable<Result<Bank>>
 
 
     @POST("bank/get")
     @FormUrlEncoded
-    fun getBank(@Field("userId") userId: Int): Observable<Result<List<BankCard>>>
+    fun getBank(@Field("userId") userId: Int): Observable<Result<List<Bank>>>
 
     @POST("bank/delete")
     @FormUrlEncoded
     fun deleteBank(@Field("id") id: Int): Observable<Result<Any>>
 
-    @POST("bank/update")
+    @POST("bank/updateBank")
     @FormUrlEncoded
-    fun updateBank(@Field("id") id: Int, @Field("account") account: String): Observable<Result<Any>>
+    fun updateBank(@Field("id") id: Int, @Field("account") account: String,
+                   @Field("name")name: String,@Field("remark")remark: String,@Field("number")number: String): Observable<Result<Any>>
+
+    @POST("bank/updateCredit")
+    @FormUrlEncoded
+    fun updateCredit(@Field("id") id: Int, @Field("amount") amount: String,@Field("debt") debt: String,
+                     @Field("billDate")billDate: String,@Field("returnDate")returnDate: String,
+                   @Field("name")name: String,@Field("number")number: String,@Field("remark")remark: String): Observable<Result<Any>>
+
+
+     @POST("bank/updateMobile")
+    @FormUrlEncoded
+    fun updateMobile(@Field("id") id: Int, @Field("name") name: String,@Field("username") username: String,
+                     @Field("account")account: String,@Field("remark")remark: String): Observable<Result<Any>>
+
+
+
 
 
     @POST("book/save")

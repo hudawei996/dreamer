@@ -1,19 +1,13 @@
 package com.zhangwenshuan.dreamer.adapter
 
 import android.content.Context
-import android.content.Intent
 import android.graphics.Typeface
-import android.os.Bundle
-import android.os.IInterface
 import android.support.v4.view.PagerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
 import com.zhangwenshuan.dreamer.R
-import com.zhangwenshuan.dreamer.activity.BankCardAddActivity
-import com.zhangwenshuan.dreamer.activity.FinanceActivity
 import com.zhangwenshuan.dreamer.bean.BankCard
 import java.text.DecimalFormat
 

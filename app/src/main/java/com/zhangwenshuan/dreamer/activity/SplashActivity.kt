@@ -73,7 +73,9 @@ class SplashActivity : AppCompatActivity() {
 
     fun initData() {
         if (BaseApplication.token.isEmpty()) {
+
             val loginBean = LocalDataUtils.getString(LocalDataUtils.LOGIN_BEAN)
+
             if (loginBean.isEmpty()) {
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
@@ -88,13 +90,12 @@ class SplashActivity : AppCompatActivity() {
 
                 BaseApplication.token = login.token!!
 
-
-                startActivity(Intent(this, MainActivityv1::class.java))
+                startActivity(Intent(this, MainActivity::class.java))
 
                 finish()
             }
         } else {
-            startActivity(Intent(this, MainActivityv1::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
 
             finish()
         }
