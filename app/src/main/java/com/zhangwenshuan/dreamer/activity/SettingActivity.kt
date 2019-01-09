@@ -10,6 +10,7 @@ import com.zhangwenshuan.dreamer.bean.LoginBean
 import com.zhangwenshuan.dreamer.bean.Setting
 import com.zhangwenshuan.dreamer.util.LocalDataUtils
 import kotlinx.android.synthetic.main.activity_setting.*
+import kotlinx.android.synthetic.main.layout_title_bar.*
 import org.greenrobot.eventbus.EventBus
 
 class SettingActivity : BaseActivity() {
@@ -23,9 +24,12 @@ class SettingActivity : BaseActivity() {
     }
 
     override fun preInitData() {
-        list.add(Setting(resources.getString(R.string.password), "开屏密码"))
-        list.add(Setting(resources.getString(R.string.exit), "退出登录", showRight = false))
 
+        tvTitle.text = "设置"
+
+        list.add(Setting(resources.getString(R.string.password), "开屏密码", showTopLine = true))
+        list.add(Setting(resources.getString(R.string.password), "修改登录密码", showTopLine = true))
+        list.add(Setting(resources.getString(R.string.exit), "退出登录", showRight = false, showTopLine = true))
         adapter = SettingAdapter(this, list)
 
         rvSetting.adapter = adapter
@@ -44,10 +48,15 @@ class SettingActivity : BaseActivity() {
             override fun onItemClick(position: Int) {
                 when (position) {
                     list.size - 1 -> {
-                        LocalDataUtils.setString(LocalDataUtils.LOGIN_BEAN,"")
                         EventBus.getDefault().post(Login())
-                        startActivity(Intent(this@SettingActivity, LoginActivity::class.java))
                         finish()
+                    }
+                    0 -> {
+                        startActivity(Intent(this@SettingActivity, SettingPasswordActivity::class.java))
+                    }
+
+                    1 -> {
+                        startActivity(Intent(this@SettingActivity, SettingUpdatePasswordActivity::class.java))
                     }
 
                 }

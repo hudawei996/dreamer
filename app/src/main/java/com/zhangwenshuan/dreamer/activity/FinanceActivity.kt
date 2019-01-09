@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.view.WindowManager
+import android.widget.Adapter
 import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.adapter.FinanceTodayAdapter
 import com.zhangwenshuan.dreamer.adapter.OnItemClickListener
@@ -35,6 +36,8 @@ class FinanceActivity : BaseActivity() {
     val list: MutableList<Finance> = mutableListOf()
 
     lateinit var financeAdapter: FinanceTodayAdapter
+
+    var position = 0
 
 
     override fun preInitData() {
@@ -80,6 +83,7 @@ class FinanceActivity : BaseActivity() {
                 bundle.putSerializable("finance", finance)
                 intent.putExtra("data", bundle)
                 startActivity(intent)
+                this@FinanceActivity.position = position
             }
         })
     }
@@ -105,7 +109,7 @@ class FinanceActivity : BaseActivity() {
 
                 bundle.putSerializable("budget", budgetBean)
 
-                bundle.putDouble("expense",monthExpense)
+                bundle.putDouble("expense", monthExpense)
 
                 intent.putExtra("data", bundle)
 
@@ -164,15 +168,18 @@ class FinanceActivity : BaseActivity() {
             Consumer {
                 if (it.code == 200) {
                     list.addAll(it.data)
+                    financeAdapter.notifyDataSetChanged()
                 }
 
-                total()
+                initTotalView()
 
-                financeAdapter.notifyDataSetChanged()
             })
     }
 
-    private fun total() {
+    private fun initTotalView() {
+        monthIncome=0.0
+        monthExpense=0.0
+
         for (value in list) {
             if (value.isExpense == 0) {
                 monthIncome += value.account
@@ -181,11 +188,13 @@ class FinanceActivity : BaseActivity() {
             }
 
             tvFinanceMonthIncome.text = decimalFormat.format(monthIncome)
+
             tvFinanceMonthExpense.text = decimalFormat.format(monthExpense)
 
         }
-    }
 
+        notifyBudgetViewChange()
+    }
 
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -228,6 +237,16 @@ class FinanceActivity : BaseActivity() {
     fun subscribeEvent(budget: BudgetAdd) {
         budgetBean = budget.budgetBean
         notifyBudgetViewChange()
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun subscribeEvent(budget: FinanceUpdate) {
+        list[position] = budget.finance
+
+        financeAdapter.notifyItemChanged(position)
+
+        initTotalView()
     }
 
 

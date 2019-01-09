@@ -67,7 +67,6 @@ class AccountCashActivity : FinanceBaseActivity() {
 
                 if (it.code == 200) {
                     EventBus.getDefault().post(CashAdd(it.data))
-                    startActivity(Intent(this@AccountCashActivity,FinanceSynopsisActivity::class.java))
                     finish()
                 }
             })

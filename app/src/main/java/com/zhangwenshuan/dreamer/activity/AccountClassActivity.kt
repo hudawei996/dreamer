@@ -5,8 +5,7 @@ import android.support.v7.widget.LinearLayoutManager
 import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.adapter.BankListAdapter
 import com.zhangwenshuan.dreamer.adapter.OnItemClickListener
-import com.zhangwenshuan.dreamer.bean.CashAdd
-import com.zhangwenshuan.dreamer.bean.Setting
+import com.zhangwenshuan.dreamer.bean.*
 import kotlinx.android.synthetic.main.activity_setting.*
 import kotlinx.android.synthetic.main.layout_title_bar.*
 import org.greenrobot.eventbus.EventBus
@@ -77,6 +76,19 @@ class AccountClassActivity : FinanceBaseActivity() {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun subscribe(cashAdd: CashAdd) {
+        finish()
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun subscribe(cashAdd: BankAdd1) {
+        finish()
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun subscribe(cashAdd: CreditAdd) {
+        finish()
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun subscribe(cashAdd: MobileAdd) {
         finish()
     }
 

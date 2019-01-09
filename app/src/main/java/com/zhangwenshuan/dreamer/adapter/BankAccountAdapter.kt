@@ -57,7 +57,13 @@ class BankAccountAdapter(var context: Context, var list: MutableList<Bank>) : Ba
         }
 
 
-        holder.tvName.text = list[position].name
+        if (bank.number!=null&&!bank.number!!.isEmpty()){
+
+            holder.tvName.text = "${bank.name}(${bank.number})"
+        }else{
+            holder.tvName.text = "${bank.name}"
+        }
+
 
 
         return view

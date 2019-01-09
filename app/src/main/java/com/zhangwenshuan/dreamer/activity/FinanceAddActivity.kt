@@ -1,5 +1,6 @@
 package com.zhangwenshuan.dreamer.activity
 
+import android.graphics.Typeface
 import android.text.Editable
 import android.view.View
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder
@@ -36,6 +37,8 @@ class FinanceAddActivity : FinanceBaseActivity() {
 
     var banks = mutableListOf<Bank>()
 
+    var update = false
+
     override fun initViews() {
         if (finance == null) {
             tvTitle.text = "添加账单"
@@ -46,9 +49,15 @@ class FinanceAddActivity : FinanceBaseActivity() {
         } else {
             tvTitle.text = "账单详细"
 
+            update = true
+
             tvFinanceAddAgain.text = "删除"
 
-            tvFinanceAdd.text = "更新"
+            tvAdd.text = resources.getString(R.string.ok)
+
+            tvAdd.typeface = Typeface.createFromAsset(assets, "icon_action.ttf")
+
+            tvAdd.visibility=View.VISIBLE
 
             tvFinanceAdd.visibility = View.GONE
 
@@ -63,7 +72,7 @@ class FinanceAddActivity : FinanceBaseActivity() {
 
             etFinanceRemarkAdd.text = Editable.Factory.getInstance().newEditable(finance?.remark)
 
-            tvFinanceTimeAdd.text = finance?.date + finance?.time
+            tvFinanceTimeAdd.text = finance?.date +" "+ finance?.time
 
 
             isExpense = finance!!.isExpense
@@ -105,11 +114,9 @@ class FinanceAddActivity : FinanceBaseActivity() {
         tvFinanceAdd.setOnClickListener {
             saveAgain = false
 
-            if (finance != null) {
-                toUpdateFinance()
-            } else {
-                toSaveFinance()
-            }
+
+            toSaveFinance()
+
         }
 
         tvFinanceBankAdd.setOnClickListener {
@@ -147,11 +154,85 @@ class FinanceAddActivity : FinanceBaseActivity() {
             }
         }
 
+        tvAdd.setOnClickListener {
+            toUpdateFinance()
+        }
+
 
     }
 
     private fun toUpdateFinance() {
+        val type = tvFinanceItemAdd.text.toString()
 
+        if (type == "") {
+            toast(typeHint)
+            return
+        }
+
+        var account = etFinanceAccountAdd.text.toString()
+
+        if (account == "") {
+            toast(accountHint)
+            return
+        }
+
+        val time = tvFinanceTimeAdd.text.toString()
+
+        val remark = etFinanceRemarkAdd.text.toString()
+
+
+        if (bank == null) {
+            toast("请先添加用户")
+            return
+        }
+
+        val strs = time.split(" ")
+
+        finance?.date = strs[0]
+
+        finance?.time = strs[1]
+
+        finance?.account = account.replace(",", "").toDouble()
+
+
+        finance?.bankName = bank!!.name!!
+
+        finance?.bankId = bank!!.id!!
+
+        finance?.isExpense = isExpense
+
+        if (isExpense==0){
+            finance?.item=type
+            finance?.type=type
+        }else{
+           val str= type.split(" ")
+            finance!!.item=str[0]
+            finance!!.type=str[1]
+        }
+
+
+        NetUtils.data(
+            NetUtils.getApiInstance().updateFinance(
+                finance!!.id!!,
+                type, time, finance!!.account!!, remark, bank!!.name!!, bank!!.id!!, isExpense
+            ),
+            Consumer {
+
+                toast("${it.message}")
+
+                if (it.code == 200) {
+
+
+                    EventBus.getDefault().post(FinanceUpdate(finance!!))
+
+
+                    finish()
+
+                }
+
+
+            }
+        )
     }
 
     private fun toDelete() {
@@ -319,10 +400,6 @@ class FinanceAddActivity : FinanceBaseActivity() {
 
 
                 }
-
-                toast(it.message)
-
-
             }
         )
     }
@@ -333,11 +410,13 @@ class FinanceAddActivity : FinanceBaseActivity() {
             Consumer {
                 logInfo(it.toString())
 
+
                 if (it.data.size > 0) {
                     banks.addAll(it.data)
                     bank = banks[0]
-
-                    tvFinanceBankAdd.text = bank.name
+                    if (!update) {
+                        tvFinanceBankAdd.text = bank.name
+                    }
                 }
 
 

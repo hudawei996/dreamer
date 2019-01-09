@@ -21,6 +21,13 @@ class LocalDataUtils {
         val LOGIN_BEAN = "login_bean"
         var gson: Gson? = null
 
+
+        val LOCAL_PASSWORD="local_password"
+
+        val LOCAL_PASSWORD_USER="local_user"
+
+        val LOCAL_PASSWORD_STATE="local_state"
+
         fun getString(key: String): String {
             val utils = BaseApplication.getContext().getSharedPreferences("", Context.MODE_PRIVATE)
 
@@ -38,18 +45,5 @@ class LocalDataUtils {
 
     }
 
-
-}
-
-fun getBankCarsFromLocal(): MutableList<Bank>? {
-    val strBank = LocalDataUtils.getString(LocalDataUtils.BANK_CARD)
-
-    if (strBank != "") {
-        val type = object : TypeToken<MutableList<Bank>>() {}.type
-
-        return GsonUtils.getGson().fromJson(strBank, type)
-    }
-
-    return null
 
 }

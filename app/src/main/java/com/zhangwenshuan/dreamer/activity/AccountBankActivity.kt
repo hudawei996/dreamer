@@ -138,7 +138,6 @@ class AccountBankActivity : FinanceBaseActivity() {
 
             if (it.code == 200) {
                 EventBus.getDefault().post((BankAdd1(it.data)))
-                startActivity(Intent(this@AccountBankActivity, FinanceSynopsisActivity::class.java))
                 finish()
             }
         })

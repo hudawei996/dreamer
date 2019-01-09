@@ -1,11 +1,14 @@
 package com.zhangwenshuan.dreamer.util
 
+import com.zhangwenshuan.dreamer.bean.Login
 import okhttp3.Interceptor
 import okhttp3.Response
+import org.greenrobot.eventbus.EventBus
 
 class NetInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         var request = chain.request()
+
         var url = request.url()
 
 
@@ -28,16 +31,7 @@ class NetInterceptor : Interceptor {
 
 
         if (response.code() == 403) {
-            if (!BaseApplication.token.isEmpty()) {
-                if (toRefreshToken(chain)) {
-                    request = request.newBuilder()
-                        .addHeader("Authorization", "Dreamer " + BaseApplication.token)
-                        .url(url)
-                        .build()
-
-                     response = chain.proceed(request)
-                }
-            }
+            EventBus.getDefault().post(Login(1))
         }
 
         val t2 = System.nanoTime()

@@ -209,7 +209,8 @@ class FinanceSynopsisActivity : FinanceBaseActivity() {
     }
 
     private fun toGetTotalAccount() {
-        NetUtils.data(NetUtils.getApiInstance().getTotalFinance(BaseApplication.userId), Consumer {
+        NetUtils.data(NetUtils.getApiInstance().getTotalFinance(BaseApplication.userId),
+            Consumer {
             if (it.code == 200) {
                 tvIncomeTotalAccount.text = decimalFormat.format(it.data.incomeAccount)
                 tvExpenseTotalAccount.text = decimalFormat.format(it.data.expenseAccount)

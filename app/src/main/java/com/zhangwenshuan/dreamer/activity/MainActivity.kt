@@ -1,8 +1,12 @@
 package com.zhangwenshuan.dreamer.activity
 
+import android.app.AlertDialog
+import android.content.Intent
 import android.graphics.Typeface
 import android.support.v4.view.ViewPager
+import android.text.Editable
 import android.view.LayoutInflater
+import android.widget.EditText
 import android.widget.TextView
 import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.adapter.MainAdapter
@@ -10,10 +14,14 @@ import com.zhangwenshuan.dreamer.bean.Login
 import com.zhangwenshuan.dreamer.fragment.BaseFragment
 import com.zhangwenshuan.dreamer.fragment.MainFragment
 import com.zhangwenshuan.dreamer.fragment.MeFragment
+import com.zhangwenshuan.dreamer.util.BaseApplication
+import com.zhangwenshuan.dreamer.util.LocalDataUtils
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.layout_password_input.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import org.jetbrains.anko.toast
 
 
 class MainActivity : BaseActivity() {
@@ -59,6 +67,51 @@ class MainActivity : BaseActivity() {
 
 
         initBottomView()
+
+        showPasswordDialog()
+
+    }
+
+    private fun showPasswordDialog() {
+        val data = LocalDataUtils.getString(LocalDataUtils.LOCAL_PASSWORD_STATE)
+
+        if (!data.isEmpty()) {
+            val strs = data.split(" ")
+
+            if (strs[0].toInt() == BaseApplication.userId) {
+                if (strs[1] == "open") {
+                    toShowPasswordDialogView(strs[2])
+                }
+            }
+        }
+    }
+
+    private fun toShowPasswordDialogView(s: String) {
+
+        val view = LayoutInflater.from(this).inflate(R.layout.layout_password_input, null, false)
+
+        val dialog = AlertDialog.Builder(this)
+            .setView(view)
+            .setCancelable(false)
+            .create()
+
+        view.findViewById<TextView>(R.id.tvCancel).setOnClickListener {
+            finish()
+
+        }
+
+        val etPassword = view.findViewById<EditText>(R.id.etPasswordConfirm)
+
+        view.findViewById<TextView>(R.id.tvConfirm).setOnClickListener {
+            if (etPassword.text.toString() == s) {
+                dialog.dismiss()
+            } else {
+                etPassword.text = Editable.Factory.getInstance().newEditable("")
+                toast("密码错误")
+            }
+        }
+
+        dialog.show()
 
     }
 
@@ -109,7 +162,14 @@ class MainActivity : BaseActivity() {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun subscribe(login: Login){
+    fun subscribe(login: Login) {
+        if(login.type==1){
+            toast("登录失效,重新登录")
+        }
+
+        LocalDataUtils.setString(LocalDataUtils.LOGIN_BEAN, "")
+        startActivity(Intent(this, LoginActivity::class.java))
+
         finish()
     }
 

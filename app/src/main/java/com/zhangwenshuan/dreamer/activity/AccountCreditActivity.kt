@@ -193,7 +193,6 @@ class AccountCreditActivity : FinanceBaseActivity() {
 
                 if (it.code == 200) {
                     EventBus.getDefault().post(CreditAdd(it.data))
-                    startActivity(Intent(this@AccountCreditActivity, FinanceSynopsisActivity::class.java))
                     finish()
                 }
             })

@@ -19,6 +19,7 @@ data class BookAdd(var account:Double?=0.0)
 data class FinanceDelete(var finance: Finance)
 
 data class FinanceAdd(var finance: Finance)
+data class FinanceUpdate(var finance: Finance)
 
 
 data class BudgetAdd(var budgetBean: BudgetBean)

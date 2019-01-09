@@ -80,6 +80,7 @@
     <string-array name="income">
         <item>薪资</item>
         <item>红包</item>
+        <item>兼职</item>
         <item>利息</item>
         <item>运气</item>
         <item>福利</item>

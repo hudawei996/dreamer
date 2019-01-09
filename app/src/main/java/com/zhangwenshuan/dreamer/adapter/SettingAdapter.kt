@@ -57,7 +57,9 @@ class SettingAdapter(val context: Context, val list: MutableList<Setting>) :
 
         if (position == list.size - 1) {
             holder.tvSettingIndicator.setTextColor(context.resources.getColor(R.color.colorGreen))
-        } else {
+        } else if(position==1){
+            holder.tvSettingIndicator.setTextColor(context.resources.getColor(R.color.chart_color_1))
+        }else {
             holder.tvSettingIndicator.setTextColor(context.resources.getColor(R.color.finance_base_color))
         }
 

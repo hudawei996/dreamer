@@ -29,6 +29,16 @@ interface Api {
         @Field("code") code: String
     ): Observable<Result<Any>>
 
+    @POST("user/updatePassword")
+    @FormUrlEncoded
+    fun updatePassword(
+        @Field("userId") userId: Int, @Field("oldPassword") oldPassword: String,
+        @Field("newPassword") newPassword: String
+    ): Observable<Result<Any>>
+
+
+
+
 
     @POST("password/save")
     @FormUrlEncoded
@@ -73,6 +83,19 @@ interface Api {
         @Field("bankId") bankId: Int,
         @Field("isExpense") isExpense: Int
     ): Observable<Result<Finance>>
+
+    @POST("finance/update")
+    @FormUrlEncoded
+    fun updateFinance(
+        @Field("id") id: Int,
+        @Field("type") type: String,
+        @Field("time") time: String,
+        @Field("account") account: Double,
+        @Field("remark") remark: String,
+        @Field("bankName") bankName: String,
+        @Field("bankId") bankId: Int,
+        @Field("isExpense") isExpense: Int
+    ): Observable<Result<Any>>
 
 
     @POST("finance/get")
@@ -120,7 +143,7 @@ interface Api {
     @FormUrlEncoded
     fun getBudget(@Field("userId") userId: Int, @Field("month") month: String): Observable<Result<BudgetBean>>
 
-    @POST("budget/getDetail")
+    @POST("finance/getDetail")
     @FormUrlEncoded
     fun getBudgetDetail(@Field("userId") userId: Int, @Field("month") month: String, @Field("expense") expense: Int): Observable<Result<List<BudgetDetail>>>
 

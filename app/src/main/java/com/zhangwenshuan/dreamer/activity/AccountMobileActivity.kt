@@ -37,11 +37,15 @@ class AccountMobileActivity : FinanceBaseActivity() {
 
             etMoBileName.text = Editable.Factory.getInstance().newEditable(bank.name)
 
-            etMobileUsername.text = Editable.Factory.getInstance().newEditable(bank.username)
+            if (bank.username != null) {
+                etMobileUsername.text = Editable.Factory.getInstance().newEditable(bank.username)
+            }
 
             etMobileAccount.text = Editable.Factory.getInstance().newEditable(decimalFormat.format(bank.account))
 
-            etMobileRemark.text = Editable.Factory.getInstance().newEditable(bank.remark)
+            if (bank.username != null) {
+                etMobileRemark.text = Editable.Factory.getInstance().newEditable(bank.remark)
+            }
 
             update = true
 
@@ -78,24 +82,24 @@ class AccountMobileActivity : FinanceBaseActivity() {
             return
         }
 
-        val account = etMobileAccount.text.toString().replace(",","")
+        val account = etMobileAccount.text.toString().replace(",", "")
 
         if (account.isEmpty()) {
             toast("余额不能为空")
             return
         }
 
-        val username=etMobileUsername.text.toString()
+        val username = etMobileUsername.text.toString()
 
-        val remark= etMobileRemark.text.toString()
+        val remark = etMobileRemark.text.toString()
 
-        bank.name=name
+        bank.name = name
 
-        bank.username=username
+        bank.username = username
 
-        bank.remark=remark
+        bank.remark = remark
 
-        bank.account=account.toDouble()
+        bank.account = account.toDouble()
 
 
 
@@ -141,7 +145,6 @@ class AccountMobileActivity : FinanceBaseActivity() {
 
                 if (it.code == 200) {
                     EventBus.getDefault().post((MobileAdd(it.data)))
-                    startActivity(Intent(this@AccountMobileActivity, FinanceSynopsisActivity::class.java))
                     finish()
                 }
             })

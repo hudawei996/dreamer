@@ -1,6 +1,7 @@
 package com.zhangwenshuan.dreamer.activity
 
 import android.content.Intent
+import android.text.Editable
 import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.util.BaseApplication
 import com.zhangwenshuan.dreamer.util.GsonUtils
@@ -12,6 +13,7 @@ import org.jetbrains.anko.toast
 
 class LoginActivity : BaseActivity() {
     override fun initData() {
+        etPhone.text=Editable.Factory.getInstance().newEditable(LocalDataUtils.getString(LocalDataUtils.LOCAL_PASSWORD_USER))
     }
 
     override fun initListener() {
@@ -50,6 +52,9 @@ class LoginActivity : BaseActivity() {
                 LocalDataUtils.setString(LocalDataUtils.LOGIN_BEAN, GsonUtils.getGson().toJson(it.data))
                 startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                 finish()
+
+
+                LocalDataUtils.setString(LocalDataUtils.LOCAL_PASSWORD_USER,username)
             }
 
         })
