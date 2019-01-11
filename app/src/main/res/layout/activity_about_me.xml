@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/layout_title_bar"/>
+
+    <LinearLayout
+            android:layout_marginTop="10dp"
+            android:padding="25dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+        <TextView android:layout_width="match_parent"
+                  android:text="敬爱的用户："
+                  android:layout_height="wrap_content"/>
+
+        <TextView android:layout_width="match_parent"
+                  android:text="         非常感谢您使用我独自开发的App,愿可以成为您生活的伴侣。"
+                  android:lineSpacingExtra="5dp"
+                  android:layout_height="wrap_content"/>
+        <TextView android:layout_width="match_parent"
+                  android:text="         如果想和我做朋友，可以加我微信。个人目前主要专攻Android，在其他知识点也有所涉猎。技术上还在不断学习和提升，望各位朋友多多指导！"
+                  android:lineSpacingExtra="2dp"
+                  android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/left"
+            android:paddingRight="@dimen/right"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="50dp">
+        <TextView android:layout_width="wrap_content"
+                  android:text="参加工作时间"
+                  android:gravity="center"
+                  android:textSize="16sp"
+                  android:textColor="@color/colorBlack"
+                  android:layout_height="match_parent"/>
+        <TextView android:layout_width="0dp"
+                  android:layout_weight="1"
+                  android:text="2016年"
+                  android:gravity="right|center"
+                  android:textSize="16sp"
+                  android:textColor="@color/colorBlack2"
+                  android:layout_height="match_parent"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/left"
+            android:paddingRight="@dimen/right"
+            android:layout_width="match_parent"
+
+            android:layout_height="50dp">
+        <TextView android:layout_width="wrap_content"
+                  android:text="职业特长"
+                  android:gravity="center"
+                  android:textSize="16sp"
+                  android:textColor="@color/colorBlack"
+                  android:layout_height="match_parent"/>
+        <TextView android:layout_width="0dp"
+                  android:layout_weight="1"
+                  android:text="Android应用层开发"
+                  android:gravity="right|center"
+                  android:textSize="16sp"
+                  android:textColor="@color/colorBlack2"
+                  android:layout_height="match_parent"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/left"
+            android:paddingRight="@dimen/right"
+            android:layout_width="match_parent"
+
+            android:layout_height="50dp">
+        <TextView android:layout_width="wrap_content"
+                  android:text="最高学历"
+                  android:gravity="center"
+                  android:textSize="16sp"
+                  android:textColor="@color/colorBlack"
+                  android:layout_height="match_parent"/>
+        <TextView android:layout_width="0dp"
+                  android:layout_weight="1"
+                  android:text="大学本科"
+                  android:gravity="right|center"
+                  android:textSize="16sp"
+                  android:textColor="@color/colorBlack2"
+                  android:layout_height="match_parent"/>
+    </LinearLayout>
+</LinearLayout>

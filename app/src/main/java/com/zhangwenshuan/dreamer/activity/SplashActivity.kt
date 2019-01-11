@@ -10,6 +10,7 @@ import android.view.WindowManager
 import com.google.gson.reflect.TypeToken
 import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.bean.LoginBean
+import com.zhangwenshuan.dreamer.bean.User
 import com.zhangwenshuan.dreamer.util.BaseApplication
 import com.zhangwenshuan.dreamer.util.GsonUtils
 import com.zhangwenshuan.dreamer.util.LocalDataUtils
@@ -74,21 +75,24 @@ class SplashActivity : AppCompatActivity() {
     fun initData() {
         if (BaseApplication.token.isEmpty()) {
 
-            val loginBean = LocalDataUtils.getString(LocalDataUtils.LOGIN_BEAN)
+            val token = LocalDataUtils.getString(LocalDataUtils.TOKEN)
 
-            if (loginBean.isEmpty()) {
+            if (token.isEmpty()) {
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             } else {
 
+                val strUser=LocalDataUtils.getString(LocalDataUtils.USER)
 
-                val type = object : TypeToken<LoginBean>() {}.type
+                val type = object : TypeToken<User>() {}.type
 
-                val login = GsonUtils.getGson().fromJson(loginBean, type) as LoginBean
+                val user = GsonUtils.getGson().fromJson(strUser, type) as User
 
-                BaseApplication.userId = login.user!!.id!!
+                BaseApplication.userId = user!!.id!!
 
-                BaseApplication.token = login.token!!
+                BaseApplication.token = token
+
+                BaseApplication.user=user!!
 
                 startActivity(Intent(this, MainActivity::class.java))
 

@@ -9,14 +9,15 @@ import android.net.wifi.WifiManager
 import android.util.Log
 import android.view.WindowManager
 import android.widget.Toast
+import com.google.gson.Gson
 import com.tencent.bugly.Bugly
+import com.zhangwenshuan.dreamer.bean.User
 
 
 const val TAG = "dreamer"
 
 
 class BaseApplication : Application() {
-
 
 
     override fun onCreate() {
@@ -35,7 +36,10 @@ class BaseApplication : Application() {
 
 
         @JvmStatic
-        var token:String=""
+        var token: String = ""
+
+        @JvmStatic
+        var user: User? = null
 
 
         private lateinit var instance: Application
@@ -43,6 +47,13 @@ class BaseApplication : Application() {
         fun getContext(): Application {
             return instance
         }
+
+        fun setUserLocal(user: User){
+            this.user=user
+
+            LocalDataUtils.setString(LocalDataUtils.USER,GsonUtils.getGson().toJson(user))
+        }
+
 
 
 

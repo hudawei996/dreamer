@@ -163,11 +163,11 @@ class MainActivity : BaseActivity() {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun subscribe(login: Login) {
-        if(login.type==1){
+        if (login.type == 1) {
             toast("登录失效,重新登录")
         }
 
-        LocalDataUtils.setString(LocalDataUtils.LOGIN_BEAN, "")
+        LocalDataUtils.setString(LocalDataUtils.TOKEN, "")
         startActivity(Intent(this, LoginActivity::class.java))
 
         finish()

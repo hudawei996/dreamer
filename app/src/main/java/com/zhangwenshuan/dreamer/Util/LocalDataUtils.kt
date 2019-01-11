@@ -19,6 +19,13 @@ class LocalDataUtils {
 
 
         val LOGIN_BEAN = "login_bean"
+
+
+        val USER="user"
+
+        val TOKEN="token"
+
+
         var gson: Gson? = null
 
 

@@ -36,6 +36,25 @@ interface Api {
         @Field("newPassword") newPassword: String
     ): Observable<Result<Any>>
 
+  @POST("user/updateNickname")
+    @FormUrlEncoded
+    fun updateNickname(
+        @Field("userId") userId: Int, @Field("nickname") nickname: String
+    ): Observable<Result<Any>>
+
+    @POST("user/updateIntroduce")
+    @FormUrlEncoded
+    fun updateIntroduce(
+        @Field("userId") userId: Int, @Field("introduce") introduce: String
+    ): Observable<Result<Any>>
+
+    @POST("user/saveFeedback")
+    @FormUrlEncoded
+    fun saveFeedback(
+        @Field("userId") userId: Int, @Field("feedback") feedback: String
+    ): Observable<Result<Any>>
+
+
 
 
 

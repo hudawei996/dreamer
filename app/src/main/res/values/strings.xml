@@ -27,6 +27,11 @@
     <string name="credit">&#xe89e;</string>
     <string name="bank">&#xe65a;</string>
 
+    <string name="contact">&#xe602;</string>
+    <string name="feedback">&#xe62f;</string>
+    <string name="setting">&#xe62b;</string>
+    <string name="about">&#xe798;</string>
+
 
 
     <string-array name="bank_array">

@@ -72,6 +72,11 @@
         <activity android:name=".activity.AccountBankActivity"/>
         <activity android:name=".activity.SettingPasswordActivity"/>
         <activity android:name=".activity.SettingUpdatePasswordActivity"/>
+        <activity android:name=".activity.ContactMeActivity"/>
+        <activity android:name=".activity.AboutMeActivity"/>
+        <activity android:name=".activity.FeedbackActivity"/>
+        <activity android:name=".activity.PersonInfoActivity"/>
+        <activity android:name=".activity.NicknameActivity"/>
 
         <provider
                 android:name="android.support.v4.content.FileProvider"

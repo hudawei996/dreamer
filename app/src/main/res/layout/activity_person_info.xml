@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:background="@color/background"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/layout_title_bar"/>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/left"
+            android:paddingRight="@dimen/right"
+            android:layout_width="match_parent"
+            android:background="@color/colorWhite"
+            android:layout_height="80dp">
+
+        <TextView android:layout_width="0dp"
+                  android:layout_weight="1"
+                  android:text="头像"
+                  android:gravity="left|center"
+                  android:textSize="18sp"
+                  android:textColor="@color/colorBlack"
+                  android:layout_height="match_parent"/>
+
+        <ImageView android:layout_width="80dp"
+                   android:text="梦想家"
+                   android:src="@mipmap/ic_launcher"
+                   android:textSize="18sp"
+                   android:padding="6dp"
+                   android:textColor="@color/colorBlack2"
+                   android:layout_height="80dp"/>
+
+
+        <TextView android:layout_width="wrap_content"
+                  android:text="@string/to_right"
+                  android:gravity="center"
+                  android:layout_marginLeft="5dp"
+                  android:textSize="16sp"
+                  android:id="@+id/tvRight1"
+                  android:textColor="@color/hint"
+                  android:layout_height="match_parent"/>
+
+
+    </LinearLayout>
+
+    <View android:layout_width="@dimen/left"
+          android:background="@color/colorWhite"
+          android:layout_height="1dp"/>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/left"
+            android:paddingRight="@dimen/right"
+            android:layout_width="match_parent"
+            android:background="@color/colorWhite"
+            android:layout_height="60dp">
+
+        <TextView android:layout_width="wrap_content"
+                  android:text="昵称"
+                  android:gravity="center"
+                  android:textSize="18sp"
+                  android:textColor="@color/colorBlack"
+                  android:layout_height="match_parent"/>
+
+        <TextView android:layout_width="0dp"
+                  android:layout_weight="1"
+                  android:text="梦想家"
+                  android:id="@+id/tvNickname"
+                  android:gravity="right|center"
+                  android:textSize="14sp"
+                  android:textColor="@color/colorBlack2"
+                  android:layout_height="match_parent"/>
+
+
+        <TextView android:layout_width="wrap_content"
+                  android:text="@string/to_right"
+                  android:gravity="center"
+                  android:layout_marginLeft="5dp"
+                  android:textSize="16sp"
+
+                  android:id="@+id/tvRight2"
+                  android:textColor="@color/hint"
+                  android:layout_height="match_parent"/>
+
+
+    </LinearLayout>
+
+    <View android:layout_width="@dimen/left"
+          android:background="@color/colorWhite"
+          android:layout_height="1dp"/>
+
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/left"
+            android:paddingRight="@dimen/right"
+            android:layout_width="match_parent"
+            android:background="@color/colorWhite"
+            android:layout_height="60dp">
+
+        <TextView android:layout_width="wrap_content"
+                  android:text="性别"
+                  android:gravity="center"
+                  android:textSize="18sp"
+                  android:textColor="@color/colorBlack"
+                  android:layout_height="match_parent"/>
+
+        <TextView android:layout_width="0dp"
+                  android:layout_weight="1"
+                  android:text="男"
+                  android:id="@+id/tvSex"
+                  android:gravity="right|center_vertical"
+                  android:textSize="14sp"
+                  android:textColor="@color/colorBlack2"
+                  android:layout_height="match_parent"/>
+
+
+    </LinearLayout>
+    <View android:layout_width="@dimen/left"
+          android:background="@color/colorWhite"
+          android:layout_height="1dp"/>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/left"
+            android:paddingRight="@dimen/right"
+            android:layout_width="match_parent"
+            android:background="@color/colorWhite"
+            android:layout_height="60dp">
+
+        <TextView android:layout_width="wrap_content"
+                  android:text="个性签名"
+                  android:gravity="center"
+                  android:textSize="18sp"
+                  android:textColor="@color/colorBlack"
+                  android:layout_height="match_parent"/>
+
+        <TextView android:layout_width="0dp"
+                  android:layout_weight="1"
+                  android:text="努力工作，奋斗奋斗奋斗，早日实现财富自由"
+                  android:gravity="center_vertical|right"
+                  android:id="@+id/tvIntroduce"
+                  android:maxLines="1"
+                  android:textSize="14sp"
+                  android:paddingLeft="5dp"
+                  android:textColor="@color/colorBlack2"
+                  android:layout_height="match_parent"/>
+
+
+        <TextView android:layout_width="wrap_content"
+                  android:text="@string/to_right"
+                  android:gravity="center"
+                  android:layout_marginLeft="5dp"
+                  android:textSize="16sp"
+                  android:id="@+id/tvRight3"
+                  android:textColor="@color/hint"
+                  android:layout_height="match_parent"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

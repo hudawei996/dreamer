@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/layout_title_bar"/>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/left"
+            android:paddingRight="@dimen/right"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="50dp">
+        <TextView android:layout_width="wrap_content"
+                  android:text="微信"
+                  android:gravity="center"
+                  android:textSize="16sp"
+                  android:textColor="@color/colorBlack"
+                  android:layout_height="match_parent"/>
+        <TextView android:layout_width="0dp"
+                  android:layout_weight="1"
+                  android:text="Tomuquan"
+                  android:gravity="right|center"
+                  android:textSize="16sp"
+                  android:textColor="@color/colorBlack2"
+                  android:layout_height="match_parent"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/left"
+            android:paddingRight="@dimen/right"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="50dp">
+        <TextView android:layout_width="wrap_content"
+                  android:text="QQ"
+                  android:gravity="center"
+                  android:textSize="16sp"
+                  android:textColor="@color/colorBlack"
+                  android:layout_height="match_parent"/>
+        <TextView android:layout_width="0dp"
+                  android:layout_weight="1"
+                  android:text="2829642532"
+                  android:gravity="right|center"
+                  android:textSize="16sp"
+                  android:textColor="@color/colorBlack2"
+                  android:layout_height="match_parent"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/left"
+            android:paddingRight="@dimen/right"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="50dp">
+        <TextView android:layout_width="wrap_content"
+                  android:text="邮箱"
+                  android:gravity="center"
+                  android:textSize="16sp"
+                  android:textColor="@color/colorBlack"
+                  android:layout_height="match_parent"/>
+        <TextView android:layout_width="0dp"
+                  android:layout_weight="1"
+                  android:text="androizhang@gmail.com"
+                  android:gravity="right|center"
+                  android:textSize="16sp"
+                  android:textColor="@color/colorBlack2"
+                  android:layout_height="match_parent"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/left"
+            android:paddingRight="@dimen/right"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="50dp">
+        <TextView android:layout_width="wrap_content"
+                  android:text="博客"
+                  android:gravity="center"
+                  android:textSize="16sp"
+                  android:textColor="@color/colorBlack"
+                  android:layout_height="match_parent"/>
+        <TextView android:layout_width="0dp"
+                  android:layout_weight="1"
+                  android:text="简书-离人心上秋秋"
+                  android:gravity="right|center"
+                  android:textSize="16sp"
+                  android:textColor="@color/colorBlack2"
+                  android:layout_height="match_parent"/>
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
