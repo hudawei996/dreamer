@@ -20,7 +20,7 @@ data class Event(var code: Int, var emssage: String)
 
 data class Logo(var type: LogoType, var name: String)
 
-data class User(var username: String,var nickname:String,var introduce:String, var id: Int?)
+data class User(var username: String,var nickname:String,var introduce:String,var sex:String, var id: Int?)
 
 data class Finance(
     var id:Int?,

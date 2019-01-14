@@ -92,6 +92,7 @@
 
 
     <LinearLayout
+            android:id="@+id/llSex"
             android:orientation="horizontal"
             android:paddingLeft="@dimen/left"
             android:paddingRight="@dimen/right"
@@ -125,6 +126,7 @@
             android:orientation="horizontal"
             android:paddingLeft="@dimen/left"
             android:paddingRight="@dimen/right"
+            android:id="@+id/llIntroduce"
             android:layout_width="match_parent"
             android:background="@color/colorWhite"
             android:layout_height="60dp">

@@ -1,24 +1,24 @@
 package com.zhangwenshuan.dreamer.activity
 
-import android.content.Intent
 import android.graphics.Typeface
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import com.zhangwenshuan.dreamer.R
+import com.zhangwenshuan.dreamer.bean.UpdateIntroduce
 import com.zhangwenshuan.dreamer.bean.UpdateNickname
 import com.zhangwenshuan.dreamer.bean.User
 import com.zhangwenshuan.dreamer.util.BaseApplication
 import com.zhangwenshuan.dreamer.util.NetUtils
 import io.reactivex.functions.Consumer
-import kotlinx.android.synthetic.main.activity_nickname.*
+import kotlinx.android.synthetic.main.activity_introduce.*
 import kotlinx.android.synthetic.main.layout_title_bar.*
 import org.greenrobot.eventbus.EventBus
 import org.jetbrains.anko.toast
 
-class NicknameActivity : BaseActivity() {
+class IntroduceActivity : BaseActivity() {
     override fun setResourceId(): Int {
-        return R.layout.activity_nickname
+        return R.layout.activity_introduce
     }
 
     override fun preInitData() {
@@ -41,18 +41,41 @@ class NicknameActivity : BaseActivity() {
 
         user = BaseApplication.user
 
-        if (user?.nickname != null) {
-            etNickname.text = Editable.Factory.getInstance().newEditable(user?.nickname)
+        if (user?.introduce != null) {
+            etIntroduce.hint=user?.introduce
 
-            tvCounter.text = (12 - user!!.nickname.length).toString()
+            etIntroduce.text = Editable.Factory.getInstance().newEditable(user?.introduce)
+            tvCounter.text=(32 - user!!.introduce.length).toString()
         }
 
-        etNickname.requestFocus()
+
+        etIntroduce.requestFocus()
 
     }
 
     override fun initListener() {
-        etNickname.addTextChangedListener(object : TextWatcher {
+        tvAdd.setOnClickListener {
+            val name = etIntroduce.text.toString()
+
+            if (name.isEmpty()) {
+                toast("个性签名不能为空")
+                return@setOnClickListener
+            }
+
+            NetUtils.data(NetUtils.getApiInstance().updateIntroduce(BaseApplication.userId, name), Consumer {
+                toast(it.message)
+
+                if (it.code == 200) {
+                    user?.introduce = name
+                    BaseApplication.setUserLocal(user!!)
+                    EventBus.getDefault().post(UpdateIntroduce(name))
+                    finish()
+                }
+            })
+
+        }
+
+        etIntroduce.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
 
             }
@@ -61,35 +84,12 @@ class NicknameActivity : BaseActivity() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-                tvCounter.text = (12 - s.toString().length).toString()
-
+                tvCounter.text = (32 - s.toString().length).toString()
             }
         })
-
-
-        tvAdd.setOnClickListener {
-            val name = etNickname.text.toString()
-
-            if (name.isEmpty()) {
-                toast("名字不能为空")
-                return@setOnClickListener
-            }
-
-            NetUtils.data(NetUtils.getApiInstance().updateNickname(BaseApplication.userId, name), Consumer {
-                toast(it.message)
-
-                if (it.code == 200) {
-                    user?.nickname = name
-                    BaseApplication.setUserLocal(user!!)
-                    EventBus.getDefault().post(UpdateNickname(name))
-                    finish()
-                }
-            })
-
-        }
     }
 
     override fun initData() {
     }
+
 }

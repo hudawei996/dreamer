@@ -30,7 +30,11 @@ class NetInterceptor : Interceptor {
         var response = chain.proceed(request)
 
 
+
+
+
         if (response.code() == 403) {
+            logError("---------403--------")
             EventBus.getDefault().post(Login(1))
         }
 
@@ -48,24 +52,5 @@ class NetInterceptor : Interceptor {
         return response
     }
 
-    private fun toRefreshToken(chain: Interceptor.Chain): Boolean {
-        val url = NetUtils.getUrl() + "auth/refresh"
-
-        val request = chain.request().newBuilder()
-            .addHeader("Authorization", "Dreamer " + BaseApplication.token)
-            .url(url)
-            .build()
-
-        val response = chain.proceed(request)
-
-        if (response.isSuccessful) {
-            BaseApplication.token = response.body().toString()
-            return true
-        }
-
-        return false
-
-
-    }
 
 }

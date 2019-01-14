@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/layout_title_bar"/>
+
+
+    <EditText
+            android:layout_marginLeft="@dimen/left"
+            android:layout_margin="@dimen/right"
+            android:background="@null"
+            android:gravity="bottom"
+            android:paddingLeft="@dimen/left"
+            android:textSize="15sp"
+            android:hint="财富自由并不是梦"
+            android:id="@+id/etIntroduce"
+            android:maxLength="32"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <View android:layout_width="match_parent"
+          android:layout_marginLeft="@dimen/left"
+          android:layout_marginRight="@dimen/right"
+          android:layout_height="0.5dp"
+          android:background="@color/colorPrimary"/>
+
+    <TextView android:layout_width="match_parent"
+              android:paddingTop="10dp"
+              android:gravity="right"
+              android:id="@+id/tvCounter"
+              android:textColor="@color/hint"
+              android:textSize="14sp"
+              android:layout_marginRight="@dimen/right"
+              android:text="32"
+              android:layout_marginLeft="@dimen/left"
+              android:layout_height="wrap_content"/>
+
+</LinearLayout>
+

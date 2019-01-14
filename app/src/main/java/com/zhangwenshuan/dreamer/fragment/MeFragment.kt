@@ -4,14 +4,20 @@ import android.content.Intent
 import android.graphics.Typeface
 import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.activity.*
+import com.zhangwenshuan.dreamer.bean.UpdateIntroduce
+import com.zhangwenshuan.dreamer.bean.UpdateNickname
 import com.zhangwenshuan.dreamer.util.BaseApplication
 import com.zhangwenshuan.dreamer.util.logError
 import kotlinx.android.synthetic.main.fragment_me.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 
 class MeFragment : BaseFragment() {
     override fun getLayoutResource(): Int = R.layout.fragment_me
 
     override fun preInitData() {
+        EventBus.getDefault().register(this)
+
     }
 
     override fun initViews() {
@@ -42,11 +48,6 @@ class MeFragment : BaseFragment() {
             tvIntroduce.text=user?.introduce
         }
 
-
-
-
-
-
     }
 
     override fun initListener() {
@@ -73,6 +74,22 @@ class MeFragment : BaseFragment() {
         }
     }
 
+    @Subscribe
+    fun subscribe(update: UpdateNickname) {
+        tvNickname.text = update.name
+    }
+
+    @Subscribe
+    fun subscribe(update: UpdateIntroduce) {
+        tvIntroduce.text = update.introduce
+    }
+
+
     override fun initData() {
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
     }
 }

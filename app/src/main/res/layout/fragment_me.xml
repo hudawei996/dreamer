@@ -41,7 +41,7 @@
                         android:id="@+id/tvIntroduce"
                         android:textColor="@color/colorBase"
                         android:layout_width="wrap_content"
-                        android:textSize="10sp"
+                        android:textSize="12sp"
                         android:layout_marginBottom="15dp"
                         android:layout_height="wrap_content"/>
 

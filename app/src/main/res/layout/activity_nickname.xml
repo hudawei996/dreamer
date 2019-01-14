@@ -5,17 +5,33 @@
               android:layout_height="match_parent">
     <include layout="@layout/layout_title_bar"/>
 
-    <EditText
-            android:layout_marginLeft="@dimen/left"
-            android:layout_margin="@dimen/right"
-            android:background="@null"
-            android:gravity="bottom"
-            android:paddingLeft="@dimen/left"
-            android:textSize="15sp"
-            android:hint="昵称"
-            android:id="@+id/etNickname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="horizontal"
+                  android:layout_marginLeft="@dimen/left"
+                  android:layout_margin="@dimen/right"
+                  android:layout_height="wrap_content">
+
+        <EditText
+                android:background="@null"
+                android:gravity="bottom"
+                android:paddingLeft="@dimen/left"
+                android:textSize="15sp"
+                android:hint="昵称"
+                android:maxLength="12"
+                android:id="@+id/etNickname"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"/>
+
+        <TextView android:layout_width="wrap_content"
+                  android:text="12"
+                  android:id="@+id/tvCounter"
+                  android:gravity="center_vertical"
+                  android:layout_height="40dp"/>
+
+    </LinearLayout>
+
 
     <View android:layout_width="match_parent"
           android:layout_marginLeft="@dimen/left"

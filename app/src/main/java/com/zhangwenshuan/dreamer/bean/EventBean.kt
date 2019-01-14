@@ -42,3 +42,5 @@ data class BankDelete(var bank: BankCard)
 data class Login(var type:Int=0)
 
 data class UpdateNickname(var name:String)
+
+data class UpdateIntroduce(var introduce:String)

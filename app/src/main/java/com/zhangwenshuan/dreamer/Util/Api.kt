@@ -42,6 +42,12 @@ interface Api {
         @Field("userId") userId: Int, @Field("nickname") nickname: String
     ): Observable<Result<Any>>
 
+    @POST("user/updateSex")
+    @FormUrlEncoded
+    fun updateSex(
+        @Field("userId") userId: Int, @Field("sex") sex: String
+    ): Observable<Result<Any>>
+
     @POST("user/updateIntroduce")
     @FormUrlEncoded
     fun updateIntroduce(

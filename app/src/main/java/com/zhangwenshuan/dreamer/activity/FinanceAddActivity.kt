@@ -65,8 +65,6 @@ class FinanceAddActivity : FinanceBaseActivity() {
 
             tvFinanceBankAdd.text = finance?.bankName
 
-
-
             etFinanceAccountAdd.text =
                     Editable.Factory.getInstance().newEditable(decimalFormat.format(finance?.account))
 
@@ -210,6 +208,8 @@ class FinanceAddActivity : FinanceBaseActivity() {
             finance!!.type=str[1]
         }
 
+        finance!!.remark=remark
+
 
         NetUtils.data(
             NetUtils.getApiInstance().updateFinance(
@@ -313,7 +313,7 @@ class FinanceAddActivity : FinanceBaseActivity() {
 
         val view = OptionsPickerBuilder(this, object : OnOptionsSelectListener {
             override fun onOptionsSelect(options1: Int, options2: Int, options3: Int, v: View?) {
-                tvFinanceItemAdd.text = items[options1] + "  " + subItem[options1][options2]
+                tvFinanceItemAdd.text = items[options1] + " " + subItem[options1][options2]
                 tvFinanceItemAdd.setTextColor(resources.getColor(R.color.colorBlack))
             }
         })

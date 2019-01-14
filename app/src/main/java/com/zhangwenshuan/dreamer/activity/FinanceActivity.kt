@@ -204,7 +204,7 @@ class FinanceActivity : BaseActivity() {
             tvFinanceMonthExpense.text = decimalFormat.format(monthExpense)
         } else {
             monthIncome -= event.finance.account
-            tvFinanceMonthExpense.text = decimalFormat.format(monthIncome)
+            tvFinanceMonthIncome.text = decimalFormat.format(monthIncome)
         }
 
         list.remove(event.finance)
@@ -241,8 +241,8 @@ class FinanceActivity : BaseActivity() {
 
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun subscribeEvent(budget: FinanceUpdate) {
-        list[position] = budget.finance
+    fun subscribeEvent(update: FinanceUpdate) {
+        list[position] = update.finance
 
         financeAdapter.notifyItemChanged(position)
 
