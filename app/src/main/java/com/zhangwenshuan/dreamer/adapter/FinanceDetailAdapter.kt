@@ -32,9 +32,21 @@ class FinanceDetailAdapter(var context: Context, var list: MutableList<Finance>)
         }
         holder.tvAccount.text = "￥ ${finance.account}"
 
-        holder.tvRemark.text = finance.time+" "+finance.remark
+        holder.tvRemark.text = finance.time + " " + finance.remark
 
         holder.tvTitle.text = finance.item + " " + finance.type
+
+
+        holder.itemView.setOnClickListener {
+            listener?.onItemClick(position)
+        }
+    }
+
+    lateinit var listener: OnItemClickListener
+
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.listener = listener
     }
 }
 

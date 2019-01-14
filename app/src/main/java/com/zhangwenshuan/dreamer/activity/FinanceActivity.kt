@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.view.WindowManager
-import android.widget.Adapter
 import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.adapter.FinanceTodayAdapter
 import com.zhangwenshuan.dreamer.adapter.OnItemClickListener
@@ -127,12 +126,18 @@ class FinanceActivity : BaseActivity() {
         tvFinanceMonthBudgetHint.setOnClickListener {
             tvFinanceBudget.performClick()
         }
+
+        tvTodayMore.setOnClickListener {
+            val intent = Intent(this@FinanceActivity, FinanceSearchActivity::class.java)
+
+            startActivity(intent)
+        }
     }
 
 
     override fun initData() {
 
-        getTodayFinance()
+        getFinance()
 
 
         getBudget()
@@ -163,7 +168,7 @@ class FinanceActivity : BaseActivity() {
         }
     }
 
-    private fun getTodayFinance() {
+    private fun getFinance() {
         NetUtils.data(NetUtils.getApiInstance().getFinanceByTime(BaseApplication.userId, TimeUtils.curMonth(), -1),
             Consumer {
                 if (it.code == 200) {
@@ -176,22 +181,51 @@ class FinanceActivity : BaseActivity() {
             })
     }
 
+    var todayExpense = 0.0
+
+    var todayIncome = 0.0
+
+
     private fun initTotalView() {
-        monthIncome=0.0
-        monthExpense=0.0
+        monthIncome = 0.0
+
+        monthExpense = 0.0
+
+        todayExpense = 0.0
+
+        todayIncome = 0.0
+
+        var today = TimeUtils.curDay()
 
         for (value in list) {
             if (value.isExpense == 0) {
                 monthIncome += value.account
+
+                if (value.date == today) {
+                    todayIncome += value.account
+                }
+
+
             } else {
                 monthExpense += value.account
+
+                if (value.date == today) {
+                    todayExpense += value.account
+                }
             }
 
-            tvFinanceMonthIncome.text = decimalFormat.format(monthIncome)
-
-            tvFinanceMonthExpense.text = decimalFormat.format(monthExpense)
 
         }
+
+
+        tvFinanceMonthIncome.text = decimalFormat.format(monthIncome)
+
+        tvFinanceMonthExpense.text = decimalFormat.format(monthExpense)
+
+
+        tvTodayExpense.text = "今日支出:${decimalFormat.format(todayExpense)}元"
+
+        tvTodayIncome.text = "收入:${decimalFormat.format(todayIncome)}元"
 
         notifyBudgetViewChange()
     }
@@ -199,37 +233,20 @@ class FinanceActivity : BaseActivity() {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun subscribeEvent(event: FinanceDelete) {
-        if (event.finance.isExpense == 1) {
-            monthExpense -= event.finance.account
-            tvFinanceMonthExpense.text = decimalFormat.format(monthExpense)
-        } else {
-            monthIncome -= event.finance.account
-            tvFinanceMonthIncome.text = decimalFormat.format(monthIncome)
-        }
-
         list.remove(event.finance)
 
         financeAdapter.notifyDataSetChanged()
 
-        notifyBudgetViewChange()
+        initTotalView()
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun subscribeEvent(event: FinanceAdd) {
-        if (event.finance.isExpense == 1) {
-            monthExpense += event.finance.account
-            tvFinanceMonthExpense.text = decimalFormat.format(monthExpense)
-        } else {
-            monthIncome += event.finance.account
-            tvFinanceMonthIncome.text = decimalFormat.format(monthIncome)
-        }
-
-
         list.add(0, event.finance)
 
         financeAdapter.notifyDataSetChanged()
 
-        notifyBudgetViewChange()
+        initTotalView()
     }
 
 

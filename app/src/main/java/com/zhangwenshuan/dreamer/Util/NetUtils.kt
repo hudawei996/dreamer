@@ -17,8 +17,7 @@ const val PROD_URL = "https://www.zhangwenshuan.com/dreamer/"
 
 const val DEV_URL = "http://192.168.1.102:8080/"
 
-const val DEBUG = false
-
+var DEBUG = false
 
 
 class NetUtils {
@@ -26,14 +25,14 @@ class NetUtils {
 
     companion object {
 
-      private  var retrofit: Retrofit? = null
+        private var retrofit: Retrofit? = null
 
-     private   var api: Api? = null
+        private var api: Api? = null
 
-      private  var client:OkHttpClient?=null
+        private var client: OkHttpClient? = null
 
-        fun getUrl():String{
-           if (DEBUG) return DEV_URL else return PROD_URL
+        fun getUrl(): String {
+            if (DEBUG) return DEV_URL else return PROD_URL
         }
 
         fun getApiInstance(): Api {
@@ -44,15 +43,16 @@ class NetUtils {
 
             if (retrofit == null) {
 
-                client=OkHttpClient.Builder()
+                client = OkHttpClient.Builder()
                     .addNetworkInterceptor(NetInterceptor())
-                    .connectTimeout(10000,TimeUnit.SECONDS)
+                    .connectTimeout(10000, TimeUnit.SECONDS)
                     .build()
 
                 retrofit = Retrofit.Builder().baseUrl(url)
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(
-                        GsonConverterFactory.create())
+                        GsonConverterFactory.create()
+                    )
                     .client(client)
                     .build()
                 api = retrofit!!.create(Api::class.java)
@@ -62,21 +62,18 @@ class NetUtils {
             return api!!
         }
 
-        fun <T> data(observable: Observable<Result<T>>, result:Consumer<Result<T>>){
+        fun <T> data(observable: Observable<Result<T>>, result: Consumer<Result<T>>) {
 
             observable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(result, Consumer<Throwable> {
                     it.printStackTrace()
-                    Log.e("net","net error：${it.message}")
+                    Log.e("net", "net error：${it.message}")
                 })
         }
 
     }
-
-
-
 
 
 }

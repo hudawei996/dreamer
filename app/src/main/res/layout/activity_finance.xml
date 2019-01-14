@@ -7,7 +7,7 @@
 
 
     <RelativeLayout android:layout_width="match_parent"
-                    android:layout_height="280dp">
+                    android:layout_height="300dp">
 
 
         <RelativeLayout android:layout_width="match_parent"
@@ -147,21 +147,56 @@
                 android:textSize="20sp"
                 android:letterSpacing="0.1"
                 android:textColor="@color/colorWhite"
-                android:layout_marginBottom="25dp"
+                android:layout_marginBottom="45dp"
                 android:clickable="true"
                 android:background="@drawable/finance_btn_add_final_background"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"/>
 
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_alignParentBottom="true"
+                  android:text="今日支出：0.00元"
+                  android:textSize="10sp"
+                  android:textColor="@color/hint"
+                  android:id="@+id/tvTodayExpense"
+                  android:layout_marginLeft="@dimen/left"
+                  android:layout_marginBottom="10dp"
+                  android:layout_height="wrap_content"/>
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_alignParentBottom="true"
+                  android:text="收入：0.00元"
+                  android:textSize="10sp"
+                  android:textColor="@color/hint"
+                  android:id="@+id/tvTodayIncome"
+                  android:layout_toRightOf="@id/tvTodayExpense"
+                  android:layout_marginLeft="@dimen/left"
+                  android:layout_marginBottom="10dp"
+                  android:layout_height="wrap_content"/>
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_alignParentBottom="true"
+                  android:text="更多"
+                  android:textSize="10sp"
+                  android:id="@+id/tvTodayMore"
+                  android:layout_marginBottom="10dp"
+                  android:layout_marginRight="@dimen/right"
+                  android:layout_alignParentRight="true"
+                  android:gravity="bottom"
+                  android:textColor="@color/hint"
+                  android:paddingLeft="20dp"
+                  android:paddingRight="20dp"
+                  android:layout_height="25dp"/>
+
+
     </RelativeLayout>
 
 
-
-
-        <android.support.v7.widget.RecyclerView
-                android:id="@+id/rvTodayFinance"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvTodayFinance"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
 
 </LinearLayout>

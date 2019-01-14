@@ -7,14 +7,16 @@ import com.bigkoo.pickerview.builder.TimePickerBuilder
 import com.bigkoo.pickerview.listener.OnTimeSelectListener
 import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.adapter.FinanceSearchAdapter
-import com.zhangwenshuan.dreamer.bean.DayBill
-import com.zhangwenshuan.dreamer.bean.Finance
+import com.zhangwenshuan.dreamer.bean.*
 import com.zhangwenshuan.dreamer.util.BaseApplication
 import com.zhangwenshuan.dreamer.util.NetUtils
 import com.zhangwenshuan.dreamer.util.TimeUtils
 import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.activity_finance_search.*
 import kotlinx.android.synthetic.main.layout_title_bar.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import org.jetbrains.anko.toast
 import java.util.*
 
@@ -35,12 +37,17 @@ class FinanceSearchActivity : FinanceBaseActivity() {
 
     lateinit var stopCalendar: Calendar
 
+
+
     override fun setResourceId(): Int {
         return R.layout.activity_finance_search
     }
 
     override fun preInitData() {
         super.preInitData()
+
+        EventBus.getDefault().register(this)
+
         adapter = FinanceSearchAdapter(this, list)
 
 
@@ -202,5 +209,21 @@ class FinanceSearchActivity : FinanceBaseActivity() {
         }
 
         return mutableListOf()
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun subscribeEvent(update: FinanceUpdate) {
+        toSearchFinance(beginDate, stopDate)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun subscribeEvent(event: FinanceDelete) {
+        toSearchFinance(beginDate, stopDate)
+    }
+
+    override fun onDestroy() {
+        EventBus.getDefault().unregister(this)
+        super.onDestroy()
     }
 }

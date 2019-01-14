@@ -91,12 +91,12 @@ class FinanceAddActivity : FinanceBaseActivity() {
 
     var saveAgain = false
 
+
+
     override fun preInitData() {
         super.preInitData()
 
         val data = intent.getBundleExtra("data")
-
-
 
         if (data != null) {
             finance = data.getSerializable("finance") as Finance
@@ -106,18 +106,19 @@ class FinanceAddActivity : FinanceBaseActivity() {
 
     override fun initListener() {
         tvFinanceTimeAdd.setOnClickListener {
+            TimeUtils.closeInput(this)
             showTimePickerView()
         }
 
         tvFinanceAdd.setOnClickListener {
             saveAgain = false
 
-
             toSaveFinance()
 
         }
 
         tvFinanceBankAdd.setOnClickListener {
+            TimeUtils.closeInput(this)
             toShowBank()
         }
 
