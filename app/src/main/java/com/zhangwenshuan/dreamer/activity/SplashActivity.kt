@@ -88,6 +88,8 @@ class SplashActivity : AppCompatActivity() {
 
                 val user = GsonUtils.getGson().fromJson(strUser, type) as User
 
+                BaseApplication.avatar=LocalDataUtils.getString(LocalDataUtils.AVATAE)
+
                 BaseApplication.userId = user!!.id!!
 
                 BaseApplication.token = token

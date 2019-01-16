@@ -13,7 +13,8 @@ import org.jetbrains.anko.toast
 
 class LoginActivity : BaseActivity() {
     override fun initData() {
-        etPhone.text=Editable.Factory.getInstance().newEditable(LocalDataUtils.getString(LocalDataUtils.LOCAL_PASSWORD_USER))
+        etPhone.text =
+                Editable.Factory.getInstance().newEditable(LocalDataUtils.getString(LocalDataUtils.LOCAL_PASSWORD_USER))
     }
 
     override fun initListener() {
@@ -51,10 +52,13 @@ class LoginActivity : BaseActivity() {
 
                 BaseApplication.userId = it.data.user!!.id!!
 
-                BaseApplication.user=it.data.user
+                BaseApplication.user = it.data.user
 
+                if (it.data.user.avatarUrl != null) {
+                    BaseApplication.setAvatarLocal(it.data.user.avatarUrl!!)
+                }
 
-                LocalDataUtils.setString(LocalDataUtils.TOKEN, GsonUtils.getGson().toJson(it.data.token))
+                LocalDataUtils.setString(LocalDataUtils.TOKEN, it.data.token!!)
 
                 LocalDataUtils.setString(LocalDataUtils.USER, GsonUtils.getGson().toJson(it.data.user))
 
@@ -63,7 +67,7 @@ class LoginActivity : BaseActivity() {
                 finish()
 
 
-                LocalDataUtils.setString(LocalDataUtils.LOCAL_PASSWORD_USER,username)
+                LocalDataUtils.setString(LocalDataUtils.LOCAL_PASSWORD_USER, username)
             }
 
         })

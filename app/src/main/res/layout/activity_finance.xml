@@ -26,11 +26,13 @@
                         android:layout_width="wrap_content" android:layout_centerInParent="true"
                         android:textColor="@color/colorWhite"
                         android:textSize="16sp"
+                        android:visibility="gone"
                         android:layout_height="match_parent" android:text="储蓄罐" android:gravity="center_vertical"/>
 
                 <ImageView android:layout_width="wrap_content"
                            android:src="@drawable/ic_action_left"
                            android:paddingLeft="15dp"
+                           android:visibility="gone"
                            android:id="@+id/ivBack"
                            android:paddingRight="10dp"
                            android:layout_height="match_parent"/>

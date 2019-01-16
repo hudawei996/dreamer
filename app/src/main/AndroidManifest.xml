@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
 
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
             android:icon="@mipmap/ic_launcher"
@@ -53,8 +54,6 @@
         <activity android:name=".activity.LogoActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.FinanceActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.FinanceAddActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".activity.BankCardAddActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".activity.BankAccountUpdateActivity"/>
         <activity android:name=".activity.FinanceDetailActivity"/>
         <activity android:name=".activity.FinanceSynopsisActivity"/>
         <activity android:name=".activity.FinanceSearchActivity"/>
@@ -80,7 +79,7 @@
         <activity android:name=".activity.IntroduceActivity"/>
 
         <provider
-                android:name="android.support.v4.content.FileProvider"
+                android:name=".custom.MyFileProvider"
                 android:authorities="com.zhangwenshuan.dreamer.fileProvider"
                 android:exported="false"
                 android:grantUriPermissions="true">

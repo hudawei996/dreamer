@@ -41,6 +41,9 @@ class BaseApplication : Application() {
         @JvmStatic
         var user: User? = null
 
+        @JvmStatic
+        var avatar: String = ""
+
 
         private lateinit var instance: Application
 
@@ -48,13 +51,17 @@ class BaseApplication : Application() {
             return instance
         }
 
-        fun setUserLocal(user: User){
-            this.user=user
+        fun setUserLocal(user: User) {
+            this.user = user
 
-            LocalDataUtils.setString(LocalDataUtils.USER,GsonUtils.getGson().toJson(user))
+            LocalDataUtils.setString(LocalDataUtils.USER, GsonUtils.getGson().toJson(user))
         }
 
+        fun setAvatarLocal(avatar:String) {
+            this.avatar = avatar
 
+            LocalDataUtils.setString(LocalDataUtils.AVATAE, avatar)
+        }
 
 
     }

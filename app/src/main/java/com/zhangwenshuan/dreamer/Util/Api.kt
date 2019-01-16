@@ -3,11 +3,9 @@ package com.zhangwenshuan.dreamer.util
 import android.animation.ArgbEvaluator
 import com.zhangwenshuan.dreamer.bean.*
 import io.reactivex.Observable
+import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import retrofit2.http.Body
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface Api {
 
@@ -53,6 +51,11 @@ interface Api {
     fun updateIntroduce(
         @Field("userId") userId: Int, @Field("introduce") introduce: String
     ): Observable<Result<Any>>
+
+
+    @Multipart
+    @POST("user/uploadAvatar")
+    fun uploadAvatar(@PartMap map:Map<String,Int>,@Part part:MultipartBody.Part):Observable<Result<String>>
 
     @POST("user/saveFeedback")
     @FormUrlEncoded

@@ -13,6 +13,14 @@
           android:id="@+id/vTop"
           android:background="@color/finance_base_color"/>
 
+    <TextView android:layout_width="match_parent"
+              android:textSize="18sp"
+              android:textColor="@color/white"
+              android:text="我"
+              android:gravity="center"
+              android:background="@color/finance_base_color"
+              android:layout_height="70dp"/>
+
     <ScrollView
             android:layout_width="match_parent"
             android:scrollbars="none"
@@ -70,7 +78,8 @@
                         android:src="@mipmap/singer"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="@dimen/me_margin_left"
-                        android:layout_width="50dp" android:layout_height="50dp"/>
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"/>
             </RelativeLayout>
 
             <RelativeLayout

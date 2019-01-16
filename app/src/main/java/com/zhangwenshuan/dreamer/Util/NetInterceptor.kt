@@ -21,8 +21,10 @@ class NetInterceptor : Interceptor {
             )
         )
 
+        val token="Dreamer " + BaseApplication.token
+
         request = request.newBuilder()
-            .addHeader("Authorization", "Dreamer " + BaseApplication.token)
+            .addHeader("Authorization", token)
             .url(url)
             .build()
 

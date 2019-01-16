@@ -161,6 +161,7 @@ class MainActivity : BaseActivity() {
         }
 
         LocalDataUtils.setString(LocalDataUtils.TOKEN, "")
+        LocalDataUtils.setString(LocalDataUtils.AVATAE,"")
         startActivity(Intent(this, LoginActivity::class.java))
 
         finish()

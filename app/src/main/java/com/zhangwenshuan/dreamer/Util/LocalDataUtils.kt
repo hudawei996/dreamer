@@ -34,6 +34,7 @@ class LocalDataUtils {
         val LOCAL_PASSWORD_USER="local_user"
 
         val LOCAL_PASSWORD_STATE="local_state"
+        val AVATAE: String="avatar_url"
 
         fun getString(key: String): String {
             val utils = BaseApplication.getContext().getSharedPreferences("", Context.MODE_PRIVATE)

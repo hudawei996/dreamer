@@ -1,8 +1,10 @@
 package com.zhangwenshuan.dreamer.fragment
 
 import android.content.Intent
+import com.bumptech.glide.Glide
 import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.activity.*
+import com.zhangwenshuan.dreamer.bean.AvatarUpload
 import com.zhangwenshuan.dreamer.bean.UpdateIntroduce
 import com.zhangwenshuan.dreamer.bean.UpdateNickname
 import com.zhangwenshuan.dreamer.util.BaseApplication
@@ -48,6 +50,13 @@ class MeFragment : BaseFragment() {
             tvIntroduce.text = user?.introduce
         }
 
+        if (BaseApplication.avatar.isEmpty()){
+            Glide.with(activity!!).asBitmap().load(R.mipmap.img_logo).into(ivHeader)
+        }else{
+            Glide.with(activity!!).asBitmap().load(BaseApplication.avatar).apply(glideOptions).into(ivHeader)
+        }
+
+
     }
 
     override fun initListener() {
@@ -83,6 +92,11 @@ class MeFragment : BaseFragment() {
     fun subscribe(update: UpdateIntroduce) {
         tvIntroduce.text = update.introduce
     }
+
+ @Subscribe
+    fun subscribe(update: AvatarUpload) {
+     Glide.with(activity!!).asBitmap().load(BaseApplication.avatar).apply(glideOptions).into(ivHeader)
+ }
 
 
     override fun initData() {
