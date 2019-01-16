@@ -6,12 +6,14 @@ import android.graphics.Typeface
 import android.support.v4.view.ViewPager
 import android.text.Editable
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.adapter.MainAdapter
 import com.zhangwenshuan.dreamer.bean.Login
 import com.zhangwenshuan.dreamer.fragment.BaseFragment
+import com.zhangwenshuan.dreamer.fragment.CountDownTimeFragment
 import com.zhangwenshuan.dreamer.fragment.MainFragment
 import com.zhangwenshuan.dreamer.fragment.MeFragment
 import com.zhangwenshuan.dreamer.util.BaseApplication
@@ -41,13 +43,14 @@ class MainActivity : BaseActivity() {
     override fun preInitData() {
         EventBus.getDefault().register(this)
 
-        fragments = mutableListOf(MainFragment(), MeFragment())
+        fragments = mutableListOf(MainFragment(),CountDownTimeFragment(), MeFragment())
 
 
-        titles = mutableListOf("梦想家", "我")
+        titles = mutableListOf("梦想家","倒计时", "我")
 
         icons = mutableListOf(
             resources.getString(R.string.home),
+            resources.getString(R.string.timeline),
             resources.getString(R.string.me)
         )
 
@@ -69,6 +72,8 @@ class MainActivity : BaseActivity() {
         initBottomView()
 
         showPasswordDialog()
+
+        vpMain.setCurrentItem(1,false)
 
     }
 
@@ -140,18 +145,6 @@ class MainActivity : BaseActivity() {
             tlMain.getTabAt(index)!!.customView = view
         }
 
-        vpMain.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrollStateChanged(p0: Int) {
-
-            }
-
-            override fun onPageScrolled(p0: Int, p1: Float, p2: Int) {
-            }
-
-            override fun onPageSelected(p0: Int) {
-                tvTabName.text = titles!![p0]
-            }
-        })
     }
 
     override fun initListener() {

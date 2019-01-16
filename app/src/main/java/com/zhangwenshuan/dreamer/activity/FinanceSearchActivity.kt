@@ -38,7 +38,6 @@ class FinanceSearchActivity : FinanceBaseActivity() {
     lateinit var stopCalendar: Calendar
 
 
-
     override fun setResourceId(): Int {
         return R.layout.activity_finance_search
     }
@@ -180,12 +179,22 @@ class FinanceSearchActivity : FinanceBaseActivity() {
 
         var dayBill: DayBill? = null
 
+        var expense = 0.0
+        var income = 0.0
+
 
         if (list.isNotEmpty()) {
 
             var lastData = ""
 
             for (value in list) {
+
+                if (value.isExpense == 1) {
+                    expense += value.account
+                } else {
+                    income += value.account
+                }
+
                 if (lastData == "" || value.date != lastData) {
                     lastData = value.date
                     dayBill = DayBill()
@@ -204,6 +213,10 @@ class FinanceSearchActivity : FinanceBaseActivity() {
             }
 
             dayBills.sortByDescending { it.date }
+
+            adapter.setExpense(expense)
+
+            adapter.setIncome(income)
 
             return dayBills
         }

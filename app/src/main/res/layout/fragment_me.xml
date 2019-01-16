@@ -1,23 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
               android:background="@color/background"
               android:layout_width="match_parent"
+
               android:layout_height="match_parent">
 
-    <ScrollView android:layout_width="match_parent"
-                android:scrollbars="none"
-                android:layout_height="match_parent">
+
+    <View android:layout_width="match_parent"
+          android:layout_height="2dp"
+          android:id="@+id/vTop"
+          android:background="@color/finance_base_color"/>
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:scrollbars="none"
+            android:layout_height="match_parent">
         <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="match_parent" android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
 
             <RelativeLayout
-                    android:layout_marginTop="15dp"
+                    android:paddingTop="25dp"
+                    android:paddingBottom="25dp"
                     android:id="@+id/rlPerson"
                     android:background="@color/colorWhite"
-                    android:layout_width="match_parent" android:layout_height="wrap_content">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
 
                 <TextView
@@ -66,19 +78,11 @@
 
                     android:background="@color/colorWhite"
                     android:layout_width="match_parent" android:layout_height="@dimen/me_height">
-                <ImageView android:layout_width="@dimen/me_image_size"
-                           android:layout_height="@dimen/me_image_size"
-                           android:id="@+id/ivPasswordManager"
-                           android:layout_centerVertical="true"
-                           android:layout_marginLeft="@dimen/me_margin_left"
-                           android:src="@mipmap/ic_password_me"/>
-
                 <TextView
                         android:text="密码"
                         android:textColor="@color/colorBlack"
-                        android:layout_toRightOf="@id/ivPasswordManager"
                         android:gravity="center_vertical"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="@dimen/left"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"/>
 
@@ -104,19 +108,11 @@
             <RelativeLayout
                     android:background="@color/colorWhite"
                     android:layout_width="match_parent" android:layout_height="@dimen/me_height">
-                <ImageView android:layout_width="@dimen/me_image_size"
-                           android:layout_height="@dimen/me_image_size"
-                           android:id="@+id/ivMoneyManager"
-                           android:layout_centerVertical="true"
-                           android:layout_marginLeft="@dimen/me_margin_left"
-                           android:src="@mipmap/ic_money_me"/>
-
                 <TextView
-                        android:text="财务"
+                        android:text="记账"
                         android:textColor="@color/colorBlack"
-                        android:layout_toRightOf="@id/ivMoneyManager"
                         android:gravity="center_vertical"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="@dimen/left"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"/>
                 <ImageView android:layout_width="@dimen/right_size"
@@ -139,19 +135,12 @@
             <RelativeLayout
                     android:background="@color/colorWhite"
                     android:layout_width="match_parent" android:layout_height="@dimen/me_height">
-                <ImageView android:layout_width="@dimen/me_image_size"
-                           android:layout_height="@dimen/me_image_size"
-                           android:id="@+id/ivTimelineManager"
-                           android:layout_centerVertical="true"
-                           android:layout_marginLeft="@dimen/me_margin_left"
-                           android:src="@mipmap/ic_time_me"/>
 
                 <TextView
-                        android:text="时间轴"
+                        android:text="倒计时"
                         android:textColor="@color/colorBlack"
-                        android:layout_toRightOf="@id/ivTimelineManager"
                         android:gravity="center_vertical"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="@dimen/left"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"/>
                 <ImageView android:layout_width="@dimen/right_size"
@@ -170,30 +159,17 @@
             </RelativeLayout>
 
             <RelativeLayout
-                    android:paddingLeft="5dp"
                     android:id="@+id/rlContact"
                     android:layout_marginTop="15dp"
                     android:background="@color/colorWhite"
                     android:layout_width="match_parent" android:layout_height="@dimen/me_height">
 
-                <TextView android:layout_width="40dp"
-                          android:layout_height="match_parent"
-                          android:gravity="center"
-                          android:textSize="22sp"
-                          android:visibility="gone"
-                          android:textColor="@color/chart_color_5"
-
-                          android:id="@+id/tvContact"
-                          android:layout_centerVertical="true"
-                          android:layout_marginLeft="@dimen/me_margin_left"
-                          android:src="@mipmap/ic_setting"/>
 
                 <TextView
                         android:text="联系我"
                         android:textColor="@color/colorBlack"
-                        android:layout_toRightOf="@id/tvContact"
                         android:gravity="center_vertical"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="@dimen/left"
 
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"/>
@@ -211,29 +187,17 @@
 
             </RelativeLayout>
             <RelativeLayout
-                    android:paddingLeft="5dp"
+
                     android:id="@+id/rlAboutOur"
                     android:layout_marginTop="0.5dp"
                     android:background="@color/colorWhite"
                     android:layout_width="match_parent" android:layout_height="@dimen/me_height">
 
-                <TextView android:layout_width="40dp"
-                          android:layout_height="match_parent"
-                          android:gravity="center"
-                          android:textSize="25sp"
-                          android:textColor="@color/chart_color_5"
-android:visibility="gone"
-                          android:id="@+id/tvAboutMe"
-                          android:layout_centerVertical="true"
-                          android:layout_marginLeft="@dimen/me_margin_left"
-                          android:src="@mipmap/ic_setting"/>
-
                 <TextView
                         android:text="关于我"
                         android:textColor="@color/colorBlack"
-                        android:layout_toRightOf="@id/tvAboutMe"
                         android:gravity="center_vertical"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="@dimen/left"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"/>
 
@@ -250,29 +214,18 @@ android:visibility="gone"
 
             </RelativeLayout>
             <RelativeLayout
-                    android:paddingLeft="5dp"
+
                     android:id="@+id/rlFeedback"
                     android:layout_marginTop="0.5dp"
                     android:background="@color/colorWhite"
                     android:layout_width="match_parent" android:layout_height="@dimen/me_height">
 
-                <TextView android:layout_width="40dp"
-                          android:layout_height="match_parent"
-                          android:gravity="center"
-                          android:textColor="@color/chart_color_5"
-                          android:textSize="22sp"
-                          android:visibility="gone"
-                          android:id="@+id/tvFeedback"
-                          android:layout_centerVertical="true"
-                          android:layout_marginLeft="@dimen/me_margin_left"
-                          android:src="@mipmap/ic_setting"/>
 
                 <TextView
                         android:text="在线反馈"
                         android:textColor="@color/colorBlack"
-                        android:layout_toRightOf="@id/tvFeedback"
                         android:gravity="center_vertical"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="@dimen/left"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"/>
 

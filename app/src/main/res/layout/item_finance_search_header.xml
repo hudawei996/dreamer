@@ -1,64 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:orientation="horizontal"
+              android:orientation="vertical"
               android:background="@color/finance_base_color"
               android:layout_height="wrap_content">
-    <LinearLayout
-            android:id="@+id/llBeginTime"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_width="0dp" android:layout_height="wrap_content">
-        <TextView
-                android:text="起始"
-                android:textSize="10sp"
-                android:textColor="@color/colorWhite2"
-                android:gravity="center_vertical"
-                android:layout_marginLeft="2dp"
-                android:padding="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-   <TextView
-                android:id="@+id/tvSearchBeginTime"
-                android:text="2018-08"
-                android:textSize="18sp"
-                android:paddingLeft="20dp"
-                android:paddingBottom="10dp"
-                android:textColor="@color/colorWhite"
-                android:gravity="center"
-                android:layout_marginLeft="2dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
 
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+        <TextView android:layout_width="0dp"
+                  android:layout_weight="1"
+                  android:textSize="10sp"
+                  android:paddingLeft="12dp"
+                  android:id="@+id/tvExpense"
+                  android:textColor="@color/colorWhite2"
+                  android:layout_height="match_parent"/>
+        <TextView android:layout_width="0dp"
+                  android:layout_weight="1"
+                  android:textSize="10sp"
+                  android:id="@+id/tvIncome"
+                  android:paddingLeft="12dp"
+                  android:textColor="@color/colorWhite2"
+                  android:layout_height="match_parent"/>
     </LinearLayout>
 
-    <LinearLayout
-            android:id="@+id/llStopTime"
-            android:layout_marginLeft="0.05dp"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_width="0dp" android:layout_height="wrap_content">
-        <TextView
-                android:text="终止"
-                android:textSize="10sp"
-                android:textColor="@color/colorWhite2"
-                android:gravity="center_vertical"
-                android:layout_marginLeft="2dp"
-                android:padding="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        <TextView
-                android:id="@+id/tvSearchStopTime"
-                android:text="2018-09"
-                android:textSize="18sp"
-                android:paddingLeft="20dp"
-                android:paddingBottom="10dp"
-                android:textColor="@color/colorWhite"
-                android:gravity="center"
-                android:layout_marginLeft="2dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="horizontal"
+                  android:layout_height="wrap_content">
+        <LinearLayout
+                android:id="@+id/llBeginTime"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp" android:layout_height="wrap_content">
+            <TextView
+                    android:text="起始"
+                    android:textSize="10sp"
+                    android:textColor="@color/colorWhite2"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="2dp"
+                    android:padding="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            <TextView
+                    android:id="@+id/tvSearchBeginTime"
+                    android:text="2018-08"
+                    android:textSize="18sp"
+                    android:paddingLeft="20dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"
+                    android:layout_marginLeft="2dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/llStopTime"
+                android:layout_marginLeft="0.05dp"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp" android:layout_height="wrap_content">
+            <TextView
+                    android:text="终止"
+                    android:textSize="10sp"
+                    android:textColor="@color/colorWhite2"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="2dp"
+                    android:padding="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            <TextView
+                    android:id="@+id/tvSearchStopTime"
+                    android:text="2018-09"
+                    android:textSize="18sp"
+                    android:paddingLeft="20dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"
+                    android:layout_marginLeft="2dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
 
+        </LinearLayout>
     </LinearLayout>
+
 </LinearLayout>

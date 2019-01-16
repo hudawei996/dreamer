@@ -21,10 +21,15 @@ import com.zhangwenshuan.dreamer.bean.DayBill
 import com.zhangwenshuan.dreamer.bean.Finance
 
 class FinanceSearchAdapter(var context: Context, var list: MutableList<DayBill>) :
+
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
     var lastDate = ""
+
+    var expense="支出:0.00"
+
+    var income="收入:0.00"
 
 
     val TYPE_HEADER = 1
@@ -55,6 +60,10 @@ class FinanceSearchAdapter(var context: Context, var list: MutableList<DayBill>)
             holder.tvBegin.text = beginTime
 
             holder.tvStop.text = stopTime
+
+            holder.tvExpense.text=expense
+
+            holder.tvIncome.text=income
 
             holder.llBeginTime.setOnClickListener {
                 beginTimeListener?.onClick(it)
@@ -166,6 +175,14 @@ class FinanceSearchAdapter(var context: Context, var list: MutableList<DayBill>)
         stopTimeListener = listener
     }
 
+    fun setExpense(account:Double){
+        expense="支出:${decimalFormat.format(account)}"
+    }
+
+    fun setIncome(account:Double){
+        income="收入:${decimalFormat.format(account)}"
+    }
+
 }
 
 class FinanceSearchHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -182,6 +199,8 @@ class FinanceHeaderHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val llStopTime = itemView.findViewById<LinearLayout>(R.id.llStopTime)
     val tvBegin = itemView.findViewById<TextView>(R.id.tvSearchBeginTime)
     val tvStop = itemView.findViewById<TextView>(R.id.tvSearchStopTime)
+    val tvExpense = itemView.findViewById<TextView>(R.id.tvExpense)
+    val tvIncome = itemView.findViewById<TextView>(R.id.tvIncome)
 
 }
 

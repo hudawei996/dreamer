@@ -1,7 +1,6 @@
 package com.zhangwenshuan.dreamer.fragment
 
 import android.content.Intent
-import android.graphics.Typeface
 import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.activity.*
 import com.zhangwenshuan.dreamer.bean.UpdateIntroduce
@@ -20,32 +19,33 @@ class MeFragment : BaseFragment() {
 
     }
 
+    override fun beforeViewCreated() {
+        super.beforeViewCreated()
+        change()
+    }
+
+    private fun change() {
+
+        val statusHeight =
+            resources.getDimensionPixelSize(resources.getIdentifier("status_bar_height", "dimen", "android"))
+
+        vTop.layoutParams.height = statusHeight
+
+    }
+
     override fun initViews() {
-        val typeface = Typeface.createFromAsset(activity!!.assets, "icon_action.ttf")
 
-        tvAboutMe.text = resources.getText(R.string.about)
-        tvContact.text = resources.getText(R.string.contact)
-        tvFeedback.text = resources.getText(R.string.feedback)
-        tvAboutMe.text = resources.getText(R.string.about)
-        tvSettings.text = resources.getText(R.string.setting)
-
-        tvAboutMe.typeface = typeface
-        tvContact.typeface = typeface
-        tvFeedback.typeface = typeface
-        tvSettings.typeface = typeface
-
-
-        val user=BaseApplication.user
+        val user = BaseApplication.user
 
         logError(user.toString())
 
 
-        if (user?.nickname!=null){
-            tvNickname.text=user?.nickname
+        if (user?.nickname != null) {
+            tvNickname.text = user?.nickname
         }
 
-        if (user?.introduce!=null){
-            tvIntroduce.text=user?.introduce
+        if (user?.introduce != null) {
+            tvIntroduce.text = user?.introduce
         }
 
     }
