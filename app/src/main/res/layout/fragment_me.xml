@@ -18,8 +18,8 @@
               android:textColor="@color/white"
               android:text="我"
               android:gravity="center"
-              android:background="@color/finance_base_color"
-              android:layout_height="70dp"/>
+              android:background="@color/colorPrimary"
+              android:layout_height="60dp"/>
 
     <ScrollView
             android:layout_width="match_parent"

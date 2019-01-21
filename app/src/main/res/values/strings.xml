@@ -32,6 +32,9 @@
     <string name="setting">&#xe62b;</string>
     <string name="about">&#xe798;</string>
 
+    <string name="password_remember">&#xe67a;</string>
+    <string name="book_remember">&#xe60d;</string>
+    <string name="remember">&#xe75f;</string>
 
 
     <string-array name="bank_array">

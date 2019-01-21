@@ -54,6 +54,9 @@ data class TotalAccount(var incomeAccount:Double,var expenseAccount:Double)
 data class DayAccount(var account: Double, var date: String)
 
 
+data class Item(var icon:String,var name:String,var showRight:Boolean=false,var showTop:Boolean=false)
+
+
 data class BankCard(var name: String, var account: Double, var number: String, var id: Int?) : RightBean(name),
     Serializable
 

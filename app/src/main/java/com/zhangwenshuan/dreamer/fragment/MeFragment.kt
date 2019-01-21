@@ -21,6 +21,16 @@ class MeFragment : BaseFragment() {
 
     }
 
+    override fun setStatusBarHeight(height: Int) {
+        if (vTop!=null){
+            var layoutParams = vTop.layoutParams
+
+            layoutParams.height = height
+
+            vTop.layoutParams = layoutParams
+        }
+    }
+
 
 
     override fun initViews() {

@@ -48,6 +48,7 @@
               android:layout_alignParentBottom="true"
               android:layout_marginLeft="10dp"
               android:layerType="software"
+              android:visibility="gone"
               android:id="@+id/vBottomLine"
               android:layout_alignLeft="@id/tvSettingName"
               android:layout_height="2dp"

@@ -10,16 +10,19 @@ class CountDownTimeFragment : BaseFragment() {
     }
 
     override fun setStatusBarHeight(height: Int) {
-        var layoutParams = vTop.layoutParams
+        if (vTop!=null){
+            var layoutParams = vTop.layoutParams
 
-        var oldHeight = layoutParams.height
+            var oldHeight = layoutParams.height
 
-        logInfo(oldHeight.toString())
+            logInfo(oldHeight.toString())
 
 
-        layoutParams.height=height
+            layoutParams.height=height
 
-        vTop.layoutParams=layoutParams
+            vTop.layoutParams=layoutParams
+        }
+
     }
 
     override fun preInitData() {

@@ -21,6 +21,7 @@
 
 
     <color name="colorBlack">#000000</color>
+
     <color name="colorBlack2">#80000000</color>
 
     <color name="colorBase">#45000000</color>
@@ -28,10 +29,14 @@
     <color name="colorOrange">#FF6100</color>
 
 
-    <color name="background">#F7F7F7</color>
+    <color name="background">#ededed</color>
+
+    <color name="textBase">#181818</color>
+
+    <color name="textHint">#acacac</color>
 
 
-    <color name="hint">#cacaca</color>
+    <color name="hint">@color/textHint</color>
 
 
     <color name="finance_top_color">#95f4c6</color>

@@ -50,7 +50,7 @@ class MainActivity : BaseActivity() {
         fragments = mutableListOf(MainFragment(), CountDownTimeFragment(), MoreFragment(), MeFragment())
 
 
-        titles = mutableListOf("梦想家", "倒计时", "发现页", "我")
+        titles = mutableListOf("梦想家", "倒计时", "发现", "我")
 
         icons = mutableListOf(
             resources.getString(R.string.home),
@@ -84,16 +84,16 @@ class MainActivity : BaseActivity() {
 
         statusHeight = resources.getDimensionPixelSize(resources.getIdentifier("status_bar_height", "dimen", "android"))
 
-        navigationHegiht =
-                resources.getDimensionPixelSize(resources.getIdentifier("navigation_bar_height", "dimen", "android"))
-
-
-        val hasNavigation = SystemUtil.checkDeviceHasNavigationBar(this)
-
-        if (hasNavigation) {
-            navigationHegiht = SystemUtil.getNavigationBarHeight(this)
-
-        }
+//        navigationHegiht =
+//                resources.getDimensionPixelSize(resources.getIdentifier("navigation_bar_height", "dimen", "android"))
+//
+//
+//        val hasNavigation = SystemUtil.checkDeviceHasNavigationBar(this)
+//
+//        if (hasNavigation) {
+//            navigationHegiht = SystemUtil.getNavigationBarHeight(this)
+//
+//        }
 
     }
 
@@ -190,10 +190,10 @@ class MainActivity : BaseActivity() {
                     setStatusBarColor(true, Color.TRANSPARENT)
 
                 } else if (position == 2) {
-                    setStatusBarColor(true, resources.getColor(R.color.finance_base_color))
+                    setStatusBarColor(true, resources.getColor(R.color.colorPrimary) )
 
                 } else if (position == 3) {
-                    setStatusBarColor(true, resources.getColor(R.color.finance_base_color))
+                    setStatusBarColor(true, resources.getColor(R.color.colorPrimary))
 
                 }
                 fragments!![position].setStatusBarHeight(statusHeight)
