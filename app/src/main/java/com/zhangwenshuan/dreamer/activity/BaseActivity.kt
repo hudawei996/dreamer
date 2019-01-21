@@ -13,8 +13,6 @@ abstract class BaseActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
 
-
-
         setContentView(setResourceId())
 
         preInitData()
@@ -35,6 +33,8 @@ abstract class BaseActivity : AppCompatActivity() {
             ivBack.setOnClickListener { finish() }
         }
     }
+
+
 
     /**
      * 设置资源布局

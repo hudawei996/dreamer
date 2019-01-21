@@ -4,7 +4,7 @@ import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.util.logInfo
 import kotlinx.android.synthetic.main.fragment_count_down_time.*
 
-class CountDownTimeFragment : BaseFragment() {
+class MoreFragment : BaseFragment() {
     override fun getLayoutResource(): Int {
         return R.layout.fragment_count_down_time
     }

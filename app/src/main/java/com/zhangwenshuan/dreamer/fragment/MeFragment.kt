@@ -21,19 +21,7 @@ class MeFragment : BaseFragment() {
 
     }
 
-    override fun beforeViewCreated() {
-        super.beforeViewCreated()
-        change()
-    }
 
-    private fun change() {
-
-        val statusHeight =
-            resources.getDimensionPixelSize(resources.getIdentifier("status_bar_height", "dimen", "android"))
-
-        vTop.layoutParams.height = statusHeight
-
-    }
 
     override fun initViews() {
 
@@ -81,6 +69,8 @@ class MeFragment : BaseFragment() {
 
             startActivity(Intent(activity, PersonInfoActivity::class.java))
         }
+
+
     }
 
     @Subscribe

@@ -16,7 +16,6 @@ abstract class BaseFragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        beforeViewCreated()
         super.onViewCreated(view, savedInstanceState)
 
         preInitData()
@@ -28,10 +27,10 @@ abstract class BaseFragment : Fragment() {
         initData()
     }
 
-    open fun beforeViewCreated() {
+
+    open fun setStatusBarHeight(height:Int){
 
     }
-
     abstract fun preInitData()
 
     abstract fun initViews()

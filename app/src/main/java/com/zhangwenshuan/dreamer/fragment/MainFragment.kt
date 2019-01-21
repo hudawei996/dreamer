@@ -7,6 +7,7 @@ import android.os.Build
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.util.TypedValue
 import android.view.View
 import android.view.WindowManager
 import com.zhangwenshuan.dreamer.R
@@ -14,9 +15,7 @@ import com.zhangwenshuan.dreamer.activity.*
 import com.zhangwenshuan.dreamer.adapter.FinanceTodayAdapter
 import com.zhangwenshuan.dreamer.adapter.OnItemClickListener
 import com.zhangwenshuan.dreamer.bean.*
-import com.zhangwenshuan.dreamer.util.BaseApplication
-import com.zhangwenshuan.dreamer.util.NetUtils
-import com.zhangwenshuan.dreamer.util.TimeUtils
+import com.zhangwenshuan.dreamer.util.*
 import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.activity_finance.*
 import org.greenrobot.eventbus.EventBus
@@ -24,8 +23,13 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
 class MainFragment : BaseFragment() {
+
+    var topHeight: Int = 0
+
     override fun getLayoutResource(): Int {
         return R.layout.activity_finance
+
+
     }
 
 
@@ -39,34 +43,32 @@ class MainFragment : BaseFragment() {
 
     var position = 0
 
+    override fun setStatusBarHeight(height: Int) {
+        logInfo("status bar height:$height")
 
-    override fun beforeViewCreated(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            activity!!.window.statusBarColor = Color.TRANSPARENT
-        } else {
-            activity!!.window.setFlags(
-                WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-                WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
-            )
+        topHeight = height
+
+
+        if (rlTop != null) {
+            rlTop.setPadding(0, topHeight, 0, 0)
+
+//            rlTop.layoutParams.height = height +
+//                    TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 230f, resources.displayMetrics).toInt()
+
+
         }
-
-        activity!!.window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-
-        val statusHeight =
-            resources.getDimensionPixelSize(resources.getIdentifier("status_bar_height", "dimen", "android"))
-
-        rlTop.setPadding(0, statusHeight, 0, 0)
 
     }
 
 
     override fun preInitData() {
-
+        SystemUtil.requestLayout(llContent)
         EventBus.getDefault().register(this)
     }
 
     override fun initViews() {
+
+
 
         val financeFont = Typeface.createFromAsset(activity!!.assets, "finance.ttf")
 
@@ -92,6 +94,7 @@ class MainFragment : BaseFragment() {
                 this@MainFragment.position = position
             }
         })
+
     }
 
 
@@ -234,6 +237,17 @@ class MainFragment : BaseFragment() {
         tvTodayExpense.text = "今日支出:${decimalFormat.format(todayExpense)}元"
 
         tvTodayIncome.text = "收入:${decimalFormat.format(todayIncome)}元"
+
+        var balance=monthIncome-monthExpense
+
+        if (balance<0){
+            tvBalanceMonth.text= decimalFormat.format(-balance)
+            tvBalanceMonth.setTextColor(resources.getColor(R.color.finance_base_color))
+        }else{
+            tvBalanceMonth.text= decimalFormat.format(balance)
+            tvBalanceMonth.setTextColor(resources.getColor(R.color.white))
+        }
+
 
         notifyBudgetViewChange()
     }

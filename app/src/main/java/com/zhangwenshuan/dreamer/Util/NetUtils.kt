@@ -17,7 +17,7 @@ const val PROD_URL = "https://www.zhangwenshuan.com/dreamer/"
 
 const val DEV_URL = "http://192.168.1.102:8080/"
 
-var DEBUG = true
+var DEBUG = false
 
 
 class NetUtils {
