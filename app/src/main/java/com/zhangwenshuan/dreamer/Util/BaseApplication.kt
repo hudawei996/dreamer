@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.content.IntentFilter
 import android.graphics.Point
+import android.graphics.Typeface
 import android.net.ConnectivityManager
 import android.net.wifi.WifiManager
 import android.util.Log
@@ -16,9 +17,7 @@ import com.zhangwenshuan.dreamer.bean.User
 
 const val TAG = "dreamer"
 
-
 class BaseApplication : Application() {
-
 
     override fun onCreate() {
         super.onCreate()
@@ -28,6 +27,8 @@ class BaseApplication : Application() {
         Bugly.init(getApplicationContext(), "eacb38dfc1", false)
 
     }
+
+
 
 
     companion object {
@@ -62,6 +63,7 @@ class BaseApplication : Application() {
 
             LocalDataUtils.setString(LocalDataUtils.AVATAE, avatar)
         }
+
 
 
     }

@@ -41,8 +41,13 @@ class SystemUtil {
             //获取NavigationBar的高度
             val navigationHeight = resources . getDimensionPixelSize (resourceId)
 
+
+
             return navigationHeight
         }
+
+
+
 
         private var mChildOfContent: View? = null
         private var usableHeightPrevious: Int = 0

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/layout_title_bar"/>
+
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvCountDown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/llHint"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <TextView
+                android:text="人生的第一个目标就是定一个响当当的目标"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:lineSpacingExtra="2dp"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:text="然后去Fucking"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="2dp"
+                android:layout_width="match_parent"
+                android:lineSpacingExtra="2dp"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:text="长按可拖动目标排序"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:lineSpacingExtra="2dp"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:text="滑动可删除"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="2dp"
+                android:layout_width="match_parent"
+                android:lineSpacingExtra="2dp"
+                android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</LinearLayout>

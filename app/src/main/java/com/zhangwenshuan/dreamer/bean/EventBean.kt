@@ -36,6 +36,11 @@ data class BankAdd1(var bank: Bank)
 
 data class MobileAdd(var bank: Bank)
 
+data class TargetAdd(var type: Int=0)
+
+data class TargetFirst(var countDown: CountDown)
+data class TargetRemove(var type: Int=0)
+
 
 data class BankDelete(var bank: BankCard)
 

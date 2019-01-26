@@ -80,6 +80,10 @@ class MeFragment : BaseFragment() {
             startActivity(Intent(activity, PersonInfoActivity::class.java))
         }
 
+        rlCountDown.setOnClickListener {
+
+        }
+
 
     }
 

@@ -47,7 +47,7 @@ class AccountListActivity : FinanceBaseActivity() {
 
     override fun initViews() {
 
-        tvAdd.typeface = Typeface.createFromAsset(assets, "icon_action.ttf")
+        tvAdd.typeface = Typeface.createFromAsset(assets, resources.getString(R.string.typeface_path))
 
         tvAdd.text = resources.getString(R.string.add)
 

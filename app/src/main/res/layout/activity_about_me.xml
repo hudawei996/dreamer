@@ -6,6 +6,19 @@
 
     <include layout="@layout/layout_title_bar"/>
 
+
+    <ImageView android:layout_width="wrap_content"
+               android:src="@mipmap/ic_logo"
+               android:layout_marginTop="20dp"
+               android:layout_gravity="center_horizontal"
+               android:layout_height="wrap_content"/>
+
+    <TextView android:layout_width="wrap_content"
+              android:layout_gravity="center_horizontal"
+              android:text="1.0.0"
+              android:id="@+id/tvVersions"
+              android:layout_height="wrap_content"/>
+
     <LinearLayout
             android:layout_marginTop="10dp"
             android:padding="25dp"
@@ -27,67 +40,11 @@
 
     </LinearLayout>
 
-    <LinearLayout
-            android:orientation="horizontal"
-            android:paddingLeft="@dimen/left"
-            android:paddingRight="@dimen/right"
-            android:layout_width="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_height="50dp">
-        <TextView android:layout_width="wrap_content"
-                  android:text="参加工作时间"
-                  android:gravity="center"
-                  android:textSize="16sp"
-                  android:textColor="@color/colorBlack"
-                  android:layout_height="match_parent"/>
-        <TextView android:layout_width="0dp"
-                  android:layout_weight="1"
-                  android:text="2016年"
-                  android:gravity="right|center"
-                  android:textSize="16sp"
-                  android:textColor="@color/colorBlack2"
-                  android:layout_height="match_parent"/>
-    </LinearLayout>
-    <LinearLayout
-            android:orientation="horizontal"
-            android:paddingLeft="@dimen/left"
-            android:paddingRight="@dimen/right"
-            android:layout_width="match_parent"
-
-            android:layout_height="50dp">
-        <TextView android:layout_width="wrap_content"
-                  android:text="职业特长"
-                  android:gravity="center"
-                  android:textSize="16sp"
-                  android:textColor="@color/colorBlack"
-                  android:layout_height="match_parent"/>
-        <TextView android:layout_width="0dp"
-                  android:layout_weight="1"
-                  android:text="Android应用层开发"
-                  android:gravity="right|center"
-                  android:textSize="16sp"
-                  android:textColor="@color/colorBlack2"
-                  android:layout_height="match_parent"/>
-    </LinearLayout>
-    <LinearLayout
-            android:orientation="horizontal"
-            android:paddingLeft="@dimen/left"
-            android:paddingRight="@dimen/right"
-            android:layout_width="match_parent"
-
-            android:layout_height="50dp">
-        <TextView android:layout_width="wrap_content"
-                  android:text="最高学历"
-                  android:gravity="center"
-                  android:textSize="16sp"
-                  android:textColor="@color/colorBlack"
-                  android:layout_height="match_parent"/>
-        <TextView android:layout_width="0dp"
-                  android:layout_weight="1"
-                  android:text="大学本科"
-                  android:gravity="right|center"
-                  android:textSize="16sp"
-                  android:textColor="@color/colorBlack2"
-                  android:layout_height="match_parent"/>
-    </LinearLayout>
+    <TextView android:layout_width="match_parent"
+              android:text="历史版本"
+              android:textColor="@color/chart_color_1"
+              android:gravity="right"
+              android:paddingRight="20dp"
+              android:paddingLeft="@dimen/left"
+              android:layout_height="wrap_content"/>
 </LinearLayout>

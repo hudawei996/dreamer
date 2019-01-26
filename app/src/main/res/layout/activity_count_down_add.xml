@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@color/background"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <include layout="@layout/layout_title_bar"/>
+
+    <ScrollView android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+        <LinearLayout
+                android:orientation="vertical"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:paddingLeft="@dimen/left"
+                        android:background="@color/white"
+                        android:layout_height="60dp">
+                    <TextView android:layout_width="60dp"
+                              android:text="目标"
+                              android:textSize="16sp"
+                              android:textColor="@color/black"
+                              android:gravity="center_vertical"
+                              android:layout_height="match_parent"/>
+
+                    <EditText android:layout_width="match_parent"
+                              android:layout_marginTop="10dp"
+                              android:layout_marginBottom="10dp"
+                              android:layout_marginRight="5dp"
+                              android:hint="想要实现什么目标呢？"
+                              android:textSize="14sp"
+                              android:id="@+id/etTarget"
+                              android:maxLines="1"
+                              android:maxLength="18"
+                              android:background="@null"
+                              android:layout_height="match_parent"/>
+                </LinearLayout>
+
+                <View android:layout_width="match_parent"
+                      android:layout_height="0.2dp"
+                      android:layout_marginLeft="@dimen/left"
+                      android:background="@color/background"/>
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:paddingLeft="@dimen/left"
+                        android:background="@color/white"
+                        android:layout_height="60dp">
+                    <TextView android:layout_width="60dp"
+                              android:text="时间"
+                              android:textSize="16sp"
+                              android:textColor="@color/black"
+                              android:gravity="center_vertical"
+                              android:layout_height="match_parent"/>
+                    <TextView android:layout_width="0dp"
+                              android:layout_weight="1"
+                              android:text="2019-01-01"
+                              android:id="@+id/tvBeginTime"
+                              android:textSize="16sp"
+                              android:textColor="@color/hint"
+                              android:gravity="center_vertical"
+                              android:layout_height="match_parent"/>
+                    <TextView android:layout_width="60dp"
+                              android:text="至"
+                              android:textSize="16sp"
+                              android:textColor="@color/black"
+                              android:gravity="center_vertical"
+                              android:layout_height="match_parent"/>
+                    <TextView android:layout_width="0dp"
+                              android:layout_weight="1"
+                              android:text="2019-02-12"
+                              android:id="@+id/tvEndTime"
+                              android:textSize="16sp"
+                              android:textColor="@color/hint"
+                              android:gravity="center_vertical"
+                              android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+                <View android:layout_width="match_parent"
+                      android:layout_height="0.2dp"
+                      android:layout_marginLeft="@dimen/left"
+                      android:background="@color/background"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:paddingLeft="@dimen/left"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content">
+
+                <CheckBox android:layout_width="wrap_content"
+                          android:layout_gravity="center"
+                          android:id="@+id/cb"
+                          android:layout_height="wrap_content"/>
+
+                <TextView android:layout_width="match_parent"
+                          android:hint="首页展示"
+                          android:textSize="14sp"
+                          android:gravity="center_vertical"
+                          android:paddingLeft="5dp"
+                          android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <TextView android:layout_width="match_parent"
+                      android:background="@color/white"
+                      android:text="提交"
+                      android:id="@+id/tvSubmit"
+                      android:layout_marginTop="30dp"
+                      android:textColor="@color/colorBlack"
+                      android:gravity="center"
+                      android:letterSpacing="1"
+                      android:textSize="18sp"
+                      android:layout_height="50dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

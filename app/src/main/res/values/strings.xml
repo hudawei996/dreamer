@@ -35,6 +35,8 @@
     <string name="password_remember">&#xe67a;</string>
     <string name="book_remember">&#xe60d;</string>
     <string name="remember">&#xe75f;</string>
+    <string name="menu">&#xe609;</string>
+    <string name="typeface_path">icon_action.ttf</string>
 
 
     <string-array name="bank_array">

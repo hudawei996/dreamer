@@ -196,7 +196,9 @@ class MainActivity : BaseActivity() {
                     setStatusBarColor(true, resources.getColor(R.color.colorPrimary))
 
                 }
-                fragments!![position].setStatusBarHeight(statusHeight)
+                if (fragments!=null){
+                    fragments!![position].setStatusBarHeight(statusHeight)
+                }
                 vpMain.requestLayout()
             }
 

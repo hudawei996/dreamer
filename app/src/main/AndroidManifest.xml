@@ -77,6 +77,8 @@
         <activity android:name=".activity.PersonInfoActivity"/>
         <activity android:name=".activity.NicknameActivity"/>
         <activity android:name=".activity.IntroduceActivity"/>
+        <activity android:name=".activity.CountDownListActivity"/>
+        <activity android:name=".activity.CountDownAddActivity" android:theme="@style/CheckBox" />
 
         <provider
                 android:name=".custom.MyFileProvider"
