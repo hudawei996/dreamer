@@ -36,6 +36,12 @@ class FinanceDetailAdapter(var context: Context, var list: MutableList<Finance>)
 
         holder.tvTitle.text = finance.item + " " + finance.type
 
+        if(position==list.size-1){
+            holder.line.visibility=View.GONE
+        }else{
+            holder.line.visibility=View.VISIBLE
+        }
+
 
         holder.itemView.setOnClickListener {
             listener?.onItemClick(position)
@@ -52,6 +58,7 @@ class FinanceDetailAdapter(var context: Context, var list: MutableList<Finance>)
 
 class FinanceDetailHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val tvTitle = itemView.findViewById<TextView>(R.id.tvFinanceName)
+    val line=itemView.findViewById<View>(R.id.line)
     val tvAccount = itemView.findViewById<TextView>(R.id.tvFinanceAccount)
     val tvRemark = itemView.findViewById<TextView>(R.id.tvFinanceRemark)
 

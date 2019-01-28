@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@color/white"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <View android:layout_width="match_parent"
+          android:id="@+id/vMarginTop"
+          android:background="@color/background"
+          android:layout_height="15dp"/>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:paddingLeft="@dimen/left"
+            android:paddingRight="@dimen/right"
+            android:layout_height="60dp">
+
+
+        <TextView android:layout_width="wrap_content"
+                  android:id="@+id/tvIcon"
+                  android:text="icon"
+                  android:textSize="26sp"
+                  android:paddingRight="10dp"
+                  android:gravity="center"
+                  android:layout_height="match_parent"/>
+
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+
+            <TextView android:layout_width="match_parent"
+                      android:layout_weight="4"
+                      android:id="@+id/tvItem"
+                      android:text="同步"
+                      android:textSize="16sp"
+                      android:textColor="@color/textBase"
+                      android:gravity="left|bottom"
+                      android:layout_height="0dp"/>
+
+            <TextView android:layout_width="match_parent"
+                      android:id="@+id/tvHint"
+                      android:text="同步服务器或本地"
+                      android:textSize="10sp"
+                      android:textColor="@color/textHint"
+                      android:layout_weight="3"
+                      android:paddingTop="5dp"
+                      android:gravity="left|top"
+                      android:layout_height="0dp"/>
+
+
+        </LinearLayout>
+
+        <TextView android:layout_width="wrap_content"
+                  android:id="@+id/tvValue"
+                  android:text="真棒哦"
+                  android:textSize="10sp"
+                  android:textColor="@color/hint"
+                  android:paddingRight="5dp"
+                  android:gravity="center"
+                  android:layout_height="match_parent"/>
+
+        <TextView android:layout_width="wrap_content"
+                  android:id="@+id/tvRight"
+                  android:text="icon"
+                  android:textColor="@color/hint"
+                  android:gravity="center"
+                  android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+    <View android:layout_width="match_parent"
+          android:layout_height="0.5dp"
+          android:paddingLeft="@dimen/left"
+          android:background="@color/background"/>
+</LinearLayout>
