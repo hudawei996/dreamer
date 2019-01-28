@@ -173,7 +173,8 @@ interface Api {
 
     @POST("finance/getDetail")
     @FormUrlEncoded
-    fun getBudgetDetail(@Field("userId") userId: Int, @Field("month") month: String, @Field("expense") expense: Int): Observable<Result<List<BudgetDetail>>>
+    fun getBudgetDetail(@Field("userId") userId: Int, @Field("month") month: String,
+                        @Field("expense") expense: Int): Observable<Result<List<BudgetDetail>>>
 
 
     @POST("bank/saveBank")

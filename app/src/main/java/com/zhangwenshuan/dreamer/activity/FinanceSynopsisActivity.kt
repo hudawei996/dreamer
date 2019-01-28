@@ -3,6 +3,7 @@ package com.zhangwenshuan.dreamer.activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
@@ -10,6 +11,8 @@ import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.PercentFormatter
 import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.adapter.BankSynopsisAdapter
+import com.zhangwenshuan.dreamer.adapter.GeneralAdapter
+import com.zhangwenshuan.dreamer.adapter.GeneralStyle
 import com.zhangwenshuan.dreamer.bean.*
 import com.zhangwenshuan.dreamer.custom.XAxisCustom
 import com.zhangwenshuan.dreamer.util.*
@@ -40,6 +43,11 @@ class FinanceSynopsisActivity : FinanceBaseActivity() {
     override fun setResourceId(): Int = R.layout.activity_finance_synopsis
 
 
+    var expenseList= mutableListOf<Item>()
+
+    lateinit  var expenseAdapter:GeneralAdapter
+
+
     override fun preInitData() {
         super.preInitData()
 
@@ -64,7 +72,7 @@ class FinanceSynopsisActivity : FinanceBaseActivity() {
             Consumer {
                 if (it.code == 200) {
 
-                    it.data.sortedByDescending { it.account }
+                  var data=  it.data.sortedByDescending { it.account }
 
                     var account = it.data.sumBy { it.account.toInt() }
 
@@ -91,8 +99,28 @@ class FinanceSynopsisActivity : FinanceBaseActivity() {
                     initPieChart()
 
 
+                    initItemData(data)
+
+
                 }
             })
+    }
+
+    private fun initItemData(data: List<BudgetDetail>) {
+        for (value in data){
+          if (value.account!=0.0){
+              expenseList.add(Item("",value.item,resources.getColor(R.color.finance_base_color)
+                  ,value = decimalFormat.format(value.account)))
+          }
+       }
+
+        expenseAdapter= GeneralAdapter(this,GeneralStyle.STYLE_HAVE_VALUE,expenseList)
+
+        rvFinanceType.adapter=expenseAdapter
+
+        rvFinanceType.layoutManager=LinearLayoutManager(this)
+
+
     }
 
 
