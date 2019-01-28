@@ -47,17 +47,21 @@ class FinanceBudgetDetailAdapter(val context: Context, val list: MutableList<Bud
             holder.tvBalanceHint.text = "剩余"
             holder.tvBalanceHint.setTextColor(context.resources.getColor(R.color.hint))
 
+            val ratio = (balance * 100 / budget.account).toInt()
+
+          holder.pb.progress = ratio
+
         } else {
             holder.tvBalanceHint.setTextColor(context.resources.getColor(R.color.finance_base_color))
             holder.tvBalanceHint.text = "超支"
+
             balance = -balance
+
+           holder.pb.progress=0
         }
 
         holder.tvBalance.text = decimalFormat.format(balance)
 
-        val ratio = (balance * 100 / budget.account).toInt()
-
-        holder.pb.progress = 100 - ratio
 
 
     }
