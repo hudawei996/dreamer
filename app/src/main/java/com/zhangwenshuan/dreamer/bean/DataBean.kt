@@ -1,5 +1,6 @@
 package com.zhangwenshuan.dreamer.bean
 
+import android.graphics.Color
 import com.zhangwenshuan.dreamer.R
 import java.io.Serializable
 
@@ -54,7 +55,9 @@ data class TotalAccount(var incomeAccount:Double,var expenseAccount:Double)
 data class DayAccount(var account: Double, var date: String)
 
 
-data class Item(var icon:String,var name:String,var showRight:Boolean=false,var showTop:Boolean=false)
+data class Item(var icon:String, var name:String, var iconColor:Int= Color.BLUE,
+                var subTitle:String="",var value:String="",
+                var showRight:Boolean=false,var showTop:Boolean=false)
 
 
 data class BankCard(var name: String, var account: Double, var number: String, var id: Int?) : RightBean(name),

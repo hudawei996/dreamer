@@ -79,6 +79,8 @@
         <activity android:name=".activity.IntroduceActivity"/>
         <activity android:name=".activity.CountDownListActivity"/>
         <activity android:name=".activity.CountDownAddActivity" android:theme="@style/CheckBox" />
+        <activity android:name=".activity.CountDownSettingActivity"/>
+        <activity android:name=".activity.CountDownSyncActivity"/>
 
         <provider
                 android:name=".custom.MyFileProvider"

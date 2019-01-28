@@ -81,6 +81,7 @@ class MeFragment : BaseFragment() {
         }
 
         rlCountDown.setOnClickListener {
+            startActivity(Intent(activity, CountDownSettingActivity::class.java))
 
         }
 
