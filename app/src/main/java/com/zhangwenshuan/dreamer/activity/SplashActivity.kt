@@ -1,15 +1,13 @@
 package com.zhangwenshuan.dreamer.activity
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.support.v7.app.AppCompatActivity
-import android.view.Window
+import android.view.View
 import android.view.WindowManager
 import com.google.gson.reflect.TypeToken
 import com.zhangwenshuan.dreamer.R
-import com.zhangwenshuan.dreamer.bean.LoginBean
 import com.zhangwenshuan.dreamer.bean.User
 import com.zhangwenshuan.dreamer.util.BaseApplication
 import com.zhangwenshuan.dreamer.util.GsonUtils
@@ -20,6 +18,11 @@ import kotlinx.android.synthetic.main.activity_splash.*
 class SplashActivity : AppCompatActivity() {
 
     var showAdvertisement = "Advertisement"
+
+
+    fun setResourceId(): Int {
+        return R.layout.activity_splash
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +38,32 @@ class SplashActivity : AppCompatActivity() {
 
         val curDay = TimeUtils.curDay()
 
+
+        var countDownTarget = LocalDataUtils.getString(LocalDataUtils.COUNT_DOWN_TARGET)
+
+        if (!countDownTarget.isEmpty()) {
+            var data = countDownTarget.split("_dreamer_")
+
+            if (data[0] == LocalDataUtils.getString(LocalDataUtils.TOKEN)) {
+
+                if (data[2] == "开") {
+                    ivAd.visibility = View.GONE
+                    rlOtherHint.visibility = View.VISIBLE
+
+                    tvCountDownTarget.text = data[1]
+
+                    window.statusBarColor = resources.getColor(R.color.background)
+                    rlLogo.setBackgroundResource(R.color.background)
+
+
+                    countDownStarter()
+                    return
+                }
+
+
+            }
+        }
+
         if (local == curDay) {
             initData()
         } else {
@@ -43,6 +72,18 @@ class SplashActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    private fun countDownStarter() {
+        object : CountDownTimer(3000, 1000) {
+            override fun onFinish() {
+                initData()
+            }
+
+            override fun onTick(millisUntilFinished: Long) {
+                tvCountDownTime.text = (millisUntilFinished / 1000).toString()
+            }
+        }.start()
     }
 
     private fun stater() {
@@ -68,9 +109,6 @@ class SplashActivity : AppCompatActivity() {
         }.start()
     }
 
-    fun setResourceId(): Int {
-        return R.layout.activity_splash
-    }
 
     fun initData() {
         if (BaseApplication.token.isEmpty()) {
@@ -82,19 +120,19 @@ class SplashActivity : AppCompatActivity() {
                 finish()
             } else {
 
-                val strUser=LocalDataUtils.getString(LocalDataUtils.USER)
+                val strUser = LocalDataUtils.getString(LocalDataUtils.USER)
 
                 val type = object : TypeToken<User>() {}.type
 
                 val user = GsonUtils.getGson().fromJson(strUser, type) as User
 
-                BaseApplication.avatar=LocalDataUtils.getString(LocalDataUtils.AVATAE)
+                BaseApplication.avatar = LocalDataUtils.getString(LocalDataUtils.AVATAE)
 
                 BaseApplication.userId = user!!.id!!
 
                 BaseApplication.token = token
 
-                BaseApplication.user=user!!
+                BaseApplication.user = user!!
 
                 startActivity(Intent(this, MainActivity::class.java))
 

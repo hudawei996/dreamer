@@ -2,6 +2,7 @@ package com.zhangwenshuan.dreamer.adapter
 
 import android.content.Context
 import android.graphics.Typeface
+import android.support.v7.view.menu.ActionMenuItemView
 import android.support.v7.widget.RecyclerView
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -11,10 +12,10 @@ import android.widget.TextView
 import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.bean.Item
 
-class GeneralAdapter(var context: Context, var style: GeneralStyle, var list: MutableList<Item>) :
+class GeneralAdapter(var context: Context, var list: MutableList<Item>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
-        return GeneralHolder(LayoutInflater.from(context).inflate(R.layout.item_general_adapter, parent, false), style)
+        return GeneralHolder(LayoutInflater.from(context).inflate(R.layout.item_general_adapter, parent, false))
     }
 
     override fun getItemCount(): Int = list.size
@@ -71,6 +72,8 @@ class GeneralAdapter(var context: Context, var style: GeneralStyle, var list: Mu
         if (!item.value.isEmpty()){
             holder.tvValue.text=item.value
         }
+
+        initView(holder,item.style)
     }
 
     lateinit var listener: OnItemClickListener
@@ -79,9 +82,42 @@ class GeneralAdapter(var context: Context, var style: GeneralStyle, var list: Mu
     fun setOnItemClickListener(listener: OnItemClickListener) {
         this.listener = listener
     }
+
+    private  fun initView(holder:GeneralHolder,style:GeneralStyle){
+        when (style) {
+            GeneralStyle.STYLE_NORMAL -> {
+                holder.tvHint.visibility = View.GONE
+                holder.tvValue.visibility = View.GONE
+
+
+                holder.tvItem.gravity = Gravity.CENTER_VERTICAL
+            }
+            GeneralStyle.STYLE_HAVE_HINT -> {
+                holder.tvHint.visibility = View.VISIBLE
+
+                holder.tvValue.visibility = View.GONE
+
+                holder.tvItem.gravity = Gravity.BOTTOM
+            }
+            GeneralStyle.STYLE_HAVE_VALUE -> {
+                holder.tvHint.visibility = View.GONE
+
+                holder.tvValue.visibility = View.VISIBLE
+
+                holder.tvItem.gravity = Gravity.CENTER_VERTICAL
+            }
+            GeneralStyle.STYLE_HAVE_HINT_AND_VALUE -> {
+                holder.tvHint.visibility = View.VISIBLE
+
+                holder.tvValue.visibility = View.VISIBLE
+
+                holder.tvItem.gravity = Gravity.BOTTOM
+            }
+        }
+    }
 }
 
-class GeneralHolder : RecyclerView.ViewHolder {
+class GeneralHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     val tvIcon = itemView.findViewById<TextView>(R.id.tvIcon)
     val tvItem = itemView.findViewById<TextView>(R.id.tvItem)
@@ -89,45 +125,6 @@ class GeneralHolder : RecyclerView.ViewHolder {
     val tvHint = itemView.findViewById<TextView>(R.id.tvHint)
     val tvValue = itemView.findViewById<TextView>(R.id.tvValue)
     val vTop = itemView.findViewById<View>(R.id.vMarginTop)
-
-    constructor(itemView: View, style: GeneralStyle) : super(itemView) {
-        init(style)
-    }
-
-
-    private fun init(style: GeneralStyle) {
-
-        when (style) {
-            GeneralStyle.STYLE_NORMAL -> {
-                tvHint.visibility = View.GONE
-                tvValue.visibility = View.GONE
-
-                tvItem.gravity = Gravity.CENTER_VERTICAL
-            }
-            GeneralStyle.STYLE_HAVE_HINT -> {
-                tvHint.visibility = View.VISIBLE
-
-                tvValue.visibility = View.GONE
-
-                tvItem.gravity = Gravity.BOTTOM
-            }
-            GeneralStyle.STYLE_HAVE_VALUE -> {
-                tvHint.visibility = View.GONE
-
-                tvValue.visibility = View.VISIBLE
-
-                tvItem.gravity = Gravity.CENTER_VERTICAL
-            }
-            GeneralStyle.STYLE_HAVE_HINT_AND_VALUE -> {
-                tvHint.visibility = View.VISIBLE
-
-                tvValue.visibility = View.VISIBLE
-
-                tvItem.gravity = Gravity.BOTTOM
-            }
-        }
-    }
-
 
 }
 

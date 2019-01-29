@@ -2,6 +2,7 @@ package com.zhangwenshuan.dreamer.bean
 
 import android.graphics.Color
 import com.zhangwenshuan.dreamer.R
+import com.zhangwenshuan.dreamer.adapter.GeneralStyle
 import java.io.Serializable
 
 
@@ -57,6 +58,7 @@ data class DayAccount(var account: Double, var date: String)
 
 data class Item(var icon:String, var name:String, var iconColor:Int= Color.BLUE,
                 var subTitle:String="",var value:String="",
+                var style:GeneralStyle=GeneralStyle.STYLE_NORMAL,
                 var showRight:Boolean=false,var showTop:Boolean=false)
 
 

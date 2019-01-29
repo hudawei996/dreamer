@@ -8,10 +8,7 @@ import com.zhangwenshuan.dreamer.activity.CountDownListActivity
 import com.zhangwenshuan.dreamer.bean.CountDown
 import com.zhangwenshuan.dreamer.bean.TargetFirst
 import com.zhangwenshuan.dreamer.bean.TargetRemove
-import com.zhangwenshuan.dreamer.util.BaseApplication
-import com.zhangwenshuan.dreamer.util.DBHelper
-import com.zhangwenshuan.dreamer.util.TimeUtils
-import com.zhangwenshuan.dreamer.util.logInfo
+import com.zhangwenshuan.dreamer.util.*
 import kotlinx.android.synthetic.main.fragment_count_down_time.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -20,6 +17,7 @@ class CountDownTimeFragment : BaseFragment() {
     override fun getLayoutResource(): Int {
         return R.layout.fragment_count_down_time
     }
+
 
 
     lateinit var reader: SQLiteDatabase
@@ -44,12 +42,26 @@ class CountDownTimeFragment : BaseFragment() {
     var showCountDown: CountDown? = null
     var firstCountDown: CountDown? = null
 
+    var countDownSate = "关"
+
     override fun preInitData() {
         EventBus.getDefault().register(this)
 
         reader = DBHelper(activity!!).readableDatabase
 
         queryData(reader, querySql)
+
+
+
+        var countDownTarget = LocalDataUtils.getString(LocalDataUtils.COUNT_DOWN_TARGET)
+
+        if (!countDownTarget.isEmpty()) {
+            var data = countDownTarget.split("_dreamer_")
+
+            if (data[0] == BaseApplication.token) {
+                countDownSate = data[2]
+            }
+        }
 
     }
 
@@ -65,6 +77,9 @@ class CountDownTimeFragment : BaseFragment() {
         tvTarget.text = showCountDown!!.name
 
         tvTime.text = "${showCountDown!!.beginTime} 至 ${showCountDown!!.endTime}"
+
+        LocalDataUtils.setString(LocalDataUtils.COUNT_DOWN_TARGET,BaseApplication.token +
+                "_dreamer_"+showCountDown!!.name+"_dreamer_"+countDownSate)
     }
 
     var querySql = "select * from dreamer where user_id=${BaseApplication.userId} order by oder asc"
@@ -146,6 +161,7 @@ class CountDownTimeFragment : BaseFragment() {
     @Subscribe
     fun subscribe(first: TargetFirst) {
         showCountDown = first.countDown
+
         initCountDown()
     }
 
@@ -156,11 +172,14 @@ class CountDownTimeFragment : BaseFragment() {
         firstCountDown = null
 
         tvTarget.text = "未立下目标"
+
         tvTime.text = TimeUtils.curDay()
 
         tvDayCount.text = "0"
 
         tvHourCount.text = "0"
+
+        LocalDataUtils.setString(LocalDataUtils.COUNT_DOWN_TARGET,"")
     }
 
     override fun onDestroy() {

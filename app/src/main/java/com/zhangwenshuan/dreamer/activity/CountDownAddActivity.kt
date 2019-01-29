@@ -79,30 +79,16 @@ class CountDownAddActivity : BaseActivity() {
         value.put("end_time", tvEndTime.text.toString())
         value.put("target", etTarget.text.toString())
         value.put("created_time", TimeUtils.curDay())
-      //  value.put("show", isShow)
         value.put("user_id", BaseApplication.userId)
 
 
         var result = sqlWriter.insert("dreamer", null, value)
 
 
-
-
         if (result > 0) {
             toast("保存成功")
             EventBus.getDefault().post(TargetAdd())
-            if (isShow == 1) {
-                EventBus.getDefault().post(
-                    TargetFirst(
-                        CountDown(
-                            0, etTarget.text.toString(),
-                            TimeUtils.curDay(), tvBeginTime.text.toString(), tvEndTime.text.toString(), 0, 0, 1
-                        )
-                    )
-                )
-                finish()
-
-            }
+            finish()
         } else {
             toast("保存失败")
         }

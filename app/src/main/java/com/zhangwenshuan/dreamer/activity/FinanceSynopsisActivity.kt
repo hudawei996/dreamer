@@ -110,11 +110,11 @@ class FinanceSynopsisActivity : FinanceBaseActivity() {
         for (value in data){
           if (value.account!=0.0){
               expenseList.add(Item("",value.item,resources.getColor(R.color.finance_base_color)
-                  ,value = decimalFormat.format(value.account)))
+                  ,value = decimalFormat.format(value.account),style = GeneralStyle.STYLE_HAVE_VALUE))
           }
        }
 
-        expenseAdapter= GeneralAdapter(this,GeneralStyle.STYLE_HAVE_VALUE,expenseList)
+        expenseAdapter= GeneralAdapter(this,expenseList)
 
         rvFinanceType.adapter=expenseAdapter
 
