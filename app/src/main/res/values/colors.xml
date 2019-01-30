@@ -57,6 +57,7 @@
 
 
     <color name="chart_color_1">#60acfc</color>
+    <color name="chart_color_1_5">#51daef</color>
     <color name="chart_color_2">#32d3eb</color>
     <color name="chart_color_3">#5bc49f</color>
     <color name="chart_color_4">#feb64d</color>

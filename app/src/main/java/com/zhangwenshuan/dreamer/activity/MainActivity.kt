@@ -83,18 +83,6 @@ class MainActivity : BaseActivity() {
         vpMain.setCurrentItem(0, false)
 
         statusHeight = resources.getDimensionPixelSize(resources.getIdentifier("status_bar_height", "dimen", "android"))
-
-//        navigationHegiht =
-//                resources.getDimensionPixelSize(resources.getIdentifier("navigation_bar_height", "dimen", "android"))
-//
-//
-//        val hasNavigation = SystemUtil.checkDeviceHasNavigationBar(this)
-//
-//        if (hasNavigation) {
-//            navigationHegiht = SystemUtil.getNavigationBarHeight(this)
-//
-//        }
-
     }
 
     private fun showPasswordDialog() {

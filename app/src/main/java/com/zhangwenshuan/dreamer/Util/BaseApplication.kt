@@ -65,6 +65,13 @@ class BaseApplication : Application() {
         }
 
 
+        fun getStatusHeight():Int{
+          var  statusHeight = getContext().resources.getDimensionPixelSize(getContext().resources.getIdentifier("status_bar_height", "dimen", "android"))
+
+            return statusHeight
+        }
+
+
 
     }
 

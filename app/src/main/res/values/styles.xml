@@ -48,6 +48,11 @@
 
     </style>
 
+    <style name="CountDownProgressBarStyle" parent="@android:style/Widget.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/budget_progress_bar_style</item>
+
+    </style>
+
     <style name="CheckBox" parent="AppTheme">
 
         <item name="colorAccent">@color/colorBlack</item>

@@ -4,4 +4,215 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
+
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/count_down_sync_upload_background"
+                    android:layout_height="0dp">
+        <View android:layout_width="match_parent"
+              android:id="@+id/vTop"
+              android:layout_height="0dp"/>
+
+        <ImageView
+                android:layout_below="@id/vTop"
+                android:id="@+id/ivBg"
+                android:visibility="gone"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/img_upload"
+                android:layout_width="250dp"
+                android:layout_height="250dp"/>
+
+
+        <TextView android:layout_width="wrap_content"
+                  android:text="@string/to_back"
+                  android:layout_below="@id/vTop"
+                  android:textColor="@color/white"
+                  android:padding="10dp"
+                  android:elevation="2dp"
+                  android:id="@+id/tvBack"
+                  android:textSize="22sp"
+                  android:layout_marginLeft="@dimen/left"
+                  android:layout_height="wrap_content"/>
+
+
+        <TextView android:layout_width="100dp"
+                  android:textSize="70sp"
+                  android:text="@string/sync"
+                  android:gravity="center"
+                  android:id="@+id/tvSync"
+                  android:layout_below="@id/vTop"
+                  android:background="@drawable/circle"
+                  android:textColor="@color/chart_color_1"
+                  android:layout_centerHorizontal="true"
+                  android:layout_marginTop="90dp"
+                  android:layout_height="100dp"/>
+
+        <View android:layout_width="170dp"
+              android:id="@+id/ring1"
+              android:background="@drawable/count_down_ring_1"
+              android:layout_centerHorizontal="true"
+              android:layout_marginTop="12.5dp"
+              android:layout_below="@id/tvBack"
+              android:layout_height="170dp"/>
+
+        <View android:layout_width="190dp"
+              android:id="@+id/ring2"
+              android:background="@drawable/count_down_ring_1"
+              android:layout_centerHorizontal="true"
+              android:layout_marginTop="2.5dp"
+              android:layout_below="@id/tvBack"
+              android:layout_height="190dp"/>
+
+        <View android:layout_width="210dp"
+              android:id="@+id/ring3"
+              android:layout_below="@id/tvBack"
+              android:background="@drawable/count_down_ring_1"
+              android:layout_centerHorizontal="true"
+              android:layout_marginTop="-7.5dp"
+              android:layout_height="210dp"/>
+
+        <RelativeLayout
+                android:layout_below="@+id/tvSync"
+                android:id="@+id/rlSyncState"
+                android:visibility="gone"
+                android:layout_marginTop="100dp"
+                android:layout_width="match_parent"
+                android:layout_height="150dp">
+
+            <TextView android:layout_width="wrap_content"
+                      android:layout_centerHorizontal="true"
+                      android:text="正在同步云端"
+                      android:textSize="18sp"
+                      android:paddingTop="10dp"
+                      android:id="@+id/tvState"
+                      android:textColor="@color/white"
+                      android:layout_height="wrap_content"/>
+
+            <View android:layout_width="1dp"
+                  android:id="@+id/vCenter"
+                  android:background="@color/white"
+                  android:layout_centerInParent="true"
+                  android:layout_height="30dp"/>
+            <TextView android:layout_width="match_parent"
+                      android:gravity="center"
+                      android:layout_below="@id/tvState"
+                      android:layout_toRightOf="@id/vCenter"
+                      android:text="0"
+                      android:id="@+id/tvServerCount"
+                      android:textSize="22sp"
+                      android:paddingTop="10dp"
+                      android:textColor="@color/white"
+                      android:layout_height="wrap_content"/>
+            <TextView android:layout_width="match_parent"
+                      android:gravity="center"
+                      android:layout_below="@id/tvServerCount"
+                      android:layout_toRightOf="@id/vCenter"
+                      android:text="云端"
+                      android:textSize="16sp"
+                      android:paddingTop="10dp"
+                      android:textColor="@color/white"
+                      android:layout_height="wrap_content"/>
+
+            <TextView android:layout_width="match_parent"
+                      android:gravity="center"
+                      android:id="@+id/tvLocalCount"
+                      android:layout_below="@id/tvState"
+                      android:layout_toLeftOf="@id/vCenter"
+                      android:text="0"
+                      android:textSize="22sp"
+                      android:paddingTop="10dp"
+                      android:textColor="@color/white"
+                      android:layout_height="wrap_content"/>
+            <TextView android:layout_width="match_parent"
+                      android:gravity="center"
+                      android:layout_below="@id/tvLocalCount"
+                      android:layout_toLeftOf="@id/vCenter"
+                      android:text="本地"
+                      android:textSize="16sp"
+                      android:paddingTop="10dp"
+                      android:textColor="@color/white"
+                      android:layout_height="wrap_content"/>
+
+            <ProgressBar android:layout_width="match_parent"
+                         android:layout_marginLeft="60dp"
+                         android:id="@+id/pbCountDown"
+                         android:layout_marginRight="120dp"
+                         android:layout_marginBottom="10dp"
+                         style="@style/CountDownProgressBarStyle"
+                         android:layout_alignParentBottom="true"
+                         android:layout_height="3dp"/>
+
+            <TextView android:layout_width="wrap_content"
+                      android:layout_toRightOf="@id/pbCountDown"
+                      android:text="0%"
+                      android:id="@+id/tvPbNumber"
+                      android:layout_marginLeft="-100dp"
+                      android:layout_marginBottom="-5dp"
+                      android:textColor="@color/white"
+                      android:layout_alignBottom="@id/pbCountDown"
+                      android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_marginLeft="@dimen/left"
+                      android:layout_marginRight="@dimen/right"
+                      android:layout_marginBottom="50dp"
+                      android:elevation="5dp"
+                      android:id="@+id/llBottomData"
+                      android:orientation="horizontal"
+                      android:background="@drawable/edit_text_background"
+                      android:layout_alignParentBottom="true"
+                      android:layout_height="100dp">
+            <LinearLayout android:layout_width="0dp"
+                          android:layout_weight="1"
+                          android:orientation="vertical"
+                          android:layout_height="match_parent">
+
+                <TextView android:layout_width="match_parent"
+                          android:id="@+id/tvLocalData"
+                          android:text="0"
+                          android:gravity="center_horizontal|bottom"
+                          android:textSize="25sp"
+
+                          android:textColor="@color/black"
+                          android:layout_weight="1"
+                          android:layout_height="0dp"/>
+                <TextView android:layout_width="match_parent"
+                          android:gravity="center_horizontal"
+                          android:text="本地数据"
+                          android:textSize="12sp"
+                          android:textColor="@color/textHint"
+                          android:layout_weight="1"
+                          android:layout_height="0dp"/>
+            </LinearLayout>
+            <LinearLayout android:layout_width="0dp"
+                          android:layout_weight="1"
+                          android:orientation="vertical"
+                          android:layout_height="match_parent">
+
+                <TextView android:layout_width="match_parent"
+                          android:id="@+id/tvServerData"
+                          android:text="0"
+                          android:gravity="center_horizontal|bottom"
+                          android:textSize="25sp"
+
+                          android:textColor="@color/black"
+                          android:layout_weight="1"
+                          android:layout_height="0dp"/>
+                <TextView android:layout_width="match_parent"
+                          android:gravity="center_horizontal"
+                          android:text="云数据"
+                          android:textSize="12sp"
+                          android:textColor="@color/textHint"
+                          android:layout_weight="1"
+                          android:layout_height="0dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
 </LinearLayout>

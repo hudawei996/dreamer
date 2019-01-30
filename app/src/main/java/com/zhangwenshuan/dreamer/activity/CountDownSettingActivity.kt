@@ -11,7 +11,6 @@ import com.zhangwenshuan.dreamer.bean.Item
 import com.zhangwenshuan.dreamer.util.BaseApplication
 import com.zhangwenshuan.dreamer.util.LocalDataUtils
 import kotlinx.android.synthetic.main.activity_count_down_setting.*
-import kotlinx.android.synthetic.main.activity_splash.*
 import kotlinx.android.synthetic.main.layout_title_bar.*
 import org.jetbrains.anko.toast
 
@@ -21,7 +20,7 @@ class CountDownSettingActivity : BaseActivity() {
 
     private lateinit var adapter: GeneralAdapter
 
-     var target: String=""
+    var target: String = ""
 
     override fun setResourceId(): Int {
         return R.layout.activity_count_down_setting
@@ -47,7 +46,7 @@ class CountDownSettingActivity : BaseActivity() {
             var data = countDownTarget.split("_dreamer_")
 
             if (data[0] == BaseApplication.token) {
-                target=data[1]
+                target = data[1]
                 countDownSate = data[2]
             }
         }
@@ -72,11 +71,11 @@ class CountDownSettingActivity : BaseActivity() {
             override fun onItemClick(position: Int) {
                 when (position) {
                     0 -> {
-
+                        startActivity(Intent(this@CountDownSettingActivity, CountDownSyncActivity::class.java))
                     }
                     1 -> {
 
-                        if (target.isEmpty()){
+                        if (target.isEmpty()) {
                             toast("未设置首页目标")
                             return
                         }
