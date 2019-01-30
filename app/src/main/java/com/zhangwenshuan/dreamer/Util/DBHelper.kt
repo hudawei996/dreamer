@@ -8,7 +8,7 @@ class DBHelper(var context: Context) : SQLiteOpenHelper(context, "dreamer", null
 
     var dreamer =
         "create table dreamer(id INTEGER primary key autoincrement,target String,begin_time String,end_time String," +
-                "created_time String,final INTEGER,user_id INTEGER,oder INTEGER default 0,show INTEGER)"
+                "created_time String,success INTEGER,user_id INTEGER,oder INTEGER default 0,show INTEGER)"
 
     override fun onCreate(db: SQLiteDatabase?) {
         db!!.execSQL(dreamer)

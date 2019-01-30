@@ -19,6 +19,8 @@
 
     <color name="colorWhite2">#80FFFFFF</color>
 
+    <color name="colorWhite3">#99FFFFFF</color>
+
 
     <color name="colorBlack">#000000</color>
 
@@ -63,6 +65,10 @@
     <color name="chart_color_4">#feb64d</color>
     <color name="chart_color_5">#ff7c7c</color>
     <color name="chart_color_6">#9287e7</color>
+
+
+    <color name="count_down_color_1">#feb64d</color>
+    <color name="count_down_color_2">#ebb065</color>
 
     <string-array name="chart_color">
         <item>#60acfc</item>

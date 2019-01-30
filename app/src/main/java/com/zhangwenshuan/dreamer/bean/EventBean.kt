@@ -38,7 +38,7 @@ data class MobileAdd(var bank: Bank)
 
 data class TargetAdd(var type: Int=0)
 
-data class TargetFirst(var countDown: CountDown)
+data class TargetFirst(var countdown: Countdown)
 data class TargetRemove(var type: Int=0)
 
 

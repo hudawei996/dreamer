@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.graphics.Typeface
 import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.activity.CountDownListActivity
-import com.zhangwenshuan.dreamer.bean.CountDown
+import com.zhangwenshuan.dreamer.bean.Countdown
 import com.zhangwenshuan.dreamer.bean.TargetFirst
 import com.zhangwenshuan.dreamer.bean.TargetRemove
 import com.zhangwenshuan.dreamer.util.*
@@ -39,8 +39,8 @@ class CountDownTimeFragment : BaseFragment() {
 
     }
 
-    var showCountDown: CountDown? = null
-    var firstCountDown: CountDown? = null
+    var showCountdown: Countdown? = null
+    var firstCountdown: Countdown? = null
 
     var countDownSate = "关"
 
@@ -66,7 +66,7 @@ class CountDownTimeFragment : BaseFragment() {
     }
 
     private fun initCountDown() {
-        var time = TimeUtils.toTimestamp(showCountDown!!.endTime)
+        var time = TimeUtils.toTimestamp(showCountdown!!.endTime)
 
         var dayList = TimeUtils.timeDifference(System.currentTimeMillis(), time)
 
@@ -74,12 +74,12 @@ class CountDownTimeFragment : BaseFragment() {
 
         tvHourCount.text = dayList[1].toString()
 
-        tvTarget.text = showCountDown!!.name
+        tvTarget.text = showCountdown!!.target
 
-        tvTime.text = "${showCountDown!!.beginTime} 至 ${showCountDown!!.endTime}"
+        tvTime.text = "${showCountdown!!.beginTime} 至 ${showCountdown!!.endTime}"
 
         LocalDataUtils.setString(LocalDataUtils.COUNT_DOWN_TARGET,BaseApplication.token +
-                "_dreamer_"+showCountDown!!.name+"_dreamer_"+countDownSate)
+                "_dreamer_"+showCountdown!!.target+"_dreamer_"+countDownSate)
     }
 
     var querySql = "select * from dreamer where user_id=${BaseApplication.userId} order by oder asc"
@@ -102,19 +102,19 @@ class CountDownTimeFragment : BaseFragment() {
                         var createdTime = cursor.getString(cursor.getColumnIndex("created_time"))
                         var order = cursor.getInt(cursor.getColumnIndex("oder"))
                         var id = cursor.getInt(cursor.getColumnIndex("id"))
-                        var final = cursor.getInt(cursor.getColumnIndex("final"))
-                        showCountDown = CountDown(id, target, createdTime, beginTime, endTime, order, final)
+                        var final = cursor.getInt(cursor.getColumnIndex("success"))
+                        showCountdown = Countdown(id, target, createdTime, beginTime, endTime, order, final)
                     } else {
                         var order = cursor.getInt(cursor.getColumnIndex("oder"))
 
                         if (order == 0) {
-                            var final = cursor.getInt(cursor.getColumnIndex("final"))
+                            var final = cursor.getInt(cursor.getColumnIndex("success"))
                             var target = cursor.getString(cursor.getColumnIndex("target"))
                             var beginTime = cursor.getString(cursor.getColumnIndex("begin_time"))
                             var endTime = cursor.getString(cursor.getColumnIndex("end_time"))
                             var createdTime = cursor.getString(cursor.getColumnIndex("created_time"))
                             var id = cursor.getInt(cursor.getColumnIndex("id"))
-                            firstCountDown = CountDown(id, target, createdTime, beginTime, endTime, order, final)
+                            firstCountdown = Countdown(id, target, createdTime, beginTime, endTime, order, final)
 
                         }
                     }
@@ -135,12 +135,12 @@ class CountDownTimeFragment : BaseFragment() {
         tvCountMenu.typeface = typeface
 
 
-        if (showCountDown != null) {
+        if (showCountdown != null) {
 
             initCountDown()
 
-        } else if (firstCountDown != null) {
-            showCountDown = firstCountDown
+        } else if (firstCountdown != null) {
+            showCountdown = firstCountdown
             initCountDown()
         } else {
             tvTime.text = TimeUtils.curDay()
@@ -160,16 +160,16 @@ class CountDownTimeFragment : BaseFragment() {
 
     @Subscribe
     fun subscribe(first: TargetFirst) {
-        showCountDown = first.countDown
+        showCountdown = first.countdown
 
         initCountDown()
     }
 
     @Subscribe
     fun subscribe(remove: TargetRemove) {
-        showCountDown = null
+        showCountdown = null
 
-        firstCountDown = null
+        firstCountdown = null
 
         tvTarget.text = "未立下目标"
 

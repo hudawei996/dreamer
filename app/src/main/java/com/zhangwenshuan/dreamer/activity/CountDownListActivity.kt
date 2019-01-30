@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.Gravity
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.widget.PopupWindow
 import android.widget.TextView
@@ -18,7 +17,7 @@ import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.adapter.CountDownListAdapter
 import com.zhangwenshuan.dreamer.adapter.OnItemClickListener
 import com.zhangwenshuan.dreamer.adapter.OnItemSelectedListener
-import com.zhangwenshuan.dreamer.bean.CountDown
+import com.zhangwenshuan.dreamer.bean.Countdown
 import com.zhangwenshuan.dreamer.bean.TargetAdd
 import com.zhangwenshuan.dreamer.bean.TargetFirst
 import com.zhangwenshuan.dreamer.bean.TargetRemove
@@ -27,7 +26,6 @@ import com.zhangwenshuan.dreamer.custom.RecyclerViewCallback
 import com.zhangwenshuan.dreamer.util.BaseApplication
 import com.zhangwenshuan.dreamer.util.DBHelper
 import com.zhangwenshuan.dreamer.util.getScreenPoint
-import com.zhangwenshuan.dreamer.util.logInfo
 import kotlinx.android.synthetic.main.activity_count_down.*
 import kotlinx.android.synthetic.main.layout_title_bar.*
 import org.greenrobot.eventbus.EventBus
@@ -42,7 +40,7 @@ class CountDownListActivity : BaseActivity() {
         return R.layout.activity_count_down
     }
 
-    private var list = mutableListOf<CountDown>()
+    private var list = mutableListOf<Countdown>()
 
     private lateinit var adapter: CountDownListAdapter
 
@@ -76,8 +74,8 @@ class CountDownListActivity : BaseActivity() {
         notifyDataChanged()
     }
 
-    private fun queryData(sql: String): MutableList<CountDown> {
-        var data = mutableListOf<CountDown>()
+    private fun queryData(sql: String): MutableList<Countdown> {
+        var data = mutableListOf<Countdown>()
 
         var cursor = reader.rawQuery(sql, null)
 
@@ -89,11 +87,11 @@ class CountDownListActivity : BaseActivity() {
                     var beginTime = cursor.getString(cursor.getColumnIndex("begin_time"))
                     var endTime = cursor.getString(cursor.getColumnIndex("end_time"))
                     var createdTime = cursor.getString(cursor.getColumnIndex("created_time"))
-                    var final = cursor.getInt(cursor.getColumnIndex("final"))
+                    var final = cursor.getInt(cursor.getColumnIndex("success"))
                     var order = cursor.getInt(cursor.getColumnIndex("oder"))
                     var id = cursor.getInt(cursor.getColumnIndex("id"))
                     var show = cursor.getInt(cursor.getColumnIndex("show"))
-                    data.add(CountDown(id, target, createdTime, beginTime, endTime, order, final, show))
+                    data.add(Countdown(id, target, createdTime, beginTime, endTime, order, final, show))
 
                 } while (cursor.moveToNext())
             }
@@ -314,24 +312,24 @@ class CountDownListActivity : BaseActivity() {
 
         val tvFinish = view.findViewById<TextView>(R.id.tvFinish)
 
-        if (list[selectPosition].final == 1) {
+        if (list[selectPosition].success == 1) {
             tvFinish.text = "未完成"
         } else {
             tvFinish.text = "已完成"
         }
 
         tvFinish.setOnClickListener {
-            var state = list[selectPosition].final
+            var state = list[selectPosition].success
 
 
             var newValue = ContentValues()
 
             if (state == 1) {
-                list[selectPosition].final = 0
-                newValue.put("final", "0")
+                list[selectPosition].success = 0
+                newValue.put("success", "0")
             } else {
-                list[selectPosition].final = 1
-                newValue.put("final", "1")
+                list[selectPosition].success = 1
+                newValue.put("success", "1")
 
             }
             writer.update("dreamer", newValue, "id=${list[selectPosition].id}", null)

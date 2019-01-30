@@ -1,22 +1,19 @@
 package com.zhangwenshuan.dreamer.adapter
 
 import android.content.Context
-import android.content.DialogInterface
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
 import com.zhangwenshuan.dreamer.R
-import com.zhangwenshuan.dreamer.bean.CountDown
+import com.zhangwenshuan.dreamer.bean.Countdown
 import com.zhangwenshuan.dreamer.util.TimeUtils
-import com.zhangwenshuan.dreamer.util.logInfo
 import java.util.*
 
-class CountDownListAdapter(var context: Context, var list: MutableList<CountDown>) :
+class CountDownListAdapter(var context: Context, var list: MutableList<Countdown>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
         return CountDownListHolder(LayoutInflater.from(context).inflate(R.layout.item_count_down, parent, false))
@@ -32,11 +29,11 @@ class CountDownListAdapter(var context: Context, var list: MutableList<CountDown
 
         val item = list[position]
 
-        holder.tvName.text = item.name
+        holder.tvName.text = item.target
 
         holder.tvTime.text = item.beginTime + " 至 " + item.endTime
 
-        holder.tvCreatedTime.text = item.createTime
+        holder.tvCreatedTime.text = item.createdTime
 
         var endTime = TimeUtils.toTimestamp(item.endTime)
         var beginTime = TimeUtils.toTimestamp(item.beginTime)
@@ -51,7 +48,7 @@ class CountDownListAdapter(var context: Context, var list: MutableList<CountDown
                 holder.tvCount.text = date.toString()
             } else {
                 holder.tvCount.text = date.toString()
-                if (item.final == 1) {
+                if (item.success == 1) {
 
                     holder.ivFinish.visibility = View.VISIBLE
                     holder.ivOutTime.visibility = View.GONE
@@ -66,7 +63,7 @@ class CountDownListAdapter(var context: Context, var list: MutableList<CountDown
             showPosition=position
         }
 
-        if (item.final == 1) {
+        if (item.success == 1) {
             holder.tvCount.text = "0"
             holder.ivFinish.visibility = View.VISIBLE
         } else {

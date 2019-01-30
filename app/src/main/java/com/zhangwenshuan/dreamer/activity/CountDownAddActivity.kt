@@ -7,9 +7,7 @@ import android.view.View
 import android.widget.DatePicker
 import android.widget.TextView
 import com.zhangwenshuan.dreamer.R
-import com.zhangwenshuan.dreamer.bean.CountDown
 import com.zhangwenshuan.dreamer.bean.TargetAdd
-import com.zhangwenshuan.dreamer.bean.TargetFirst
 import com.zhangwenshuan.dreamer.util.BaseApplication
 import com.zhangwenshuan.dreamer.util.DBHelper
 import com.zhangwenshuan.dreamer.util.TimeUtils
@@ -17,7 +15,6 @@ import kotlinx.android.synthetic.main.activity_count_down_add.*
 import kotlinx.android.synthetic.main.layout_title_bar.*
 import org.greenrobot.eventbus.EventBus
 import org.jetbrains.anko.toast
-import java.sql.SQLData
 import java.util.*
 
 class CountDownAddActivity : BaseActivity() {

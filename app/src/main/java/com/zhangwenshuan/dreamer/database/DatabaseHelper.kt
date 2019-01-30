@@ -8,7 +8,7 @@ class DatabaseHelper: SQLiteOpenHelper {
 
      constructor(context: Context) : super(context, DATABASE_NAME, null, DATABASE_VERSION)
 
-    val passwordSql="create table ${PASSWORD_TABLE} (id Integer primary key,name varchar,username varchar,password varchar,type Integer,user_id Integer)"
+    val passwordSql="create table ${PASSWORD_TABLE} (id Integer primary key,target varchar,username varchar,password varchar,type Integer,user_id Integer)"
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(passwordSql)
