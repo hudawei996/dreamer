@@ -38,6 +38,12 @@ class FinanceTodayAdapter(val context: Context, val list: MutableList<Finance>) 
             listener?.onItemClick(position)
         }
 
+        if (position==list.size-1){
+            holder.vLine.visibility=View.GONE
+        }else{
+            holder.vLine.visibility=View.VISIBLE
+        }
+
 
         holder.tvName.text = list[position].type
 
