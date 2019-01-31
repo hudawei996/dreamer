@@ -44,6 +44,11 @@
     <string name="show_splash">&#xe628;</string>
     <string name="sorrow_face">&#xe603;</string>
     <string name="dian_zan">&#xe606;</string>
+    <string name="phone">&#xe503;</string>
+    <string name="server">&#xe661;</string>
+    <string name="down">&#xe699;</string>
+    <string name="left">&#xe531;</string>
+    <string name="right">&#xe50d;</string>
 
 
     <string-array name="bank_array">

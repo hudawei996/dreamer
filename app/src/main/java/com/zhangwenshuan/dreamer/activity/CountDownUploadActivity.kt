@@ -17,7 +17,7 @@ import okhttp3.RequestBody
 import org.jetbrains.anko.toast
 import java.util.*
 
-class CountDownSyncActivity : BaseActivity() {
+class CountDownUploadActivity : BaseActivity() {
 
     private var syncSate = -1
 
@@ -175,7 +175,7 @@ class CountDownSyncActivity : BaseActivity() {
                 }
 
 
-                var show = AnimationUtils.loadAnimation(this@CountDownSyncActivity, R.anim.count_down_show_tv)
+                var show = AnimationUtils.loadAnimation(this@CountDownUploadActivity, R.anim.count_down_show_tv)
 
 
                 tvSync.startAnimation(show)

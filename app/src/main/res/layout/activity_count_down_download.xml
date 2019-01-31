@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/count_down_sync_download_background"
+                    android:layout_height="0dp">
+        <View android:layout_width="match_parent"
+              android:id="@+id/vTop"
+              android:layout_height="0dp"/>
+
+
+        <TextView android:layout_width="wrap_content"
+                  android:text="@string/to_back"
+                  android:layout_below="@id/vTop"
+                  android:textColor="@color/white"
+                  android:padding="10dp"
+                  android:elevation="2dp"
+                  android:id="@+id/tvBack"
+                  android:textSize="22sp"
+                  android:layout_marginLeft="@dimen/left"
+                  android:layout_height="wrap_content"/>
+
+
+        <TextView android:layout_width="100dp"
+                  android:textSize="70sp"
+                  android:text="@string/server"
+                  android:gravity="center"
+                  android:id="@+id/tvServer"
+                  android:layout_below="@id/vTop"
+                  android:textColor="@color/white"
+                  android:layout_centerHorizontal="true"
+                  android:layout_marginTop="90dp"
+                  android:layout_height="100dp"/>
+
+
+        <TextView android:layout_width="100dp"
+                  android:textSize="70sp"
+                  android:text="@string/phone"
+                  android:gravity="center"
+                  android:id="@+id/tvPhone"
+                  android:layout_below="@id/tvServer"
+                  android:textColor="@color/colorWhite"
+                  android:layout_centerHorizontal="true"
+                  android:layout_marginTop="90dp"
+                  android:layout_height="100dp"/>
+
+        <TextView android:layout_width="100dp"
+                  android:textSize="30sp"
+                  android:text="@string/right"
+                  android:visibility="gone"
+                  android:gravity="center"
+                  android:id="@+id/tvLeft"
+                  android:layout_below="@id/tvServer"
+                  android:textColor="@color/colorWhite3"
+                  android:layout_toLeftOf="@id/tvPhone"
+                  android:layout_marginTop="90dp"
+                  android:layout_height="100dp"/>
+<TextView android:layout_width="100dp"
+                  android:textSize="28sp"
+                  android:text="@string/left"
+          android:visibility="gone"
+                  android:gravity="center"
+                  android:id="@+id/tvRight"
+                  android:layout_below="@id/tvServer"
+                  android:textColor="@color/colorWhite3"
+                  android:layout_toRightOf="@id/tvPhone"
+                  android:layout_marginTop="90dp"
+                  android:layout_height="100dp"/>
+
+
+        <TextView android:layout_width="100dp"
+                  android:textSize="50sp"
+                  android:text="@string/down"
+                  android:gravity="center"
+                  android:id="@+id/tvDownload"
+                  android:layout_below="@id/vTop"
+                  android:textColor="@color/white"
+                  android:layout_centerHorizontal="true"
+                  android:layout_marginTop="90dp"
+                  android:layout_height="100dp"/>
+
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_marginLeft="@dimen/left"
+                      android:layout_marginRight="@dimen/right"
+                      android:layout_marginBottom="50dp"
+                      android:elevation="5dp"
+                      android:id="@+id/llBottomData"
+                      android:orientation="horizontal"
+                      android:background="@drawable/edit_text_background"
+                      android:layout_alignParentBottom="true"
+                      android:layout_height="100dp">
+            <LinearLayout android:layout_width="0dp"
+                          android:layout_weight="1"
+                          android:orientation="vertical"
+                          android:layout_height="match_parent">
+
+                <TextView android:layout_width="match_parent"
+                          android:id="@+id/tvLocalData"
+                          android:text="0"
+                          android:gravity="center_horizontal|bottom"
+                          android:textSize="25sp"
+
+                          android:textColor="@color/black"
+                          android:layout_weight="1"
+                          android:layout_height="0dp"/>
+                <TextView android:layout_width="match_parent"
+                          android:gravity="center_horizontal"
+                          android:text="本地"
+                          android:textSize="12sp"
+                          android:textColor="@color/textHint"
+                          android:layout_weight="1"
+                          android:layout_height="0dp"/>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="0dp"
+                          android:layout_weight="1"
+                          android:orientation="vertical"
+                          android:layout_height="match_parent">
+
+                <TextView android:layout_width="match_parent"
+                          android:id="@+id/tvServerData"
+                          android:text="0"
+                          android:gravity="center_horizontal|bottom"
+                          android:textSize="25sp"
+
+                          android:textColor="@color/black"
+                          android:layout_weight="1"
+                          android:layout_height="0dp"/>
+                <TextView android:layout_width="match_parent"
+                          android:gravity="center_horizontal"
+                          android:text="云端"
+                          android:textSize="12sp"
+                          android:textColor="@color/textHint"
+                          android:layout_weight="1"
+                          android:layout_height="0dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView android:layout_width="wrap_content"
+                  android:background="@drawable/count_down_text_background"
+                  android:layout_above="@id/llBottomData"
+                  android:layout_centerHorizontal="true"
+                  android:layout_marginBottom="20dp"
+                  android:text="最近一次同步时间"
+                  android:visibility="gone"
+                  android:id="@+id/tvTime"
+                  android:textColor="@color/colorWhite"
+                  android:gravity="center"
+                  android:textSize="14sp"
+                  android:padding="10dp"
+                  android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

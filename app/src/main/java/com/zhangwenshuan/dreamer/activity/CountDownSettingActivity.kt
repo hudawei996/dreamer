@@ -30,8 +30,17 @@ class CountDownSettingActivity : BaseActivity() {
 
         list.add(
             Item(
-                resources.getString(R.string.sync), "同步",
-                subTitle = "同步服务器数据",
+                resources.getString(R.string.upload), "同步云端",
+                subTitle = "同步本地数据到云端",
+                style = GeneralStyle.STYLE_HAVE_HINT,
+                iconColor = resources.getColor(R.color.chart_color_1), showRight = true
+            )
+        )
+
+        list.add(
+            Item(
+                resources.getString(R.string.download), "同步本地",
+                subTitle = "同步云端数据到本地",
                 style = GeneralStyle.STYLE_HAVE_HINT,
                 iconColor = resources.getColor(R.color.chart_color_4), showRight = true
             )
@@ -71,9 +80,12 @@ class CountDownSettingActivity : BaseActivity() {
             override fun onItemClick(position: Int) {
                 when (position) {
                     0 -> {
-                        startActivity(Intent(this@CountDownSettingActivity, CountDownSyncActivity::class.java))
+                        startActivity(Intent(this@CountDownSettingActivity, CountDownUploadActivity::class.java))
                     }
                     1 -> {
+                        startActivity(Intent(this@CountDownSettingActivity, CountDownDownloadActivity::class.java))
+                    }
+                    2 -> {
 
                         if (target.isEmpty()) {
                             toast("未设置首页目标")
