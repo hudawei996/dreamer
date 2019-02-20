@@ -17,8 +17,8 @@ import com.zhangwenshuan.dreamer.bean.*
 import com.zhangwenshuan.dreamer.custom.XAxisCustom
 import com.zhangwenshuan.dreamer.util.*
 import io.reactivex.functions.Consumer
-import kotlinx.android.synthetic.main.activity_finance.*
 import kotlinx.android.synthetic.main.activity_finance_synopsis.*
+import kotlinx.android.synthetic.main.layout_title_bar.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode

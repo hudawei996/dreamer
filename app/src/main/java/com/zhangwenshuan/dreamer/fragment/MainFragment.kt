@@ -1,15 +1,9 @@
 package com.zhangwenshuan.dreamer.fragment
 
 import android.content.Intent
-import android.graphics.Color
 import android.graphics.Typeface
-import android.os.Build
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
-import android.util.TypedValue
-import android.view.View
-import android.view.WindowManager
 import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.activity.*
 import com.zhangwenshuan.dreamer.adapter.FinanceTodayAdapter
@@ -17,7 +11,7 @@ import com.zhangwenshuan.dreamer.adapter.OnItemClickListener
 import com.zhangwenshuan.dreamer.bean.*
 import com.zhangwenshuan.dreamer.util.*
 import io.reactivex.functions.Consumer
-import kotlinx.android.synthetic.main.activity_finance.*
+import kotlinx.android.synthetic.main.fragment_main.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -27,7 +21,7 @@ class MainFragment : BaseFragment() {
     var topHeight: Int = 0
 
     override fun getLayoutResource(): Int {
-        return R.layout.activity_finance
+        return R.layout.fragment_main
 
 
     }

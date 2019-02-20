@@ -17,7 +17,7 @@ import com.zhangwenshuan.dreamer.util.NetUtils
 import com.zhangwenshuan.dreamer.util.TimeUtils
 import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.activity_book_list.*
-import kotlinx.android.synthetic.main.activity_finance.*
+import kotlinx.android.synthetic.main.layout_title_bar.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode

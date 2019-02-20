@@ -52,7 +52,6 @@
 
 
         <activity android:name=".activity.LogoActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".activity.FinanceActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.FinanceAddActivity" android:screenOrientation="portrait"/>
         <activity android:name=".activity.FinanceSynopsisActivity"/>
         <activity android:name=".activity.FinanceSearchActivity"/>
