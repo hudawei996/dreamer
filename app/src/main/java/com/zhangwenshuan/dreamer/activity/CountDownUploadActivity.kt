@@ -163,6 +163,8 @@ class CountDownUploadActivity : BaseActivity() {
                     tvSync.setTextColor(resources.getColor(R.color.chart_color_1))
                     tvSync.textSize=40f
 
+                    tvServerCount.text=localData.size.toString()
+
                     tvState.text = "同步完成"
                     tvState.setTextColor(resources.getColor(R.color.colorPrimary))
                 }else{

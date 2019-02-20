@@ -5,6 +5,8 @@ import android.graphics.Typeface
 import android.text.Editable
 import android.view.View
 import com.zhangwenshuan.dreamer.R
+import com.zhangwenshuan.dreamer.bean.Bank
+import com.zhangwenshuan.dreamer.bean.BankUpdate
 import com.zhangwenshuan.dreamer.bean.CashAdd
 import com.zhangwenshuan.dreamer.util.BaseApplication
 import com.zhangwenshuan.dreamer.util.NetUtils
@@ -15,11 +17,16 @@ import org.greenrobot.eventbus.EventBus
 import org.jetbrains.anko.toast
 
 class AccountCashActivity : FinanceBaseActivity() {
+
+    private var isUpdate=false
+
     override fun setResourceId(): Int {
         return R.layout.activity_account_cash
     }
 
     override fun initViews() {
+
+        isUpdate=intent.getBooleanExtra("update",false)
 
         tvAdd.text = resources.getString(R.string.ok)
 
@@ -29,7 +36,14 @@ class AccountCashActivity : FinanceBaseActivity() {
 
         tvAdd.visibility = View.VISIBLE
 
-        tvTitle.text = "添加现金"
+        if (isUpdate){
+
+            tvTitle.text = "现金"
+        }else{
+
+            tvTitle.text = "添加现金"
+        }
+
 
         tvCashClear.text=resources.getString(R.string.clear)
         tvCashClear.typeface=typeface
@@ -63,10 +77,18 @@ class AccountCashActivity : FinanceBaseActivity() {
             etCashRemark.text.toString()
         ),
             Consumer {
-                toast(it.message)
+
 
                 if (it.code == 200) {
-                    EventBus.getDefault().post(CashAdd(it.data))
+                    if(isUpdate){
+                        EventBus.getDefault().post(
+                            BankUpdate(Bank(name="现金",account = account.toDouble(),
+                                remark =etCashRemark.text.toString(),type ="cash" )))
+                        toast("添加成功")
+                    }else{
+                        EventBus.getDefault().post(CashAdd(it.data))
+                        toast("保存成功")
+                    }
                     finish()
                 }
             })

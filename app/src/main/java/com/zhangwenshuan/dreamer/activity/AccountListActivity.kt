@@ -75,10 +75,11 @@ class AccountListActivity : FinanceBaseActivity() {
                 intent = Intent(this@AccountListActivity, AccountCreditActivity::class.java)
             } else if (bank.type == "cash") {
                 intent = Intent(this@AccountListActivity, AccountCashActivity::class.java)
-
+                intent.putExtra("update",true)
+                startActivity(intent)
+                return@setOnItemClickListener
             } else if (bank.type == "bank") {
                 intent = Intent(this@AccountListActivity, AccountBankActivity::class.java)
-
             } else {
                 intent = Intent(this@AccountListActivity, AccountMobileActivity::class.java)
 

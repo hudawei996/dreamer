@@ -43,7 +43,7 @@
               android:paddingTop="10dp"
               android:textColor="@color/hint"
               android:textSize="12sp"
-              android:text="好的名字，能好友记住你"
+              android:text="好的名字，能让好友记住你"
               android:layout_marginLeft="@dimen/left"
               android:layout_height="wrap_content"/>
 

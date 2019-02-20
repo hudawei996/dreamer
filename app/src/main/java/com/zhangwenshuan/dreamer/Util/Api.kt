@@ -72,7 +72,7 @@ interface Api {
     @FormUrlEncoded
     fun savePassword(
         @Field("username") username: String,
-        @Field("target") name: String,
+        @Field("name") name: String,
         @Field("password") password: String,
         @Field("userId") userId: Int
     ): Observable<Result<Password>>
@@ -87,7 +87,7 @@ interface Api {
     @POST("password/search")
     @FormUrlEncoded
     fun searchPassword(
-        @Field("target") password: String,
+        @Field("name") password: String,
         @Field("userId") userId: Int
     ): Observable<Result<List<Password>>>
 
@@ -181,7 +181,7 @@ interface Api {
     @FormUrlEncoded
     fun saveBank(
         @Field("userId") userId: Int,
-        @Field("target") bankName: String,
+        @Field("name") bankName: String,
         @Field("account") account: String,
         @Field("number") number: String,
         @Field("remark") remark: String
@@ -192,7 +192,7 @@ interface Api {
     @FormUrlEncoded
     fun saveMobile(
         @Field("userId") userId: Int,
-        @Field("target") bankName: String,
+        @Field("name") bankName: String,
         @Field("account") account: String,
         @Field("username") username: String,
         @Field("remark") remark: String
@@ -203,7 +203,7 @@ interface Api {
     @FormUrlEncoded
     fun saveCash(
         @Field("userId") userId: Int,
-        @Field("target") bankName: String,
+        @Field("name") bankName: String,
         @Field("account") account: String,
         @Field("remark") remark: String
     ): Observable<Result<Bank>>
@@ -212,7 +212,7 @@ interface Api {
     @FormUrlEncoded
     fun saveCredit(
         @Field("userId") userId: Int,
-        @Field("target") bankName: String,
+        @Field("name") bankName: String,
         @Field("amount") amount: String,
         @Field("debt") debt: String,
         @Field("billDate") billDate: String,
@@ -239,18 +239,18 @@ interface Api {
     @POST("bank/updateBank")
     @FormUrlEncoded
     fun updateBank(@Field("id") id: Int, @Field("account") account: String,
-                   @Field("target")name: String,@Field("remark")remark: String,@Field("number")number: String): Observable<Result<Any>>
+                   @Field("name")name: String,@Field("remark")remark: String,@Field("number")number: String): Observable<Result<Any>>
 
     @POST("bank/updateCredit")
     @FormUrlEncoded
     fun updateCredit(@Field("id") id: Int, @Field("amount") amount: String,@Field("debt") debt: String,
                      @Field("billDate")billDate: String,@Field("returnDate")returnDate: String,
-                   @Field("target")name: String,@Field("number")number: String,@Field("remark")remark: String): Observable<Result<Any>>
+                   @Field("name")name: String,@Field("number")number: String,@Field("remark")remark: String): Observable<Result<Any>>
 
 
      @POST("bank/updateMobile")
     @FormUrlEncoded
-    fun updateMobile(@Field("id") id: Int, @Field("target") name: String,@Field("username") username: String,
+    fun updateMobile(@Field("id") id: Int, @Field("name") name: String,@Field("username") username: String,
                      @Field("account")account: String,@Field("remark")remark: String): Observable<Result<Any>>
 
 
@@ -261,7 +261,7 @@ interface Api {
     @FormUrlEncoded
     fun saveBook(
         @Field("userId") userId: Int,
-        @Field("target") name: String,
+        @Field("name") name: String,
         @Field("begin") date: String,
         @Field("end") end: String,
         @Field("content") content: String,

@@ -84,7 +84,7 @@
 
             <RelativeLayout
                     android:layout_marginTop="20dp"
-
+                    android:visibility="gone"
                     android:background="@color/colorWhite"
                     android:layout_width="match_parent" android:layout_height="@dimen/me_height">
                 <TextView
@@ -115,6 +115,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                    android:visibility="gone"
                     android:background="@color/colorWhite"
                     android:layout_width="match_parent" android:layout_height="@dimen/me_height">
                 <TextView

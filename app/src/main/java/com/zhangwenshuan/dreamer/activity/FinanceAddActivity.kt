@@ -181,7 +181,7 @@ class FinanceAddActivity : FinanceBaseActivity() {
 
 
         if (bank == null) {
-            toast("请先添加用户")
+            toast("请先添加账户")
             return
         }
 
@@ -419,8 +419,6 @@ class FinanceAddActivity : FinanceBaseActivity() {
                         tvFinanceBankAdd.text = bank.name
                     }
                 }
-
-
 
                 if (it.code == 200) {
                     it.data.forEachIndexed { index, bank ->

@@ -39,7 +39,7 @@ class MoreFragment : BaseFragment() {
     override fun preInitData() {
         list.add(Item(activity!!.resources.getString(R.string.password_remember), "密码记忆", showRight = true))
         list.add(Item(activity!!.resources.getString(R.string.book_remember), "书架", showRight = true,showTop = true))
-        list.add(Item(activity!!.resources.getString(R.string.remember), "备忘录", showRight = true,showTop = true))
+       // list.add(Item(activity!!.resources.getString(R.string.remember), "备忘录", showRight = true,showTop = true))
 
         adapter = MoreAdapter(activity!!, list)
 
