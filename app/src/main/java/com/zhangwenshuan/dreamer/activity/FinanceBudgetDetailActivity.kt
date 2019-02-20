@@ -12,6 +12,7 @@ import com.zhangwenshuan.dreamer.bean.*
 import com.zhangwenshuan.dreamer.util.BaseApplication
 import com.zhangwenshuan.dreamer.util.NetUtils
 import com.zhangwenshuan.dreamer.util.TimeUtils
+import com.zhangwenshuan.dreamer.util.decimalFormat
 import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.activity_finance_budget_detail.*
 import kotlinx.android.synthetic.main.layout_title_bar.*

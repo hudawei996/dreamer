@@ -12,6 +12,7 @@ import com.zhangwenshuan.dreamer.bean.BankUpdate
 import com.zhangwenshuan.dreamer.bean.CreditAdd
 import com.zhangwenshuan.dreamer.util.BaseApplication
 import com.zhangwenshuan.dreamer.util.NetUtils
+import com.zhangwenshuan.dreamer.util.decimalFormat
 import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.activity_account_credit.*
 import kotlinx.android.synthetic.main.activity_finance_add.*

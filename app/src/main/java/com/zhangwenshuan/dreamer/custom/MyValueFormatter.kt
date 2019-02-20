@@ -3,7 +3,7 @@ package com.zhangwenshuan.dreamer.custom
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.formatter.IValueFormatter
 import com.github.mikephil.charting.utils.ViewPortHandler
-import com.zhangwenshuan.dreamer.activity.decimalFormat
+import com.zhangwenshuan.dreamer.util.decimalFormat
 
 class MyValueFormatter(var list: MutableList<String>) : IValueFormatter {
 

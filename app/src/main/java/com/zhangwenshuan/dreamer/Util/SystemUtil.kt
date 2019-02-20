@@ -5,7 +5,9 @@ import android.graphics.Rect
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
+import java.text.DecimalFormat
 
+var decimalFormat = DecimalFormat("#,##0.00")
 
 class SystemUtil {
 

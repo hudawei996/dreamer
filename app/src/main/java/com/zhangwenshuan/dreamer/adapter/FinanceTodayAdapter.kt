@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.zhangwenshuan.dreamer.R
-import com.zhangwenshuan.dreamer.activity.decimalFormat
 import com.zhangwenshuan.dreamer.bean.Finance
+import com.zhangwenshuan.dreamer.util.decimalFormat
 
 class FinanceTodayAdapter(val context: Context, val list: MutableList<Finance>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {

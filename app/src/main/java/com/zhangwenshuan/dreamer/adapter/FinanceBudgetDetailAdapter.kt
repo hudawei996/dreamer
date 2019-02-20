@@ -2,18 +2,15 @@ package com.zhangwenshuan.dreamer.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.zhangwenshuan.dreamer.R
-import com.zhangwenshuan.dreamer.activity.decimalFormat
 import com.zhangwenshuan.dreamer.bean.Budget
+import com.zhangwenshuan.dreamer.util.decimalFormat
 
 class FinanceBudgetDetailAdapter(val context: Context, val list: MutableList<Budget>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {

@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.zhangwenshuan.dreamer.R
-import com.zhangwenshuan.dreamer.activity.decimalFormat
 import com.zhangwenshuan.dreamer.bean.Bank
 import com.zhangwenshuan.dreamer.bean.BankCard
+import com.zhangwenshuan.dreamer.util.decimalFormat
 
 class BankAccountAdapter(var context: Context, var list: MutableList<Bank>) : BaseAdapter() {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {

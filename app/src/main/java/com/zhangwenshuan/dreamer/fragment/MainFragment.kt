@@ -51,11 +51,6 @@ class MainFragment : BaseFragment() {
 
         if (rlTop != null) {
             rlTop.setPadding(0, topHeight, 0, 0)
-
-//            rlTop.layoutParams.height = height +
-//                    TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 230f, resources.displayMetrics).toInt()
-
-
         }
 
     }
@@ -67,9 +62,6 @@ class MainFragment : BaseFragment() {
     }
 
     override fun initViews() {
-
-
-
         val financeFont = Typeface.createFromAsset(activity!!.assets, "finance.ttf")
 
         tvFinance.text = resources.getString(R.string.finance)
@@ -81,20 +73,6 @@ class MainFragment : BaseFragment() {
         rvTodayFinance.adapter = financeAdapter
 
         rvTodayFinance.layoutManager = LinearLayoutManager(activity)
-
-
-        financeAdapter.setItemClickListener(object : OnItemClickListener {
-            override fun onItemClick(position: Int) {
-                val finance = list[position]
-                val intent = Intent(activity, FinanceAddActivity::class.java)
-                val bundle = Bundle()
-                bundle.putSerializable("finance", finance)
-                intent.putExtra("data", bundle)
-                startActivity(intent)
-                this@MainFragment.position = position
-            }
-        })
-
     }
 
 
@@ -129,8 +107,6 @@ class MainFragment : BaseFragment() {
 
                 startActivity(intent)
             }
-
-
         }
 
         tvFinanceMonthBudgetHint.setOnClickListener {
@@ -142,16 +118,25 @@ class MainFragment : BaseFragment() {
 
             startActivity(intent)
         }
+
+        financeAdapter.setItemClickListener(object : OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                val finance = list[position]
+                val intent = Intent(activity, FinanceAddActivity::class.java)
+                val bundle = Bundle()
+                bundle.putSerializable("finance", finance)
+                intent.putExtra("data", bundle)
+                startActivity(intent)
+                this@MainFragment.position = position
+            }
+        })
     }
 
 
     override fun initData() {
-
         getFinance()
 
-
         getBudget()
-
     }
 
     var budgetBean: BudgetBean? = null

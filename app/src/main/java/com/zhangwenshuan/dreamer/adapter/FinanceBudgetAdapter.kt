@@ -11,8 +11,8 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import com.zhangwenshuan.dreamer.R
-import com.zhangwenshuan.dreamer.activity.decimalFormat
 import com.zhangwenshuan.dreamer.bean.Budget
+import com.zhangwenshuan.dreamer.util.decimalFormat
 
 class FinanceBudgetAdapter(val context: Context, val list: MutableList<Budget>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {

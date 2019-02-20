@@ -125,11 +125,6 @@ interface Api {
         @Field("isExpense") isExpense: Int
     ): Observable<Result<Any>>
 
-
-    @POST("finance/get")
-    @FormUrlEncoded
-    fun getFinance(@Field("userId") userId: Int): Observable<Result<Account>>
-
     @POST("finance/getByTime")
     @FormUrlEncoded
     fun getFinanceByTime(

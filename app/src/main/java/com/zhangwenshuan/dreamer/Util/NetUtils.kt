@@ -17,7 +17,7 @@ const val PROD_URL = "https://www.zhangwenshuan.com/dreamer/"
 
 const val DEV_URL = "http://192.168.1.102:8080/"
 
-var DEBUG = false
+var DEBUG = true
 
 
 class NetUtils {
@@ -31,9 +31,6 @@ class NetUtils {
 
         private var client: OkHttpClient? = null
 
-        fun getUrl(): String {
-            if (DEBUG) return DEV_URL else return PROD_URL
-        }
 
         fun getApiInstance(): Api {
 

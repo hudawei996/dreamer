@@ -1,7 +1,6 @@
 package com.zhangwenshuan.dreamer.adapter
 
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -9,16 +8,13 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.zhangwenshuan.dreamer.R
 import com.zhangwenshuan.dreamer.activity.FinanceAddActivity
-import com.zhangwenshuan.dreamer.activity.FinanceSearchActivity
-import com.zhangwenshuan.dreamer.activity.decimalFormat
 import com.zhangwenshuan.dreamer.bean.DayBill
-import com.zhangwenshuan.dreamer.bean.Finance
+import com.zhangwenshuan.dreamer.util.decimalFormat
 
 class FinanceSearchAdapter(var context: Context, var list: MutableList<DayBill>) :
 

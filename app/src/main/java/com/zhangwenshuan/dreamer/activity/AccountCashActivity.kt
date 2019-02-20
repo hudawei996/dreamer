@@ -10,6 +10,7 @@ import com.zhangwenshuan.dreamer.bean.BankUpdate
 import com.zhangwenshuan.dreamer.bean.CashAdd
 import com.zhangwenshuan.dreamer.util.BaseApplication
 import com.zhangwenshuan.dreamer.util.NetUtils
+import com.zhangwenshuan.dreamer.util.decimalFormat
 import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.activity_account_cash.*
 import kotlinx.android.synthetic.main.layout_title_bar.*
