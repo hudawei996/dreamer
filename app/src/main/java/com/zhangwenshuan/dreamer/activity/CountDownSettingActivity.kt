@@ -109,7 +109,9 @@ class CountDownSettingActivity : BaseActivity() {
                             )
                         }
 
-                        adapter.notifyItemChanged(1)
+                        list[2].value=countDownSate
+
+                        adapter.notifyItemChanged(2)
                     }
                 }
             }
