@@ -28,6 +28,7 @@ class BankAccountAdapter(var context: Context, var list: MutableList<Bank>) : Ba
             holder.tvName = view.findViewById(R.id.tvBankName)
             holder.tvAmount = view.findViewById(R.id.tvAmount)
             holder.tvDebt = view.findViewById(R.id.tvDebt)
+            holder.bottomLine=view.findViewById(R.id.vBottomLine)
 
             view.tag = holder
 
@@ -44,7 +45,7 @@ class BankAccountAdapter(var context: Context, var list: MutableList<Bank>) : Ba
             holder.tvAmount.visibility = View.VISIBLE
             holder.tvDebt.visibility = View.VISIBLE
 
-            holder.tvAmount.text ="总资产 "+ decimalFormat.format(bank.amount)
+            holder.tvAmount.text ="额度 "+ decimalFormat.format(bank.amount)
 
             holder.tvDebt.text = "-" + decimalFormat.format(bank.debt)
 
@@ -65,6 +66,12 @@ class BankAccountAdapter(var context: Context, var list: MutableList<Bank>) : Ba
         }
 
 
+        if (position==list.size-1){
+            holder.bottomLine.visibility=View.GONE
+        }else{
+            holder.bottomLine.visibility=View.VISIBLE
+        }
+
 
         return view
 
@@ -83,4 +90,5 @@ class BankAccountHolder {
     lateinit var tvAccount: TextView
     lateinit var tvDebt: TextView
     lateinit var tvAmount: TextView
+    lateinit var bottomLine:View
 }

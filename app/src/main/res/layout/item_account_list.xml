@@ -61,6 +61,7 @@
               android:layerType="software"
               android:layout_alignParentBottom="true"
               android:layout_marginLeft="20dp"
+              android:id="@+id/vBottomLine"
               android:background="@drawable/dash_line_bg"/>
 
 

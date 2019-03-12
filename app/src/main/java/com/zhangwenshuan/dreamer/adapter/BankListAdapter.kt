@@ -67,6 +67,13 @@ class BankListAdapter(val context: Context, val list: MutableList<Setting>) :
 
         }
 
+
+        if(position==list.size-1){
+            holder.vBottomLine.visibility=View.GONE
+        }else{
+            holder.vBottomLine.visibility=View.VISIBLE
+        }
+
         holder.itemView.setOnClickListener {
             onItemClickListener?.onItemClick(position)
         }
